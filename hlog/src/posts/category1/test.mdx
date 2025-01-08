@@ -1,0 +1,133 @@
+export const metadata = {
+  title: "first",
+  description: "Hello World Page",
+  publishDate: "2024-01-01T00:00:00Z",
+  posterImage: "https://storage.googleapis.com/leehyeonjun.com/Next_mdx%EB%A1%9C_%EB%B8%94%EB%A1%9C%EA%B7%B8_%EB%A7%8C%EB%93%A4%EA%B8%B0/next%2Bmdx.png",
+  categories: ["React", "Next"]
+}
+# Welcome to my MDX page!
+
+This is some **bold** and _italics_ text.
+
+This is a list in markdown:
+
+- One
+- Two
+- Three
+
+- Three
+
+I **love** using [Next.js](https://nextjs.org/)
+
+# 테스트 제목
+
+이 문서는 MDX 테스트 파일입니다. 마크업과 JSX가 결합된 예시입니다.
+
+## 리스트 예시
+
+# 제목 1
+
+## 제목 2
+
+### 제목 3
+
+#### 제목 4
+
+##### 제목 5
+
+###### 제목 6
+
+# 제목 1
+
+## 제목 2
+
+이텔릭체는 _별 기호(Asterisks)_ 혹은 _언더바 기호(Underscore)_ 를 사용하세요.
+두껍게는 **별 기호(asterisks)** 혹은 **언더바 기호(underscore)** 를 2번씩 사용하세요.
+***이텔릭체*와 두껍게** 를 혼용할 수도 있습니다.
+
+취소선은 ~~물결 기호(tilde)~~ 를 사용하세요.
+
+<u>밑줄</u>은 마크다운에서 지원하지 않기에, 직접 `<u></u>` 태그를 사용하세요.
+
+- 항목 1
+- 항목 2
+  - 서브 항목 A
+  - 서브 항목 B
+- 항목 3
+
+## 코드 블록
+
+```javascript
+const hello = "Hello, world!";
+console.log(hello);
+```
+
+[GOOGLE](https://google.com)
+
+[NAVER](https://naver.com "링크 설명(title)을 작성하세요.")
+
+[상대적 참조](../users/login)
+
+[Dribbble][Dribbble Link]
+
+[GitHub][1]
+
+[Dribbble Link]: https://dribbble.com
+[1]: https://github.com
+[참조 링크]: https://naver.com "네이버로 이동합니다!"
+
+[대체 텍스트(Alternative Text)](https://picsum.photos/1000/400 "링크 설명(Title)")
+[이미지입니다!][Image]
+
+```html
+<a href="https://www.google.co.kr/" target="_blank">GOOGLE</a>
+```
+
+```css
+.list > li {
+  position: absolute;
+  top: 40px;
+}
+```
+
+```javascript
+function add(a, b = 1) {
+  console.log(a, b);
+  return a + b;
+}
+```
+
+```bash
+$ npm run dev
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```plaintext
+No language indicated, so no syntax highlighting.
+But let's throw in a <b>tag</b>.
+```
+
+| 값         |                  의미                  |   기본값 |
+| ---------- | :------------------------------------: | -------: |
+| `static`   |     유형(기준) 없음 / 배치 불가능      | `static` |
+| `relative` |       요소 자신을 기준으로 배치        |          |
+| `absolute` | 위치 상 부모(조상)요소를 기준으로 배치 |          |
+| `fixed`    |      브라우저 창을 기준으로 배치       |          |
+| `sticky`   |       스크롤 영역 기준으로 배치        |          |
+
+| 값         |                   의미                   |   기본값 |
+| ---------- | :--------------------------------------: | -------: |
+| `static`   |      유형(기준) 없음 / 배치 불가능       | `static` |
+| `relative` |        요소 자신을 기준으로 배치         |
+| `absolute` | 위치 상 부모\_(조상)요소를 기준으로 배치 |
+| `fixed`    |       브라우저 창을 기준으로 배치        |
+| `sticky`   |        스크롤 영역 기준으로 배치         |
+
+| 값               | 의미 |
+| ---------------- | ---- |
+| 버티컬바 출력    | \|   |
+| 인라인 코드 강조 | `\|` |
