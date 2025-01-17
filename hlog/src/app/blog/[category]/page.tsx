@@ -1,4 +1,4 @@
-import { getPostsForCategory } from "@/lib/posts"; // 실제 경로로 변경
+import { getPostsForCategory } from "@/lib/postUtils";
 import Link from "next/link";
 
 export default async function CategoryPage({
