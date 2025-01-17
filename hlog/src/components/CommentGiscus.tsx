@@ -10,6 +10,11 @@ export default function Giscus() {
   // https://github.com/giscus/giscus/tree/main/styles/themes
   const theme = resolvedTheme === "dark" ? "dark" : "light";
 
+  const repo = process.env.NEXT_PUBLIC_GISCUS_REPO || "";
+  const repoId = process.env.NEXT_PUBLIC_GISCUS_REPO_ID || "";
+  const category = process.env.NEXT_PUBLIC_GISCUS_CATEGORY || "";
+  const categoryId = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || "";
+
   useEffect(() => {
     if (!ref.current || ref.current.hasChildNodes()) return;
 
@@ -18,10 +23,10 @@ export default function Giscus() {
     scriptElem.async = true;
     scriptElem.crossOrigin = "anonymous";
 
-    scriptElem.setAttribute("data-repo", "kanghaeven/hlog");
-    scriptElem.setAttribute("data-repo-id", "R_kgDONmZJBA");
-    scriptElem.setAttribute("data-category", "Comments");
-    scriptElem.setAttribute("data-category-id", "DIC_kwDONmZJBM4CmFGJ");
+    scriptElem.setAttribute("data-repo", repo);
+    scriptElem.setAttribute("data-repo-id", repoId);
+    scriptElem.setAttribute("data-category", category);
+    scriptElem.setAttribute("data-category-id", categoryId);
     scriptElem.setAttribute("data-mapping", "pathname");
     scriptElem.setAttribute("data-strict", "0");
     scriptElem.setAttribute("data-reactions-enabled", "1");
@@ -31,7 +36,7 @@ export default function Giscus() {
     scriptElem.setAttribute("data-lang", "ko");
 
     ref.current.appendChild(scriptElem);
-  }, [theme]);
+  }, [category, categoryId, repo, repoId, theme]);
 
   // https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#isetconfigmessage
   useEffect(() => {
