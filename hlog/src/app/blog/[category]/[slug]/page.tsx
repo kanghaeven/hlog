@@ -1,4 +1,5 @@
 // src/app/blog/[category]/[slug]/page.tsx
+import Giscus from "@/components/CommentGiscus";
 import PostContent from "@/components/PostContent";
 import { getPostBySlug } from "@/lib/postUtils";
 
@@ -35,6 +36,8 @@ export default async function PostPage({
       <section className="prose prose-lg">
         <PostContent content={post.content} />
       </section>
+
+      <Giscus />
     </article>
   );
 }
