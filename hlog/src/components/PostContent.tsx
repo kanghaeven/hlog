@@ -3,10 +3,10 @@
 
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "@/mdx-components";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 
 interface PostContentProps {
-  content: ReactElement;
+  content: ReactNode;
 }
 
 const PostContent = ({ content }: PostContentProps) => {
