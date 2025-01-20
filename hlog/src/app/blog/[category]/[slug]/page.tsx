@@ -20,10 +20,10 @@ export default async function PostPage({
   }
 
   return (
-    <article className="max-w-4xl mx-auto my-16 p-6 bg-white shadow-lg rounded-lg">
+    <article className="prose dark:prose-invert border-4 max-w-4xl mx-auto my-16 p-6 shadow-lg rounded-lg">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{post.title}</h1>
-        <p className="text-gray-500 text-sm">
+        <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+        <p className="text-sm">
           게시일: {new Date(post.publishDate).toLocaleDateString()} &bull;
           카테고리: {post.categories.join(", ")}
         </p>
@@ -33,7 +33,7 @@ export default async function PostPage({
           className="mt-6 w-full h-64 object-cover rounded-lg"
         />
       </header>
-      <section className="prose prose-lg">
+      <section>
         <PostContent content={post.content} />
       </section>
 
