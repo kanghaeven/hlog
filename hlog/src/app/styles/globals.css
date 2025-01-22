@@ -118,3 +118,9 @@ th {
   text-align: left;
   background-color: #f4f4f4;
 }
+
+h1,
+h2,
+h3 {
+  scroll-margin-top: 10vh; /* TOC에서 바로가기 시 여백 크기 설정 */
+}
