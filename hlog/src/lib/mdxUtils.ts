@@ -2,8 +2,10 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { Frontmatter } from "@/types/types";
 import { getFileContent } from "@/lib/fileUtils";
 import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
 import remarkA11yEmoji from "@fec/remark-a11y-emoji";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
 
 export async function parseMdxFile(filePath: string) {
   const fileContent = await getFileContent(filePath);
@@ -13,15 +15,20 @@ export async function parseMdxFile(filePath: string) {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkA11yEmoji],
-        rehypePlugins: [
+        remarkPlugins: [
+          remarkGfm,
+          remarkA11yEmoji,
           [
-            rehypePrettyCode,
+            remarkToc,
             {
-              theme: "night-owl",
+              heading: "Table of Contents",
+              ordered: false,
+              tight: true,
+              maxDepth: 3,
             },
           ],
         ],
+        rehypePlugins: [[rehypePrettyCode, { theme: "night-owl" }], rehypeSlug],
       },
     },
   });
