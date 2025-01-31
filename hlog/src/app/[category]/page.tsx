@@ -2,16 +2,12 @@ import PostList from "@/components/PostList";
 import { getPostsForCategory } from "@/lib/postUtils";
 import Link from "next/link";
 
-export default async function CategoryPage({
-  params,
-  searchParams,
-}: {
-  params: { category: string };
-  searchParams: { page?: string };
+export default async function CategoryPage(props: {
+  params: Promise<{ category: string }>;
+  searchParams: Promise<{ page?: string }>;
 }) {
-  const { category } = await params;
-
-  const { page: pageString } = await searchParams;
+  const { category } = await props.params;
+  const { page: pageString } = await props.searchParams;
   const page = parseInt(pageString || "1", 10);
   const limit = 6;
 
