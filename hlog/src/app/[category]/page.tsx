@@ -11,7 +11,9 @@ export default async function CategoryPage({
 }) {
   // params를 비동기적으로 처리
   const { category } = await params;
-  const page = parseInt(searchParams.page || "1", 10);
+
+  // searchParams를 비동기적으로 처리하기 위해 await
+  const page = parseInt((await searchParams).page || "1", 10); // await 추가
   const limit = 6;
 
   // 비동기적으로 카테고리 게시글들을 가져옵니다.
