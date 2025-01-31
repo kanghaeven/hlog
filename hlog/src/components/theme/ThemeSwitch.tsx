@@ -30,7 +30,7 @@ const ThemeSwitch = () => {
   if (!mounted) return null;
 
   const Item = ({ t, Icon, label }: DropdownItemProps) => (
-    <DropdownMenuItem onClick={() => setTheme(t)}>
+    <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme(t)}>
       <div className="flex items-center gap-2">
         <Icon /> {label}
       </div>

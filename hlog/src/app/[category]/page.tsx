@@ -31,8 +31,8 @@ export default async function CategoryPage({
 
   // MDX 컴포넌트로 해당 카테고리와 관련된 게시글 목록 표시
   return (
-    <div className="p-8">
-      <h1 className="mb-4 text-2xl font-bold">{category}</h1>
+    <div className="">
+      <h1 className="p-6 mb-4 text-2xl font-semibold">{category}</h1>
       <PostList posts={posts} />
 
       <div className="flex justify-between mt-8">
