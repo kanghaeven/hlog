@@ -11,7 +11,8 @@ export default async function CategoryPage({
 }) {
   const { category } = await params;
 
-  const page = parseInt((await searchParams).page || "1", 10);
+  const { page: pageString } = await searchParams;
+  const page = parseInt(pageString || "1", 10);
   const limit = 6;
 
   const { posts, total } = await getPostsForCategory(category, page, limit);
