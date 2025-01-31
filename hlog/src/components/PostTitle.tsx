@@ -1,7 +1,12 @@
 import Image from "next/image";
-import { Post } from "@/types/types";
+import { Frontmatter } from "@/types/types";
 
-const BlogTitle = ({ title, publishDate, posterImage, categories }: Post) => {
+const PostTitle = ({
+  title,
+  publishDate,
+  posterImage,
+  categories,
+}: Frontmatter) => {
   return (
     <header>
       <h1>{title}</h1>
@@ -12,4 +17,4 @@ const BlogTitle = ({ title, publishDate, posterImage, categories }: Post) => {
   );
 };
 
-export default BlogTitle;
+export default PostTitle;
