@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Dot, LucideIcon, Monitor, Moon, Sun } from "lucide-react";
+import React from "react";
 
 interface DropdownItemProps {
   t: string;
@@ -31,18 +32,21 @@ const ThemeSwitch = () => {
   const Item = ({ t, Icon, label }: DropdownItemProps) => (
     <DropdownMenuItem onClick={() => setTheme(t)}>
       <div className="flex items-center gap-2">
-        <Icon width={14} /> {label}
+        <Icon /> {label}
       </div>
       {theme === t && <Dot />}
     </DropdownMenuItem>
   );
 
+  // Determine the current theme icon
+  const currentIcon =
+    theme === "light" ? <Sun /> : theme === "dark" ? <Moon /> : <Monitor />;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Sun />
-          <Moon />
+          <div>{currentIcon}</div>
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
