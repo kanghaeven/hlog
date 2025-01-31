@@ -1,6 +1,7 @@
 // src/app/blog/[category]/[slug]/page.tsx
 import Giscus from "@/components/CommentGiscus";
 import PostContent from "@/components/PostContent";
+import PostTitle from "@/components/PostTitle";
 import { getPostBySlug } from "@/lib/postUtils";
 
 export default async function PostPage({
@@ -14,25 +15,20 @@ export default async function PostPage({
   if (!post) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-gray-500 text-lg">포스트를 찾을 수 없습니다.</p>
+        <p className="text-lg text-gray-500">포스트를 찾을 수 없습니다.</p>
       </div>
     );
   }
 
   return (
-    <article className="prose dark:prose-invert border-4 max-w-4xl mx-auto my-16 p-6 shadow-lg rounded-lg">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-        <p className="text-sm">
-          게시일: {new Date(post.publishDate).toLocaleDateString()} &bull;
-          카테고리: {post.categories.join(", ")}
-        </p>
-        <img
-          src={post.posterImage}
-          alt={post.title}
-          className="mt-6 w-full h-64 object-cover rounded-lg"
-        />
-      </header>
+    <article className="max-w-4xl p-6 mx-auto my-16 prose border-4 rounded-lg shadow-lg dark:prose-invert">
+      <PostTitle
+        title={post.title}
+        description={post.description}
+        publishDate={post.publishDate}
+        posterImage={post.posterImage}
+        categories={post.categories}
+      />
       <section>
         <PostContent content={post.content} />
       </section>
