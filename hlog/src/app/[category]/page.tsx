@@ -6,20 +6,16 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ category: string }>;
+  params: { category: string };
   searchParams: { page?: string };
 }) {
-  // params를 비동기적으로 처리
   const { category } = await params;
 
-  // searchParams를 비동기적으로 처리하기 위해 await
-  const page = parseInt((await searchParams).page || "1", 10); // await 추가
+  const page = parseInt((await searchParams).page || "1", 10);
   const limit = 6;
 
-  // 비동기적으로 카테고리 게시글들을 가져옵니다.
   const { posts, total } = await getPostsForCategory(category, page, limit);
 
-  // 게시글이 없으면 "게시글이 없습니다" 메시지 표시
   if (posts.length === 0) {
     return (
       <div className="p-8">
@@ -31,7 +27,6 @@ export default async function CategoryPage({
 
   const totalPages = Math.ceil(total / limit);
 
-  // MDX 컴포넌트로 해당 카테고리와 관련된 게시글 목록 표시
   return (
     <div className="">
       <h1 className="p-6 mb-4 text-2xl font-semibold">{category}</h1>
