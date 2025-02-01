@@ -4,6 +4,7 @@ import PostContent from "@/components/PostContent";
 import PostTitle from "@/components/PostTitle";
 import CustomToC from "@/components/CustomToC";
 import { getPostBySlug } from "@/lib/postUtils";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 export default async function PostPage({
   params,
@@ -23,6 +24,7 @@ export default async function PostPage({
 
   return (
     <div className="flex justify-center p-6 mx-auto">
+      <ScrollProgressBar />
       <div className="hidden w-64 mr-8 xl:block">
         {/* This is an empty div to balance the layout */}
       </div>
