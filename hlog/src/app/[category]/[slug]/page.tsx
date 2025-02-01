@@ -2,6 +2,7 @@
 import Giscus from "@/components/CommentGiscus";
 import PostContent from "@/components/PostContent";
 import PostTitle from "@/components/PostTitle";
+import CustomToC from "@/components/CustomToC";
 import { getPostBySlug } from "@/lib/postUtils";
 
 export default async function PostPage({
@@ -21,19 +22,29 @@ export default async function PostPage({
   }
 
   return (
-    <article className="max-w-4xl p-6 mx-auto my-16 prose border-4 rounded-lg shadow-lg dark:prose-invert">
-      <PostTitle
-        title={post.title}
-        description={post.description}
-        publishDate={post.publishDate}
-        posterImage={post.posterImage}
-        categories={post.categories}
-      />
-      <section>
+    <div className="flex justify-center p-6 mx-auto">
+      <div className="hidden w-64 mr-8 xl:block">
+        {/* This is an empty div to balance the layout */}
+      </div>
+      <article className="w-full max-w-3xl">
+        <PostTitle
+          title={post.title}
+          description={post.description}
+          publishDate={post.publishDate}
+          posterImage={post.posterImage}
+          categories={post.categories}
+        />
+        <div className="my-8 xl:hidden">
+          <CustomToC content={post.content} />
+        </div>
         <PostContent content={post.content} />
-      </section>
-
-      <Giscus />
-    </article>
+        <Giscus />
+      </article>
+      <aside className="hidden w-64 ml-10 xl:block">
+        <div className="sticky top-60">
+          <CustomToC content={post.content} />
+        </div>
+      </aside>
+    </div>
   );
 }
