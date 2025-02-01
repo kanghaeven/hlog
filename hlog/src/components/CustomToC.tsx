@@ -15,6 +15,7 @@ interface HeaderProps {
 
 const CustomToC = ({ content }: { content: ReactNode }) => {
   const [toc, setToc] = useState<TocItem[]>([]);
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     if (Array.isArray(content)) {
@@ -37,15 +38,49 @@ const CustomToC = ({ content }: { content: ReactNode }) => {
       });
       setToc(tocItems);
     }
+
+    const handleScroll = () => {
+      const headings = document.querySelectorAll("h1, h2");
+      let currentActiveId = "";
+
+      headings.forEach((heading) => {
+        const { top } = heading.getBoundingClientRect();
+        if (top <= 100) {
+          currentActiveId = heading.id;
+        }
+      });
+
+      setActiveId(currentActiveId);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [content]);
 
-  const renderTocItem = (item: TocItem) => (
-    <li key={item.id} style={{ marginLeft: `${(item.level - 1) * 10}px` }}>
-      <a className="no-underline text-muted" href={`#${item.id}`}>
-        {item.title}
-      </a>
-    </li>
-  );
+  const renderTocItem = (item: TocItem, index: number) => {
+    const isActive = activeId === item.id;
+    const isNearActive =
+      toc[index - 1]?.id === activeId || toc[index + 1]?.id === activeId;
+
+    return (
+      <li key={item.id} style={{ marginLeft: `${(item.level - 1) * 10}px` }}>
+        <a
+          className={`no-underline transition-colors duration-200 ${
+            isActive
+              ? "text-primary font-semibold"
+              : isNearActive
+              ? "text-secondary font-medium"
+              : "text-muted hover:text-primary"
+          }`}
+          href={`#${item.id}`}
+        >
+          {item.title}
+        </a>
+      </li>
+    );
+  };
 
   return (
     <div className="w-full xl:sticky xl:top-24 xl:self-start xl:flex xl:items-start">
