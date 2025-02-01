@@ -15,7 +15,7 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen prose dark:prose-invert">
         <ThemeProvider>
           <Header categories={categories} />
-          <main className="flex-1 mt-32">{children}</main>
+          <main className="flex-1 mt-20">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

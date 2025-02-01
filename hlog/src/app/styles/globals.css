@@ -39,16 +39,16 @@
   --primary-foreground: 0 0% 94%;
 
   --muted: 240 10% 50%;
-  --muted-foreground: 0 0% 96.4%;
+  --muted-foreground: 240 10% 70%;
 
   --accent: 232 42% 90%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent-foreground: 222.2 47% 30%;
 
   --popover: 0 0% 94%;
   --popover-foreground: 222.2 47.4% 11.2%;
 
   --border: 231 92% 52%;
-  --input: 214.3 31.8% 91.4%;
+  --input: 0 0% 96.4%;
 }
 
 .dark {
@@ -87,6 +87,16 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.text-md {
+  font-size: 1.05rem;
+  line-height: 1.5rem;
+}
+
+.text-xxl {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
 }
 
 .prose {

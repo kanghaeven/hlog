@@ -12,7 +12,7 @@ interface PostContentProps {
 const PostContent = ({ content }: PostContentProps) => {
   return (
     <MDXProvider components={useMDXComponents({})}>
-      <div>{content}</div>
+      <div className="xl:px-0">{content}</div>
     </MDXProvider>
   );
 };
