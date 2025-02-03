@@ -130,3 +130,28 @@ h2,
 h3 {
   scroll-margin-top: 10vh; /* TOC에서 바로가기 시 여백 크기 설정 */
 }
+
+.box {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: rgb(45, 0, 209);
+  z-index: -2;
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(240, 240, 240);
+  z-index: -1;
+  clip-path: inherit;
+}
