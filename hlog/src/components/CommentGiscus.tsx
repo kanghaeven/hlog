@@ -8,7 +8,8 @@ export default function Giscus() {
   const { resolvedTheme } = useTheme();
 
   // https://github.com/giscus/giscus/tree/main/styles/themes
-  const theme = resolvedTheme === "dark" ? "dark" : "light";
+  const theme =
+    resolvedTheme === "dark" ? "transparent_dark" : "light_protanopia";
 
   const repo = process.env.NEXT_PUBLIC_GISCUS_REPO || "";
   const repoId = process.env.NEXT_PUBLIC_GISCUS_REPO_ID || "";
