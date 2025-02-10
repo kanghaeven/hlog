@@ -1,20 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-
-interface Post {
-  url: string;
-  title: string;
-  publishDate: string;
-  categories: string[];
-  posterImage?: string;
-  description?: string;
-}
+import { Post } from "@/types/types";
 
 interface PostListProps {
   posts: Post[];
 }
 
 const PostList = ({ posts }: PostListProps) => {
+  if (posts === null) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
       {posts.map((post) => (
