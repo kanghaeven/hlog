@@ -20,8 +20,8 @@ const Category = ({ categories }: { categories: string[] }) => {
           onClick={() => handleCategorySelect(category)}
           className={`box relative px-12 transition-all duration-300 border-[1.5px] ${
             selectedCategory === category
-              ? "text-foreground border-b-0 py-4"
-              : "text-muted-foreground py-3 mt-[6.5px]"
+              ? "text-foreground border-b-0 py-4 "
+              : "text-muted-foreground py-3 mt-2 mb-[1px]"
           }`}
           style={{
             clipPath:

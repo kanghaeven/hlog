@@ -155,3 +155,11 @@ h3 {
   z-index: -1;
   clip-path: inherit;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}

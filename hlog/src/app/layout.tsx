@@ -1,6 +1,7 @@
 import "@/app/styles/globals.css";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { getCategories } from "@/lib/categoryUtils";
 
@@ -16,6 +17,8 @@ export default async function RootLayout({
         <ThemeProvider>
           <Header categories={categories} />
           <main className="flex-1 mt-20">{children}</main>
+          <ScrollProgressBar />
+
           <Footer />
         </ThemeProvider>
       </body>
