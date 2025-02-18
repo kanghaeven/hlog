@@ -9,10 +9,10 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: "Pretendard";
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Pretendard";
   }
 }
 
@@ -162,4 +162,9 @@ h3 {
 
 html {
   scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  overscroll-behavior-y: none;
 }

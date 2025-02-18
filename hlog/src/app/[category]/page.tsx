@@ -31,7 +31,7 @@ export default async function CategoryPage(props: {
 
       <div className="flex justify-between mt-8">
         {page > 1 ? (
-          <Link href={`/${category}?page=${page - 1}`}>
+          <Link href={`/${category}?page=${page - 1}`} scroll={false}>
             <button className="btn">이전 페이지</button>
           </Link>
         ) : (
@@ -39,7 +39,7 @@ export default async function CategoryPage(props: {
         )}
 
         {page < totalPages ? (
-          <Link href={`/${category}?page=${page + 1}`}>
+          <Link href={`/${category}?page=${page + 1}`} scroll={false}>
             <button className="ml-auto btn">다음 페이지</button>
           </Link>
         ) : (
