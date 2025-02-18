@@ -50,7 +50,7 @@ const ThemeSwitch = () => {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="start">
         <Item t="light" label="Light" Icon={Sun} />
         <Item t="dark" label="Dark" Icon={Moon} />
         <Item t="system" label="System" Icon={Monitor} />

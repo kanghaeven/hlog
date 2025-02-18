@@ -1,55 +1,72 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Hlogo from "@/components/header/Hlogo";
 import ThemeSwitch from "@/components/theme/ThemeSwitch";
 import Category from "@/components/header/Category";
-import ViewType from "@/components/header/ViewType";
 import SearchBar from "@/components/header/SearchBar";
-import ScrollProgressBar from "../ScrollProgressBar";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import MobileMenu from "@/components/header/MobileMenu";
 
 const Header = ({ categories }: { categories: string[] }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [currentCategory, setCurrentCategory] = useState("Home");
+  const router = useRouter();
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        // 스크롤 내리면 헤더를 화면 밖으로 올림
-        setIsVisible(false);
-      } else {
-        // 스크롤 올리면 헤더가 보이도록 함
-        setIsVisible(true);
-      }
-      setLastScrollY(window.scrollY); // 마지막 스크롤 위치 업데이트
+      const currentScrollY = window.scrollY;
+      setIsVisible(currentScrollY <= lastScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
+
+  const handleCategoryChange = (category: string) => {
+    setCurrentCategory(category);
+    router.push(category === "Home" ? "/" : `/${category}`);
+  };
 
   return (
-    <>
-      <header
-        className={`fixed top-0 left-0 w-full z-50 bg-background transition-transform duration-300 ${
-          isVisible ? "transform-none" : "-translate-y-[95%]"
-        }`}
-      >
-        <div className="h-20 flex items-center justify-between border-b-[0.1rem]">
-          <div className="flex items-center">
-            <Hlogo />
-            <Category categories={categories} />
+    <header
+      className={`fixed top-0 left-0 w-full z-50 bg-background transition-transform duration-300 ${
+        isVisible ? "transform-none" : "-translate-y-[95%]"
+      }`}
+    >
+      <div className="h-20 flex items-center justify-between border-b-[0.1rem] px-4">
+        <div className="flex items-center">
+          <Hlogo />
+          <div className="hidden md:block">
+            <Category
+              categories={categories}
+              onCategoryChange={handleCategoryChange}
+            />
           </div>
-          <div className="flex items-center justify-center mx-4">
-            <SearchBar />
-            <ViewType />
-            <ThemeSwitch />
+          <div className="md:hidden">
+            <Category
+              categories={categories}
+              onCategoryChange={handleCategoryChange}
+              singleCategory={currentCategory}
+            />
           </div>
         </div>
-        <div className="z-50 w-full">
-          <ScrollProgressBar />
+        <div className="flex items-center justify-center">
+          <SearchBar />
+          <ThemeSwitch />
+          <div className="md:hidden">
+            <MobileMenu
+              categories={categories}
+              onCategoryChange={handleCategoryChange}
+              currentCategory={currentCategory}
+            />
+          </div>
         </div>
-      </header>
-    </>
+      </div>
+      <ScrollProgressBar />
+    </header>
   );
 };
 
