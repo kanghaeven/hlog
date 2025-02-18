@@ -36,16 +36,16 @@ const Header = ({ categories }: { categories: string[] }) => {
         isVisible ? "transform-none" : "-translate-y-[95%]"
       }`}
     >
-      <div className="h-20 flex items-center justify-between border-b-[0.1rem] px-4">
+      <div className="h-12 sm:h-20 flex items-center justify-between border-b-[0.1rem] px-4">
         <div className="flex items-center">
           <Hlogo />
-          <div className="hidden md:block">
+          <div className="hidden md:block sm:block xs:block">
             <Category
               categories={categories}
               onCategoryChange={handleCategoryChange}
             />
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden sm:hidden xs:hidden">
             <Category
               categories={categories}
               onCategoryChange={handleCategoryChange}
@@ -56,7 +56,7 @@ const Header = ({ categories }: { categories: string[] }) => {
         <div className="flex items-center justify-center">
           <SearchBar />
           <ThemeSwitch />
-          <div className="md:hidden">
+          <div className="md:hidden sm:hidden xs:hidden">
             <MobileMenu
               categories={categories}
               onCategoryChange={handleCategoryChange}
