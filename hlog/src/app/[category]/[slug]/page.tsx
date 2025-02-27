@@ -23,7 +23,7 @@ export default async function PostPage({
 
   return (
     <div className="flex justify-center p-6 mx-auto mt-6 sm:mt-10">
-      <div className="hidden w-64 mr-8 xl:block"></div>
+      <div className="hidden mr-8 max-w-72 xl:block"></div>
       <article className="w-full max-w-3xl">
         <PostTitle
           title={post.title}
@@ -38,8 +38,8 @@ export default async function PostPage({
         <PostContent content={post.content} />
         <Giscus />
       </article>
-      <aside className="hidden w-64 ml-10 xl:block">
-        <div className="sticky top-60">
+      <aside className="hidden ml-20 w-72 xl:block">
+        <div className="sticky top-40">
           <CustomToC content={post.content} />
         </div>
       </aside>

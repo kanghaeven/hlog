@@ -83,7 +83,7 @@ const CustomToC = ({ content }: { content: ReactNode }) => {
   };
 
   return (
-    <div className="w-full xl:pl-2 xl:sticky xl:top-24 xl:self-start xl:flex xl:items-start">
+    <div className="w-full xl:pl-2 xl:sticky xl:top-6 xl:self-start xl:flex xl:items-start">
       <hr className="xl:hidden" />
       <div className="pl-6 flex-grow xl:border-l-[1px] xl:border-soft">
         <h3 className="m-0 text-lg font-bold text-faded">What&apos;s Inside</h3>
