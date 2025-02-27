@@ -30,7 +30,7 @@ const ScrollProgressBar = () => {
   }, [animate]);
 
   return (
-    <div className="z-50 w-full h-[0.2rem] bg-gray-200 mt-[0.6px]">
+    <div className="z-50 w-full h-[0.2rem] bg-soft mt-[0.6px]">
       <div
         ref={progressRef}
         className="h-full bg-primary"

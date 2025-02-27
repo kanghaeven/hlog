@@ -20,7 +20,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="p-2 rounded-full focus-visible:ring-0 focus-visible:ring-ring focus-visible:outline-none hover:bg-accent">
+        <button className="p-2 rounded-full focus-visible:ring-0 focus-visible:ring-ring focus-visible:outline-none hover:bg-washed">
           <Menu />
         </button>
       </DropdownMenuTrigger>

@@ -13,34 +13,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
         border: "hsl(var(--border))",
+        primary: "hsl(var(--primary))",
+        secondary: "hsl(var(--secondary))",
+        shade: "hsl(var(--shade))",
+        faded: "hsl(var(--faded))",
+        black: "hsl(var(--black))",
+        background: "hsl(var(--background))",
         input: "hsl(var(--input))",
+        soft: "hsl(var(--soft))",
+        washed: "hsl(var(--washed))",
+        muted: "hsl(var(--muted))",
+        dusty: "hsl(var(--dusty))",
       },
       typography: {
         DEFAULT: {

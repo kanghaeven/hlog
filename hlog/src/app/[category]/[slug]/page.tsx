@@ -16,7 +16,7 @@ export default async function PostPage({
   if (!post) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-lg text-gray-500">포스트를 찾을 수 없습니다.</p>
+        <p className="text-lg text-muted">포스트를 찾을 수 없습니다.</p>
       </div>
     );
   }

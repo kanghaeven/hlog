@@ -72,7 +72,7 @@ const CustomToC = ({ content }: { content: ReactNode }) => {
               ? "text-primary font-semibold"
               : isNearActive
               ? "text-secondary font-medium"
-              : "text-muted hover:text-primary"
+              : "text-dusty hover:text-primary"
           }`}
           href={`#${item.id}`}
         >
@@ -85,10 +85,8 @@ const CustomToC = ({ content }: { content: ReactNode }) => {
   return (
     <div className="w-full xl:pl-2 xl:sticky xl:top-24 xl:self-start xl:flex xl:items-start">
       <hr className="xl:hidden" />
-      <div className="pl-6 flex-grow xl:border-l-[1px] xl:border-secondary-foreground">
-        <h3 className="m-0 text-lg font-bold text-accent-foreground">
-          What&apos;s Inside
-        </h3>
+      <div className="pl-6 flex-grow xl:border-l-[1px] xl:border-soft">
+        <h3 className="m-0 text-lg font-bold text-faded">What&apos;s Inside</h3>
         <ul className="pl-0 m-0 text-sm leading-6 list-none xl:text-xs">
           {toc.map(renderTocItem)}
         </ul>

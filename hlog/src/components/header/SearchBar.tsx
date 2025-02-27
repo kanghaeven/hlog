@@ -12,7 +12,7 @@ const SearchBar = () => {
         className={`flex justify-center items-center rounded-full overflow-hidden transition-all duration-200 cursor-pointer ${
           isExpanded
             ? "w-[13.3rem] sm:w-64 h-8 sm:h-11 px-2 sm:px-3 py-1 bg-input"
-            : "w-10 h-10 sm:w-14 sm:h-14 hover:bg-accent"
+            : "w-10 h-10 sm:w-14 sm:h-14 hover:bg-washed"
         }`}
         onClick={() => setIsExpanded(true)}
       >

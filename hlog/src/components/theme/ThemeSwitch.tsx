@@ -45,7 +45,7 @@ const ThemeSwitch = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-10 h-10 rounded-full hover:bg-accent hover:text-accent-foreground sm:h-14 sm:w-14">
+        <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-10 h-10 rounded-full hover:bg-washed hover:text-faded sm:h-14 sm:w-14">
           {currentIcon}
         </button>
       </DropdownMenuTrigger>

@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="flex items-center justify-between w-full h-8 px-6 mt-auto text-primary-foreground bg-primary">
+    <footer className="flex items-center justify-between w-full h-8 px-6 mt-auto text-background bg-primary">
       <div className="flex space-x-4">
         <button
           onClick={() => handlePopup("github")}

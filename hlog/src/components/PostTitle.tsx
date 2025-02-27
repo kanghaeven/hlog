@@ -17,7 +17,7 @@ const PostTitle = ({
           <span key={index}>#{category}</span>
         ))}
       </p>
-      <p className="text-sm font-light text-muted-foreground">
+      <p className="text-sm font-light text-muted">
         {new Date(publishDate).toLocaleDateString("ko-KR", {
           year: "numeric",
           month: "long",
@@ -25,7 +25,7 @@ const PostTitle = ({
         })}
       </p>
       <Image src={posterImage} alt="thumbnail" width={600} height={400} />
-      <p className="m-0 text-base text-muted font-regular">{description}</p>
+      <p className="m-0 text-base text-dusty font-regular">{description}</p>
     </header>
   );
 };

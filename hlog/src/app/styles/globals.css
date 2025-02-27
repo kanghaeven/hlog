@@ -12,75 +12,60 @@
     font-family: "Pretendard";
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-black bg-background;
   }
 }
 
 :root {
-  --white: white;
+  --border: 231 92% 52%;
+
+  --primary: 231 92% 52%;
+
+  --secondary: 230 70% 66%;
+
+  --shade: 230 48% 34%;
+
+  --faded: 222.2 47% 30%;
+
   --black: 222.2 47.4% 11.2%;
 
   --background: 0 0% 94%;
-  --foreground: 230 48% 34%;
 
-  --secondary: 230 70% 66%;
-  --secondary-foreground: 213 0% 90%;
-
-  --informative: #e0f2fe;
-  --informative-foreground: var(--black);
-
-  --warning: #fef3c7;
-  --warning-foreground: var(--black);
-
-  --destructive: #fecdd3;
-  --destructive-foreground: var(--black);
-
-  --primary: 231 92% 52%;
-  --primary-foreground: 0 0% 94%;
-
-  --muted: 240 10% 50%;
-  --muted-foreground: 240 10% 70%;
-
-  --accent: 232 42% 90%;
-  --accent-foreground: 222.2 47% 30%;
-
-  --popover: 0 0% 94%;
-  --popover-foreground: 222.2 47.4% 11.2%;
-
-  --border: 231 92% 52%;
   --input: 0 0% 96.4%;
+
+  --soft: 213 0% 90%;
+
+  --washed: 232 42% 90%;
+
+  --muted: 240 10% 70%;
+
+  --dusty: 240 10% 50%;
 }
 
 .dark {
-  --background: var(--black);
-  --foreground: var(--white);
+  --border: 236 100% 80%;
 
-  --secondary: hsl(217.2 32.6% 17.5%);
-  --secondary-foreground: var(--white);
+  --primary: 236 100% 80%;
 
-  --informative: #075985;
-  --informative-foreground: var(--white);
+  --secondary: 236 75% 65%;
 
-  --warning: #ca8a04;
-  --warning-foreground: var(--white);
+  --shade: 240 10% 80%;
 
-  --destructive: #7f1d1d;
-  --destructive-foreground: var(--white);
+  --faded: 240 10% 80%;
 
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
+  --black: 240 10% 80%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --background: 222.2 47.4% 11.2%;
 
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
+  --input: 225 40% 15%;
 
-  --popover: 232 42% 90%;
-  --popover-foreground: 222.2 47.4% 11.2%;
+  --soft: 225 40% 20%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
+  --washed: 225 40% 20%;
+
+  --muted: 227 17% 50%;
+
+  --dusty: 227 19% 60%;
 }
 
 @layer utilities {
@@ -151,6 +136,10 @@ h2 {
   z-index: -2;
 }
 
+.dark .box::before {
+  background: rgb(154, 161, 255);
+}
+
 .box::after {
   content: "";
   position: absolute;
@@ -158,6 +147,10 @@ h2 {
   background: rgb(240, 240, 240);
   z-index: -1;
   clip-path: inherit;
+}
+
+.dark .box::after {
+  background: rgb(17, 23, 41);
 }
 
 ::-webkit-scrollbar {
