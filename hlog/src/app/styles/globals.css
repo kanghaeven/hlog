@@ -21,6 +21,12 @@
     line-height: 2rem !important; /* 32px */
   }
 
+  .prose h2 {
+    color: hsl(222.2 47.4% 11.2%);
+    font-size: 1.25rem !important;
+    line-height: 1.5rem !important;
+  }
+
   .prose strong {
     color: hsl(222.2 47.4% 11.2%);
   }
