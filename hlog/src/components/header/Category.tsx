@@ -42,8 +42,8 @@ const Category: React.FC<CategoryProps> = ({
       onClick={() => handleCategorySelect(category)}
       className={`box relative px-6 sm:px-12 transition-all duration-300 border-[1.5px] text-sm sm:text-base ${
         selectedCategory === category || singleCategory
-          ? "text-foreground border-b-0 py-2 sm:py-4"
-          : "text-muted-foreground py-1 sm:py-3 mt-1 sm:mt-2 mb-[0.05rem] sm:mb-[0.1rem]"
+          ? "text-foreground border-b-0 py-[0.7rem] sm:py-[1.125rem]"
+          : "text-muted-foreground py-3 mt-[0.65rem]"
       } ${isTransitioning ? "fade-transition" : ""}`}
       style={{
         clipPath:
@@ -58,7 +58,7 @@ const Category: React.FC<CategoryProps> = ({
 
   return (
     <nav
-      className={`flex items-center p-2 sm:p-4 mt-2 sm:mt-5 ${
+      className={`flex items-center p-2 sm:p-4 mt-[0.85rem] sm:mt-5 ${
         singleCategory ? "space-x-0" : "space-x-1 sm:space-x-2"
       }`}
     >

@@ -20,10 +20,10 @@ const PostList = ({ posts }: PostListProps) => {
         >
           <Link
             href={post.url}
-            className="grid grid-cols-[39%_2%_59%] p-5 no-underline hover:bg-gray-50"
+            className="grid sm:grid-cols-[39%_2%_59%] p-5 no-underline hover:bg-gray-50"
           >
             {/* 왼쪽 이미지 영역 */}
-            <div className="flex items-stretch gap-12 jusity-between">
+            <div className="items-stretch hidden gap-12 sm:flex jusity-between">
               <div className="relative w-full aspect-[3/2]">
                 {post.posterImage && (
                   <Image
@@ -41,25 +41,30 @@ const PostList = ({ posts }: PostListProps) => {
                 <span>{post.publishDate.split("-")[0]}</span>
               </div>
             </div>
-            <div className=""></div>
+            <div className="hidden sm:block"></div>
 
             {/* 오른쪽 텍스트 영역 */}
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between gap-12 sm:gap-0">
               <div className="flex justify-between">
                 <h2 className="m-0 font-medium text-xxl">{post.title}</h2>
-                <span className="h-fit px-2 border-muted-foreground text-muted text-md rounded-full border-[1px] text-bold">
+                <span className="hidden sm:block h-fit px-2 border-muted-foreground text-muted text-md rounded-full border-[1px] text-bold">
                   {post.categories[0]}
                 </span>
               </div>
-              <div className="flex items-end justify-between ">
-                <span className="max-w-xs text-xs text-muted-foreground">
-                  {post.description}
-                </span>
-                <div className="flex gap-2 m-0 text-sm text-muted">
-                  {post.categories.slice(1).map((category, index) => (
-                    <span key={index}>{category}</span>
-                  ))}
+              <div className="flex items-end justify-between">
+                <div className="md:flex md:w-full md:justify-between md:items-end">
+                  <p className="max-w-xs text-xs xl:max-w-md text-muted-foreground sm:hidden md:block">
+                    {post.description}
+                  </p>
+                  <div className="flex gap-2 m-0 text-xs sm:text-sm text-muted">
+                    {post.categories.slice(1).map((category, index) => (
+                      <span key={index}>{category}</span>
+                    ))}
+                  </div>
                 </div>
+                <span className="sm:hidden h-fit px-2 border-muted-foreground text-muted text-sm rounded-full border-[1px] text-bold">
+                  {post.categories[0]}
+                </span>
               </div>
             </div>
           </Link>

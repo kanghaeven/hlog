@@ -22,7 +22,7 @@ export default async function PostPage({
   }
 
   return (
-    <div className="flex justify-center p-6 mx-auto">
+    <div className="flex justify-center p-6 mx-auto mt-6 sm:mt-10">
       <div className="hidden w-64 mr-8 xl:block"></div>
       <article className="w-full max-w-3xl">
         <PostTitle

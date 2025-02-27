@@ -20,11 +20,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="p-4 rounded-full hover:bg-accent">
+        <button className="p-2 rounded-full focus-visible:ring-0 focus-visible:ring-ring focus-visible:outline-none hover:bg-accent">
           <Menu />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="sm:hidden">
         {["Home", ...categories].map((category) => (
           <DropdownMenuItem
             key={category}

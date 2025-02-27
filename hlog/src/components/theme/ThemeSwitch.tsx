@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,10 +45,9 @@ const ThemeSwitch = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <div>{currentIcon}</div>
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+        <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-10 h-10 rounded-full hover:bg-accent hover:text-accent-foreground sm:h-14 sm:w-14">
+          {currentIcon}
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <Item t="light" label="Light" Icon={Sun} />

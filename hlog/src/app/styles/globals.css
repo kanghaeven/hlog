@@ -125,10 +125,14 @@ th {
   background-color: #f4f4f4;
 }
 
+h1 {
+  margin-top: 3em !important;
+}
+
 h1,
-h2,
-h3 {
+h2 {
   scroll-margin-top: 10vh; /* TOC에서 바로가기 시 여백 크기 설정 */
+  font-weight: 700 !important;
 }
 
 .box {

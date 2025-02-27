@@ -39,7 +39,7 @@ const PostContent: React.FC<PostContentProps> = ({ content }) => {
 
   return (
     <MDXProvider components={enhancedComponents}>
-      <div className="xl:px-0">{content}</div>
+      <div className="">{content}</div>
     </MDXProvider>
   );
 };
