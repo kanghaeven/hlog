@@ -39,7 +39,7 @@ module.exports = {
               position: "relative",
               bottom: 1,
               margin: "0 3px",
-              color: "#eb5757",
+              color: "#FF09D6",
               backgroundColor: "rgba(135,131,120,0.15)",
               fontFamily:
                 '"SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace',
