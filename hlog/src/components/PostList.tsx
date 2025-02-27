@@ -46,7 +46,7 @@ const PostList = ({ posts }: PostListProps) => {
             {/* 오른쪽 텍스트 영역 */}
             <div className="flex flex-col justify-between gap-12 sm:gap-0">
               <div className="flex justify-between">
-                <h2 className="m-0 font-medium text-md md:text-lg lg:text-xl">
+                <h2 className="m-0 text-lg font-medium lg:text-xl">
                   {post.title}
                 </h2>
                 <span className="hidden sm:block h-fit px-2 border-muted-foreground text-muted text-md rounded-full border-[1px] text-bold">
