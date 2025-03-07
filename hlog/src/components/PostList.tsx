@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -12,26 +13,29 @@ interface PostListProps {
 }
 
 const PostList = ({ posts }: PostListProps) => {
+  const [showLoading, setShowLoading] = useState(false);
+  const { isTransitioning } = useLoading(); // 로딩 상태 값
+
+  useEffect(() => {
+    setShowLoading(isTransitioning); // transitioning 상태가 바뀔 때마다 로딩 상태를 업데이트
+  }, [isTransitioning]);
+
   return (
     <Suspense fallback={<div>로딩 중...</div>}>
+      {/* 로딩 중일 때는 로딩 UI 표시 */}
+      {showLoading && (
+        <div className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-50">
+          <div className="text-white">로딩 중...</div>
+        </div>
+      )}
+
       <PostListContent posts={posts} />
     </Suspense>
   );
 };
-
 const PostListContent = ({ posts }: PostListProps) => {
-  const { isTransitioning } = useLoading(); // 클라이언트에서만 실행
-
   if (posts === null || posts.length === 0) {
-    return (
-      <>
-        {isTransitioning && (
-          <div className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-50">
-            <div className="text-white">로딩 중...</div>
-          </div>
-        )}
-      </>
-    );
+    return <div className="text-lg text-center">게시물이 없습니다.</div>;
   }
 
   return (
