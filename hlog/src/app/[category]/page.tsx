@@ -1,4 +1,4 @@
-import Loading from "@/components/Loading";
+import Loading from "@/app/Loading";
 import PostList from "@/components/PostList";
 import { getPostsForCategory } from "@/lib/postUtils";
 import { Suspense } from "react";
