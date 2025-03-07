@@ -10,12 +10,12 @@ interface PostListProps {
 }
 
 const PostList = ({ posts }: PostListProps) => {
-  if (posts === null) {
-    return <div>Loading...</div>;
-  }
-
-  if (!posts || posts.length === 0) {
-    return <div>No posts available.</div>;
+  if (posts === null || posts.length === 0) {
+    return (
+      <div className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
+        <Loading />
+      </div>
+    );
   }
 
   return (
