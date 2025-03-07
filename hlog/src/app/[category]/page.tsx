@@ -1,7 +1,5 @@
-import Loading from "@/app/Loading";
 import PostList from "@/components/PostList";
 import { getPostsForCategory } from "@/lib/postUtils";
-import { Suspense } from "react";
 
 // import Link from "next/link";
 
@@ -29,12 +27,11 @@ export default async function CategoryPage(props: {
   // const totalPages = Math.ceil(total / limit);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <div className="flex flex-col items-start justify-between">
-        {/* <h1 className="w-full p-6 mb-4 text-2xl font-semibold">{category}</h1> */}
-        <PostList posts={posts} />
+    <div className="flex flex-col items-start justify-between">
+      {/* <h1 className="w-full p-6 mb-4 text-2xl font-semibold">{category}</h1> */}
+      <PostList posts={posts} />
 
-        {/* <div className="flex justify-between mt-8">
+      {/* <div className="flex justify-between mt-8">
         {page > 1 ? (
           <Link href={`/${category}?page=${page - 1}`} scroll={false}>
             <button className="btn">이전 페이지</button>
@@ -51,7 +48,6 @@ export default async function CategoryPage(props: {
           <p></p>
         )}
       </div> */}
-      </div>
-    </Suspense>
+    </div>
   );
 }
