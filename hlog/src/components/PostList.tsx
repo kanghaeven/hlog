@@ -13,25 +13,26 @@ interface PostListProps {
 }
 
 const PostList = ({ posts }: PostListProps) => {
-  const [showLoading, setShowLoading] = useState(false);
   const { isTransitioning } = useLoading(); // 로딩 상태 값
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
+    console.log("Transitioning 상태:", isTransitioning); // 상태 값 체크
     setShowLoading(isTransitioning); // transitioning 상태가 바뀔 때마다 로딩 상태를 업데이트
-    console.log(isTransitioning);
   }, [isTransitioning]);
 
   return (
-    <Suspense fallback={<div>로딩 중...</div>}>
-      {/* 로딩 중일 때는 로딩 UI 표시 */}
+    <>
       {showLoading && (
         <div className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-50">
           <div className="text-white">로딩 중...</div>
         </div>
       )}
 
-      <PostListContent posts={posts} />
-    </Suspense>
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <PostListContent posts={posts} />
+      </Suspense>
+    </>
   );
 };
 const PostListContent = ({ posts }: PostListProps) => {

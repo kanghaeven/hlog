@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLoading } from "@/context/LoadingContext";
 
 interface CategoryProps {
   categories: string[];
@@ -15,13 +16,13 @@ const Category: React.FC<CategoryProps> = ({
   // onCategoryChange,
   singleCategory,
 }) => {
+  const { isTransitioning, setIsTransitioning } = useLoading(); // LoadingContext에서 상태 업데이트 함수 가져오기
   const [, setSelectedCategory] = useState(singleCategory || "Home");
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const pathname = usePathname(); // ✅ 현재 경로 가져오기
 
   useEffect(() => {
     setIsTransitioning(false); // ✅ 경로가 변경되면 로딩 상태 해제
-  }, [pathname]);
+  }, [pathname, setIsTransitioning]);
 
   const renderCategoryButton = (category: string) => {
     const categoryPath = category === "Home" ? "/" : `/${category}`;
@@ -61,12 +62,6 @@ const Category: React.FC<CategoryProps> = ({
       {singleCategory
         ? renderCategoryButton(singleCategory)
         : ["Home", ...categories].map(renderCategoryButton)}
-
-      {isTransitioning && (
-        <div className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-50">
-          <div className="text-white">로딩 중...</div>
-        </div>
-      )}
     </nav>
   );
 };
