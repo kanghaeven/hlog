@@ -40,6 +40,7 @@ const Category: React.FC<CategoryProps> = ({
     <button
       key={category}
       onClick={() => handleCategorySelect(category)}
+      disabled={isTransitioning} // 전환 중에는 버튼 비활성화
       className={`box relative px-6 sm:px-12 transition-all duration-300 border-[1.5px] text-sm sm:text-base ${
         selectedCategory === category || singleCategory
           ? "text-shade border-b-0 py-[0.7rem] sm:py-[1.125rem]"
@@ -65,6 +66,11 @@ const Category: React.FC<CategoryProps> = ({
       {singleCategory
         ? renderCategoryButton(singleCategory)
         : ["Home", ...categories].map(renderCategoryButton)}
+      {isTransitioning && (
+        <div className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-50">
+          <div className="text-white">로딩 중...</div>
+        </div>
+      )}
     </nav>
   );
 };
