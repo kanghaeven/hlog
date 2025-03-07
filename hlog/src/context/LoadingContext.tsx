@@ -24,7 +24,6 @@ export const LoadingProvider = ({
 
 export const useLoading = () => {
   const context = useContext(LoadingContext);
-  console.log("여기", context);
   if (!context) {
     throw new Error("useLoading must be used within a LoadingProvider");
   }

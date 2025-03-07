@@ -17,19 +17,14 @@ const PostList = ({ posts }: PostListProps) => {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
-    console.log("Transitioning 상태:", isTransitioning); // 상태 값 체크
     setShowLoading(isTransitioning); // transitioning 상태가 바뀔 때마다 로딩 상태를 업데이트
   }, [isTransitioning]);
 
   return (
     <>
-      {showLoading && (
-        <div className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-50">
-          <div className="text-white">로딩 중...</div>
-        </div>
-      )}
+      {showLoading && <PostListSkeleton />}
 
-      <Suspense fallback={<div>로딩 중...</div>}>
+      <Suspense fallback={<PostListSkeleton />}>
         <PostListContent posts={posts} />
       </Suspense>
     </>
@@ -99,6 +94,49 @@ const PostListContent = ({ posts }: PostListProps) => {
               </div>
             </div>
           </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+// Skeleton UI 컴포넌트
+const PostListSkeleton = () => {
+  return (
+    <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
+      {[...Array(3)].map((_, index) => (
+        <li
+          key={index}
+          className="p-0 m-0 border-t border-soft first:border-t-0 animate-pulse"
+        >
+          <div className="grid sm:grid-cols-[39%_2%_59%] p-5">
+            {/* 왼쪽 이미지 영역 */}
+            <div className="items-stretch justify-between hidden gap-12 sm:flex">
+              <div className="relative w-full aspect-[3/2] bg-gray-300 animate-pulse"></div>
+              <div className="flex flex-col items-end space-y-2 text-lg text-muted">
+                <div className="w-24 h-5 bg-gray-300 rounded animate-pulse"></div>
+                <div className="w-16 h-5 bg-gray-300 rounded animate-pulse"></div>
+              </div>
+            </div>
+
+            {/* 오른쪽 텍스트 영역 */}
+            <div className="flex flex-col justify-between gap-12 sm:gap-0">
+              <div className="flex justify-between">
+                <div className="w-1/2 h-6 bg-gray-300 rounded animate-pulse"></div>
+                <div className="w-20 h-6 bg-gray-300 rounded animate-pulse"></div>
+              </div>
+              <div className="flex items-end justify-between">
+                <div className="flex gap-2 m-0 text-xs sm:text-sm text-dusty">
+                  {[...Array(2)].map((_, idx) => (
+                    <div
+                      key={idx}
+                      className="w-16 h-5 bg-gray-300 rounded animate-pulse"
+                    ></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
       ))}
     </ul>
