@@ -24,12 +24,14 @@ const Category: React.FC<CategoryProps> = ({
     if (isTransitioning) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
-      }, 300); // 트랜지션 지속 시간과 일치
+      }, 500); // 트랜지션 지속 시간과 일치
       return () => clearTimeout(timer);
     }
   }, [isTransitioning]);
 
   const handleCategorySelect = (category: string) => {
+    if (isTransitioning) return; // 전환 중일 때는 클릭 불가
+
     setIsTransitioning(true);
     setSelectedCategory(category);
     onCategoryChange(category);
