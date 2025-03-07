@@ -22,9 +22,7 @@ const Category: React.FC<CategoryProps> = ({
   const pathname = usePathname(); // usePathname을 사용하여 현재 경로를 추적
 
   useEffect(() => {
-    if (pathname) {
-      setIsTransitioning(false); // 페이지가 로딩되면 로딩 상태 종료
-    }
+    setIsTransitioning(false); // 경로가 변경되면 로딩 상태 종료
   }, [pathname]);
 
   const handleCategorySelect = async (category: string) => {
