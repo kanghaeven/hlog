@@ -34,11 +34,9 @@ const Category: React.FC<CategoryProps> = ({
 
     if (selectedCategory === category) {
       // 동일한 카테고리 클릭 시 새로고침
-      setIsTransitioning(true);
       await router.push(pathname); // 동일한 경로로 강제 이동
     } else {
       // 다른 카테고리 클릭 시 로딩 상태로 전환
-      setIsTransitioning(true);
       setSelectedCategory(category);
       onCategoryChange(category);
       await router.push(category === "Home" ? "/" : `/${category}`);
