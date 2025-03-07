@@ -33,17 +33,28 @@ const Category: React.FC<CategoryProps> = ({
 
     if (selectedCategory === category) {
       // 동일한 카테고리 클릭 시 새로고침
-      await router.push(pathname); // 동일한 경로로 강제 이동
+      await router.push(window.location.href); // 현재 페이지 강제 리로딩
     } else {
       // 다른 카테고리 클릭 시 로딩 상태로 전환
       setSelectedCategory(category);
       onCategoryChange(category);
-      await router.push(category === "Home" ? "/" : `/${category}`);
+      const newPath = category === "Home" ? "/" : `/${category}`;
+      await router.push(newPath); // URL 변경
     }
 
-    // router.push 후 로딩 상태 종료
-    setIsTransitioning(false);
+    // // router.push 후 로딩 상태 종료
+    // setIsTransitioning(false);
   };
+
+  // 페이지가 변경될 때 disabled를 풀기 위한 useEffect
+  useEffect(() => {
+    // 페이지 이동 후 1초 후에 disabled 상태를 해제
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1000); // 페이지 전환 후 1초 정도 기다리기
+
+    return () => clearTimeout(timer); // 클린업
+  }, [pathname]);
 
   const renderCategoryButton = (category: string) => (
     <button
