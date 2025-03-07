@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface CategoryProps {
   categories: string[];
@@ -19,23 +19,33 @@ const Category: React.FC<CategoryProps> = ({
   );
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
+  const pathname = usePathname(); // usePathname을 사용하여 현재 경로를 추적
 
   useEffect(() => {
-    if (isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-      }, 500); // 트랜지션 지속 시간과 일치
-      return () => clearTimeout(timer);
+    if (pathname) {
+      setIsTransitioning(false); // 페이지가 로딩되면 로딩 상태 종료
     }
-  }, [isTransitioning]);
+  }, [pathname]);
 
-  const handleCategorySelect = (category: string) => {
+  const handleCategorySelect = async (category: string) => {
     if (isTransitioning) return; // 전환 중일 때는 클릭 불가
 
-    setIsTransitioning(true);
-    setSelectedCategory(category);
-    onCategoryChange(category);
-    router.push(category === "Home" ? "/" : `/${category}`);
+    setIsTransitioning(true); // 로딩 상태 시작
+
+    if (selectedCategory === category) {
+      // 동일한 카테고리 클릭 시 새로고침
+      setIsTransitioning(true);
+      await router.push(pathname); // 동일한 경로로 강제 이동
+    } else {
+      // 다른 카테고리 클릭 시 로딩 상태로 전환
+      setIsTransitioning(true);
+      setSelectedCategory(category);
+      onCategoryChange(category);
+      await router.push(category === "Home" ? "/" : `/${category}`);
+    }
+
+    // router.push 후 로딩 상태 종료
+    setIsTransitioning(false);
   };
 
   const renderCategoryButton = (category: string) => (
