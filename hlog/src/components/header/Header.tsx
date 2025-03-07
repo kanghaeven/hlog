@@ -40,15 +40,11 @@ const Header = ({ categories }: { categories: string[] }) => {
         <div className="flex items-center">
           <Hlogo />
           <div className="hidden sm:block">
-            <Category
-              categories={categories}
-              onCategoryChange={handleCategoryChange}
-            />
+            <Category categories={categories} />
           </div>
           <div className="sm:hidden">
             <Category
               categories={categories}
-              onCategoryChange={handleCategoryChange}
               singleCategory={currentCategory}
             />
           </div>
