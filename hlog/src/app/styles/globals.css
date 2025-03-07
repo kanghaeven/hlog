@@ -47,6 +47,10 @@
     color: hsl(238, 45%, 89%);
   }
 
+  .dark .prose h3 {
+    color: hsl(238, 45%, 89%);
+  }
+
   .dark .prose strong {
     color: hsl(240 10% 85%);
   }

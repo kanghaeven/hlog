@@ -39,7 +39,7 @@ export default async function PostPage({
         <Giscus />
       </article>
       <aside className="hidden ml-20 w-72 xl:block">
-        <div className="sticky top-40">
+        <div className="sticky top-[14vh]">
           <CustomToC content={post.content} />
         </div>
       </aside>
