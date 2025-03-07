@@ -29,7 +29,7 @@ const Category: React.FC<CategoryProps> = ({
 
     return (
       <Link key={category} href={categoryPath} passHref>
-        <span
+        <button
           onClick={() => {
             if (!isActive) {
               setIsTransitioning(true);
@@ -46,9 +46,10 @@ const Category: React.FC<CategoryProps> = ({
               ? "polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)"
               : "polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%)",
           }}
+          disabled={isTransitioning}
         >
           <span className="relative z-10">{category}</span>
-        </span>
+        </button>
       </Link>
     );
   };
