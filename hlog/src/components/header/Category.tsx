@@ -23,6 +23,7 @@ const Category: React.FC<CategoryProps> = ({
 
   useEffect(() => {
     setIsTransitioning(false); // 경로가 변경되면 로딩 상태 종료
+    console.log(pathname);
   }, [pathname]);
 
   const handleCategorySelect = async (category: string) => {
