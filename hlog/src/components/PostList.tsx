@@ -75,7 +75,7 @@ const PostList = ({ posts }: PostListProps) => {
                   </div>
                   <div className="flex items-end justify-between">
                     <div className="md:flex md:w-full md:justify-between md:items-end">
-                      <p className="max-w-xs text-xs xl:max-w-md text-muted sm:hidden md:block">
+                      <p className="max-w-xs text-xs sm:my-0 xl:max-w-md text-muted sm:hidden md:block">
                         {post.description}
                       </p>
                       <div className="flex gap-2 m-0 text-xs sm:text-sm text-dusty">

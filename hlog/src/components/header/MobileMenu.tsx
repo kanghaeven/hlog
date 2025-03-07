@@ -5,18 +5,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useLoading } from "@/context/LoadingContext";
 
 interface MobileMenuProps {
   categories: string[];
-  onCategoryChange: (category: string) => void;
-  currentCategory: string;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({
-  categories,
-  onCategoryChange,
-  currentCategory,
-}) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
+  const { isTransitioning, setIsTransitioning } = useLoading(); // LoadingContext에서 상태 업데이트 함수 가져오기
+  const pathname = usePathname(); // ✅ 현재 경로 가져오기
+
+  useEffect(() => {
+    setIsTransitioning(false); // ✅ 경로가 변경되면 로딩 상태 해제
+  }, [pathname, setIsTransitioning]);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,16 +30,34 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="sm:hidden">
-        {["Home", ...categories].map((category) => (
-          <DropdownMenuItem
-            key={category}
-            onSelect={() => onCategoryChange(category)}
-            className="flex items-center justify-between"
-          >
-            {category}
-            {currentCategory === category && <Dot className="ml-2" />}
-          </DropdownMenuItem>
-        ))}
+        {["Home", ...categories].map((category) => {
+          const categoryPath = category === "Home" ? "/" : `/${category}`;
+          const isActive = pathname === categoryPath;
+
+          return (
+            <Link
+              key={category}
+              href={categoryPath}
+              className={`block no-underline ${
+                isActive ? "text-shade" : "text-muted"
+              }`}
+              onClick={() => {
+                if (!isActive) {
+                  setIsTransitioning(true); // 카테고리 변경 시 로딩 상태 설정
+                }
+              }}
+            >
+              <DropdownMenuItem
+                className={`flex items-center justify-between 
+                  ${isTransitioning ? "opacity-50 pointer-events-none" : ""}`}
+                disabled={isTransitioning}
+              >
+                {category}
+                {isActive && <Dot className="ml-2" />}
+              </DropdownMenuItem>
+            </Link>
+          );
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   );

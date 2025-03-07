@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Hlogo from "@/components/header/Hlogo";
 import ThemeSwitch from "@/components/theme/ThemeSwitch";
 import Category from "@/components/header/Category";
@@ -10,8 +9,6 @@ import MobileMenu from "@/components/header/MobileMenu";
 
 const Header = ({ categories }: { categories: string[] }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState("Home");
-  const router = useRouter();
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -24,11 +21,6 @@ const Header = ({ categories }: { categories: string[] }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleCategoryChange = (category: string) => {
-    setCurrentCategory(category);
-    router.push(category === "Home" ? "/" : `/${category}`);
-  };
 
   return (
     <header
@@ -43,10 +35,7 @@ const Header = ({ categories }: { categories: string[] }) => {
             <Category categories={categories} />
           </div>
           <div className="sm:hidden">
-            <Category
-              categories={categories}
-              singleCategory={currentCategory}
-            />
+            <Category categories={categories} />
           </div>
         </div>
         <div className="flex items-center justify-center">
@@ -55,11 +44,7 @@ const Header = ({ categories }: { categories: string[] }) => {
             <ThemeSwitch />
           </div>
           <div className="sm:hidden">
-            <MobileMenu
-              categories={categories}
-              onCategoryChange={handleCategoryChange}
-              currentCategory={currentCategory}
-            />
+            <MobileMenu categories={categories} />
           </div>
         </div>
       </div>
