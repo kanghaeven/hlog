@@ -11,6 +11,10 @@ const PostList = ({ posts }: PostListProps) => {
     return <div>Loading...</div>;
   }
 
+  if (!posts || posts.length === 0) {
+    return <div>No posts available.</div>;
+  }
+
   return (
     <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
       {posts.map((post) => (
