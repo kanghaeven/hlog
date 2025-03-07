@@ -124,11 +124,11 @@ const PostListSkeleton = () => {
                 <div className="hidden w-10 h-6 rounded bg-soft sm:block animate-pulse"></div>
               </div>
               <div className="flex items-end justify-between">
-                <div className="md:flex md:w-full md:justify-between md:items-end">
+                <div className="flex flex-col gap-1 md:flex-row md:w-full md:justify-between md:items-end">
                   <div className="max-w-xs xl:max-w-md sm:hidden md:block">
                     <div className="w-24 h-4 rounded bg-soft animate-pulse"></div>
                   </div>
-                  <div className="flex gap-2 ml-2 ">
+                  <div className="flex gap-2 ">
                     {[...Array(2)].map((_, idx) => (
                       <span key={idx}>
                         <div className="w-10 h-5 rounded bg-soft animate-pulse"></div>
