@@ -18,6 +18,7 @@ const PostList = ({ posts }: PostListProps) => {
 
   useEffect(() => {
     setShowLoading(isTransitioning); // transitioning 상태가 바뀔 때마다 로딩 상태를 업데이트
+    console.log(isTransitioning);
   }, [isTransitioning]);
 
   return (
