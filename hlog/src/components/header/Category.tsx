@@ -6,13 +6,13 @@ import { usePathname } from "next/navigation";
 
 interface CategoryProps {
   categories: string[];
-  onCategoryChange: (category: string) => void;
+  // onCategoryChange: (category: string) => void;
   singleCategory?: string;
 }
 
 const Category: React.FC<CategoryProps> = ({
   categories,
-  onCategoryChange,
+  // onCategoryChange,
   singleCategory,
 }) => {
   const [, setSelectedCategory] = useState(singleCategory || "Home");
