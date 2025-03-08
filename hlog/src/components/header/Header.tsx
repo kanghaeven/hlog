@@ -15,11 +15,10 @@ const Header = ({ categories }: { categories: string[] }) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // 스크롤이 최상단이면 무조건 보이게 설정
-      if (currentScrollY === 0) {
+      if (currentScrollY < 50) {
         setIsVisible(true);
       } else {
-        setIsVisible(currentScrollY <= lastScrollY);
+        setIsVisible(currentScrollY < lastScrollY);
       }
       lastScrollY = currentScrollY;
     };
