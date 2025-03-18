@@ -9,6 +9,7 @@ import MobileMenu from "@/components/header/MobileMenu";
 
 const Header = ({ categories }: { categories: string[] }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false); // 상태 추가
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -34,21 +35,24 @@ const Header = ({ categories }: { categories: string[] }) => {
       }`}
     >
       <div className="h-14 sm:h-20 flex items-center justify-between border-b-[0.1rem] px-2 sm:px-4">
-        <div className="flex items-center">
+        <div className={"flex items-center"}>
           <Hlogo />
           <div className="hidden sm:block">
             <Category categories={categories} />
           </div>
-          <div className="sm:hidden">
+          <div className={`sm:hidden ${isSearchExpanded ? "hidden" : ""}`}>
             <Category categories={categories} />
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <SearchBar />
-          <div>
+          <SearchBar
+            isExpanded={isSearchExpanded}
+            setIsExpanded={setIsSearchExpanded}
+          />
+          <div className={`${isSearchExpanded ? "hidden sm:block" : ""}`}>
             <ThemeSwitch />
           </div>
-          <div className="sm:hidden">
+          <div className={`sm:hidden  ${isSearchExpanded ? "hidden" : ""}`}>
             <MobileMenu categories={categories} />
           </div>
         </div>
