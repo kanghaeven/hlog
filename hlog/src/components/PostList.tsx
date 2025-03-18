@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Post } from "@/types/types";
 import { useLoading } from "@/context/LoadingContext";
+import Loading from "@/app/Loading";
 
 interface PostListProps {
   posts: Post[];
@@ -30,6 +31,7 @@ const PostList = ({ posts }: PostListProps) => {
 
   return (
     <>
+      {isTransitioning && <Loading />}
       {showLoading ? (
         <PostListSkeleton />
       ) : (
