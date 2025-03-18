@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const Popup = ({ message }: { message: string }) => {
   return (
-    <div className="absolute px-6 py-2 text-sm text-white transform -translate-x-1/2 bg-black rounded shadow-lg bottom-12 left-1/2">
+    <div className="fixed px-6 py-2 text-sm text-white transform -translate-x-1/2 bg-black rounded shadow-lg bottom-16 left-1/2">
       {message}
     </div>
   );
