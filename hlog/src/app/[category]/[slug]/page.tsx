@@ -1,9 +1,10 @@
-// src/app/blog/[category]/[slug]/page.tsx
-import Giscus from "@/components/CommentGiscus";
+import { Suspense } from "react";
 import PostContent from "@/components/PostContent";
 import PostTitle from "@/components/PostTitle";
 import CustomToC from "@/components/CustomToC";
+import Giscus from "@/components/CommentGiscus";
 import { getPostBySlug } from "@/lib/postUtils";
+import Loading from "@/app/Loading";
 
 export default async function PostPage({
   params,
@@ -11,6 +12,21 @@ export default async function PostPage({
   params: Promise<{ category: string; slug: string }>;
 }) {
   const { category, slug } = await params;
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <PostContentSection category={category} slug={slug} />
+    </Suspense>
+  );
+}
+
+async function PostContentSection({
+  category,
+  slug,
+}: {
+  category: string;
+  slug: string;
+}) {
   const post = await getPostBySlug(category, slug);
 
   if (!post) {
