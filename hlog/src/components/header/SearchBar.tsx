@@ -14,7 +14,7 @@ const SearchBar = ({
       <div
         className={`flex justify-center items-center rounded-full overflow-hidden transition-all duration-300 ease-in-out cursor-pointer ${
           isExpanded
-            ? "w-[13.3rem] sm:w-64 h-8 sm:h-11 px-2 sm:px-3 py-1 bg-input"
+            ? "w-[14.5rem] sm:w-64 h-8 sm:h-11 px-2 sm:px-3 py-1 bg-input"
             : "w-10 h-10 sm:w-14 sm:h-14 hover:bg-washed"
         }`}
         onClick={() => setIsExpanded(true)}
@@ -23,7 +23,7 @@ const SearchBar = ({
         {isExpanded && (
           <input
             type="text"
-            className="w-full ml-2 text-sm bg-transparent outline-none text-secondary caret-primary sm:text-base"
+            className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
             placeholder="Type something cool... ✨"
             autoFocus
             onBlur={() => setIsExpanded(false)}

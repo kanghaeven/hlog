@@ -234,7 +234,3 @@ html {
 body {
   overscroll-behavior-y: none;
 }
-
-input:focus {
-  touch-action: manipulation;
-}
