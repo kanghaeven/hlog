@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -21,16 +21,23 @@ const PostList = ({ posts }: PostListProps) => {
     setShowLoading(true); // 로딩 상태 true로 설정
   };
 
+  // 로딩이 끝난 후 스켈레톤을 숨기기 위해 효과 사용
+  useEffect(() => {
+    if (!showLoading) {
+      setShowLoading(false); // 로딩 종료 시 상태 변경
+    }
+  }, [showLoading]);
+
   if (posts === null || posts.length === 0) {
     return <div className="text-lg text-center">게시물이 없습니다.</div>;
   }
 
   return (
     <>
-      {isTransitioning && <PostListSkeleton />}
-      {showLoading ? (
-        <Loading />
-      ) : (
+      {showLoading && !isTransitioning && <Loading />}
+      {!showLoading && isTransitioning && <PostListSkeleton />}
+
+      {!showLoading && !isTransitioning && (
         <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
           {posts.map((post) => (
             <li
