@@ -11,7 +11,7 @@ interface CategoryProps {
 
 const Category: React.FC<CategoryProps> = ({ categories }) => {
   const { isTransitioning, setIsTransitioning } = useLoading();
-  const [, setSelectedCategory] = useState("Home");
+  const [selectedCategory, setSelectedCategory] = useState("Home");
   const pathname = usePathname();
 
   // 경로에 맞게 selectedCategory 설정
@@ -30,7 +30,7 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
 
   const renderCategoryButton = (category: string) => {
     const categoryPath = category === "Home" ? "/" : `/${category}`;
-    const isActive = pathname === categoryPath;
+    const isActive = selectedCategory === category;
 
     return (
       <Link key={category} href={categoryPath} passHref>
@@ -68,8 +68,7 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
         // 화면이 모바일이면 선택된 카테고리만 렌더
         return (
           <div key={category} className="w-full sm:hidden">
-            {pathname === `/${category === "Home" ? "" : category}` &&
-              renderCategoryButton(category)}
+            {selectedCategory === category && renderCategoryButton(category)}
           </div>
         );
       })}

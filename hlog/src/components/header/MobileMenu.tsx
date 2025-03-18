@@ -22,6 +22,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
     setIsTransitioning(false); // ✅ 경로가 변경되면 로딩 상태 해제
   }, [pathname, setIsTransitioning]);
 
+  // 현재 카테고리 판별
+  const getActiveCategory = () => {
+    if (pathname === "/") return "Home";
+    const pathParts = pathname.split("/");
+    return categories.includes(pathParts[1]) ? pathParts[1] : "Home";
+  };
+
+  const activeCategory = getActiveCategory();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,7 +41,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
       <DropdownMenuContent className="sm:hidden">
         {["Home", ...categories].map((category) => {
           const categoryPath = category === "Home" ? "/" : `/${category}`;
-          const isActive = pathname === categoryPath;
+          const isActive = activeCategory === category;
 
           return (
             <Link
