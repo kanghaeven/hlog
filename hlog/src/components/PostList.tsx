@@ -13,16 +13,12 @@ interface PostListProps {
 }
 
 const PostList = ({ posts }: PostListProps) => {
-  const { isTransitioning, setIsTransitioning } = useLoading(); // 로딩 상태 관리
+  const { isTransitioning } = useLoading(); // 로딩 상태 관리
   const [showLoading, setShowLoading] = useState(false);
-
-  useEffect(() => {
-    setShowLoading(isTransitioning); // transitioning 상태가 바뀔 때마다 로딩 상태를 업데이트
-  }, [isTransitioning]);
 
   // 게시글 클릭 시 로딩 상태 변경
   const handlePostClick = () => {
-    setIsTransitioning(true); // 로딩 상태 true로 설정
+    setShowLoading(true); // 로딩 상태 true로 설정
   };
 
   if (posts === null || posts.length === 0) {
@@ -31,9 +27,9 @@ const PostList = ({ posts }: PostListProps) => {
 
   return (
     <>
-      {isTransitioning && <Loading />}
+      {isTransitioning && <PostListSkeleton />}
       {showLoading ? (
-        <PostListSkeleton />
+        <Loading />
       ) : (
         <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
           {posts.map((post) => (
