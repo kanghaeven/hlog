@@ -12,12 +12,17 @@ interface PostListProps {
 }
 
 const PostList = ({ posts }: PostListProps) => {
-  const { isTransitioning } = useLoading(); // 로딩 상태 값
+  const { isTransitioning, setIsTransitioning } = useLoading(); // 로딩 상태 관리
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     setShowLoading(isTransitioning); // transitioning 상태가 바뀔 때마다 로딩 상태를 업데이트
   }, [isTransitioning]);
+
+  // 게시글 클릭 시 로딩 상태 변경
+  const handlePostClick = () => {
+    setIsTransitioning(true); // 로딩 상태 true로 설정
+  };
 
   if (posts === null || posts.length === 0) {
     return <div className="text-lg text-center">게시물이 없습니다.</div>;
@@ -37,6 +42,7 @@ const PostList = ({ posts }: PostListProps) => {
               <Link
                 href={post.url}
                 className="grid sm:grid-cols-[39%_2%_59%] p-5 no-underline hover:bg-input"
+                onClick={handlePostClick} // 클릭 시 로딩 상태 변경
               >
                 {/* 왼쪽 이미지 영역 */}
                 <div className="items-stretch hidden gap-12 sm:flex jusity-between">

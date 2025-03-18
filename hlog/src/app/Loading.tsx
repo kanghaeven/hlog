@@ -5,7 +5,7 @@ export default function Loading() {
 
       <div className="w-full max-w-3xl">
         <div className="flex flex-col items-center justify-center">
-          <div className="w-3/4 h-8 mb-6 bg-gray-200 rounded"></div>{" "}
+          <div className="w-1/4 h-8 mb-6 bg-gray-200 rounded"></div>{" "}
           <div className="w-2/3 h-10 mb-6 bg-gray-200 rounded"></div>{" "}
           <div className="w-1/2 h-6 mb-6 bg-gray-200 rounded"></div>{" "}
           <div className="w-1/3 h-6 mb-6 bg-gray-200 rounded"></div>{" "}
