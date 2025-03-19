@@ -54,7 +54,6 @@ async function PostContentSection({
           <CustomToC content={post.content} />
         </div>
         <PostContent content={post.content} />
-
         <ProfileCard />
         <section id="comments">
           <Giscus />

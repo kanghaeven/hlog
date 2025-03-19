@@ -16,7 +16,7 @@ const CustomToC = ({ content }: { content: ReactNode }) => {
     <div
       className={`${
         isHeaderVisible ? "xl:top-[20vh]" : "xl:top-[10vh]"
-      } transition-all duration-300 xl:sticky xl:top-[14vh] xl:z-10 relative z-30`}
+      } z-0 transition-all duration-300 xl:sticky xl:top-[14vh] xl:z-10 relative`}
     >
       <hr className="xl:hidden" />
       <div className="pl-6 flex-grow xl:border-l-[1px] xl:border-soft">

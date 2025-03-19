@@ -15,7 +15,7 @@ const ActionGroup = () => {
     document.getElementById("comments")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="flex flex-col gap-4 mt-6">
+    <div className="z-50 flex flex-col gap-4 mt-6">
       <div className="flex flex-col gap-4 lg:flex-row">
         <ActionButton onClick={scrollToTop} variant="top" label="최상단 이동" />
 

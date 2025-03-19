@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { ArrowUp, MessageSquareQuote, Link2 } from "lucide-react";
+import { ArrowUp, MessageSquareMore, Link2 } from "lucide-react";
 
 interface ButtonProps {
   onClick: () => void;
@@ -12,7 +12,7 @@ interface ButtonProps {
 
 const iconMap = {
   top: ArrowUp,
-  comments: MessageSquareQuote,
+  comments: MessageSquareMore,
   copy: Link2,
 };
 
