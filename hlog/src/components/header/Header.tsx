@@ -1,36 +1,20 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Hlogo from "@/components/header/Hlogo";
 import ThemeSwitch from "@/components/theme/ThemeSwitch";
 import Category from "@/components/header/Category";
 import SearchBar from "@/components/header/SearchBar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import MobileMenu from "@/components/header/MobileMenu";
+import useScrollDirection from "@/hooks/useScrollDirection";
 
 const Header = ({ categories }: { categories: string[] }) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const isVisible = useScrollDirection(); // 수정된 부분
   const [isSearchExpanded, setIsSearchExpanded] = useState(false); // 상태 추가
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY < 50) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(currentScrollY < lastScrollY);
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 bg-background transition-transform duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 bg-background transition-all duration-300 ${
         isVisible ? "transform-none" : "-translate-y-[95%]"
       }`}
     >
