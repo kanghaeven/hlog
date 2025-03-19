@@ -38,7 +38,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
           <Menu />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="sm:hidden">
+      <DropdownMenuContent className="md:hidden">
         {["Home", ...categories].map((category) => {
           const categoryPath = category === "Home" ? "/" : `/${category}`;
           const isActive = activeCategory === category;

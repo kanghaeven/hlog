@@ -33,10 +33,10 @@ const Header = ({ categories }: { categories: string[] }) => {
             isExpanded={isSearchExpanded}
             setIsExpanded={setIsSearchExpanded}
           />
-          <div className={`${isSearchExpanded ? "hidden sm:block" : ""}`}>
+          <div className={`${isSearchExpanded ? "hidden md:block" : ""}`}>
             <ThemeSwitch />
           </div>
-          <div className={`sm:hidden  ${isSearchExpanded ? "hidden" : ""}`}>
+          <div className={`md:hidden  ${isSearchExpanded ? "hidden" : ""}`}>
             <MobileMenu categories={categories} />
           </div>
         </div>
