@@ -18,3 +18,20 @@ export type Frontmatter = {
   posterImage: string;
   categories: string[];
 };
+
+export type TocItem = {
+  id: string;
+  title: string | ReactNode;
+  level: number;
+};
+
+export type TocItemProps = {
+  item: TocItem;
+  isActive: boolean;
+  isNearActive: boolean;
+};
+
+export type HeaderProps = {
+  id: string;
+  children: ReactNode;
+};
