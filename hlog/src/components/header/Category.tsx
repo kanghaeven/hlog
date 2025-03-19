@@ -41,10 +41,10 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
               setSelectedCategory(category);
             }
           }}
-          className={`box relative px-6 sm:px-12 transition-all duration-300 border-[1.5px] text-sm sm:text-base ${
+          className={`box relative px-6 md:px-12 transition-all duration-300 border-[1.5px] text-sm md:text-base ${
             isActive
-              ? "text-shade border-b-0 py-[0.6rem] sm:py-[1.125rem]"
-              : "text-muted py-[0.6rem] sm:py-3 mt-[0.65rem]"
+              ? "text-shade border-b-0 py-[0.6rem] md:py-[1.125rem]"
+              : "text-muted py-[0.6rem] md:py-3 mt-[0.65rem]"
           } ${isTransitioning ? "opacity-50 pointer-events-none" : ""}`}
           style={{
             clipPath: isActive
@@ -61,19 +61,19 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
 
   return (
     <nav
-      className={`flex items-center p-2 sm:p-4 mt-[0.85rem] sm:mt-5 space-x-2`}
+      className={`flex items-center p-2 sm:p-4 mt-[0.85rem] md:mt-5 space-x-2`}
     >
       {/* 모바일 화면에서는 선택된 카테고리만 렌더 */}
       {["Home", ...categories].map((category) => {
         // 화면이 모바일이면 선택된 카테고리만 렌더
         return (
-          <div key={category} className="w-full sm:hidden">
+          <div key={category} className="w-full md:hidden">
             {selectedCategory === category && renderCategoryButton(category)}
           </div>
         );
       })}
       {/* 데스크탑 화면에서는 모든 카테고리 렌더 */}
-      <div className="hidden space-x-2 sm:flex">
+      <div className="hidden space-x-2 md:flex">
         {["Home", ...categories].map(renderCategoryButton)}
       </div>
     </nav>

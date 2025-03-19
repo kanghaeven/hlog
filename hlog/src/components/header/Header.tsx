@@ -18,7 +18,7 @@ const Header = ({ categories }: { categories: string[] }) => {
         isVisible ? "transform-none" : "-translate-y-[95%]"
       }`}
     >
-      <div className="h-14 sm:h-20 flex items-center justify-between border-b-[0.1rem] px-2 sm:px-4">
+      <div className="h-14 md:h-20 flex items-center justify-between border-b-[0.1rem] px-2 md:px-4">
         <div className={"flex items-center"}>
           <Hlogo />
           <div className="hidden sm:block">
