@@ -62,7 +62,7 @@ async function PostContentSection({
           <CustomToC content={post.content} />
         </div>
       </aside>
-      <div className="fixed bottom-0 right-0 block m-12 xl:hidden">
+      <div className="fixed bottom-0 right-0 block m-6 md:m-12 xl:hidden">
         <ActionGroup />
       </div>
     </div>
