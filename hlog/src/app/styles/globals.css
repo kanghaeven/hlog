@@ -191,12 +191,18 @@ h2 {
 
 .box {
   position: relative;
-  transition: all 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+
+.box::before,
+.box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: color 0.3s ease;
 }
 
 .box::before {
-  content: "";
-  position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
@@ -205,17 +211,14 @@ h2 {
   z-index: -2;
 }
 
-.dark .box::before {
-  background: rgb(154, 161, 255);
-}
-
 .box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
   background: rgb(240, 240, 240);
   z-index: -1;
   clip-path: inherit;
+}
+
+.dark .box::before {
+  background: rgb(154, 161, 255);
 }
 
 .dark .box::after {

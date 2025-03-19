@@ -14,7 +14,7 @@ export default async function RootLayout({
 
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen prose dark:prose-invert">
+      <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">
         <ThemeProvider>
           <LoadingProvider>
             <Header categories={categories} />
