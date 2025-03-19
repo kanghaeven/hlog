@@ -1,11 +1,12 @@
 import { Suspense } from "react";
-import PostContent from "@/components/PostContent";
-import PostTitle from "@/components/PostTitle";
+import PostContent from "@/components/postcontent/PostContent";
+import PostTitle from "@/components/postcontent/PostTitle";
 import CustomToC from "@/components/toc/CustomToC";
-import Giscus from "@/components/CommentGiscus";
+import Giscus from "@/components/postcontent/CommentGiscus";
 import { getPostBySlug } from "@/lib/postUtils";
 import Loading from "@/app/Loading";
 import ActionGroup from "@/components/common/ActionGroup";
+import ProfileCard from "@/components/postcontent/ProfileCard";
 
 export default async function PostPage({
   params,
@@ -53,6 +54,8 @@ async function PostContentSection({
           <CustomToC content={post.content} />
         </div>
         <PostContent content={post.content} />
+
+        <ProfileCard />
         <section id="comments">
           <Giscus />
         </section>
