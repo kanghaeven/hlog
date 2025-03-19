@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import PostContent from "@/components/PostContent";
 import PostTitle from "@/components/PostTitle";
-import CustomToC from "@/components/CustomToC";
+import CustomToC from "@/components/toc/CustomToC";
 import Giscus from "@/components/CommentGiscus";
 import { getPostBySlug } from "@/lib/postUtils";
 import Loading from "@/app/Loading";
+import ActionGroup from "@/components/common/ActionGroup";
 
 export default async function PostPage({
   params,
@@ -39,7 +40,7 @@ async function PostContentSection({
 
   return (
     <div className="flex justify-center p-6 mx-auto mt-6 sm:mt-10">
-      <div className="hidden mr-8 max-w-72 xl:block"></div>
+      <div className="hidden mr-8 w-[14rem] xl:block"></div>
       <article className="w-full max-w-3xl">
         <PostTitle
           title={post.title}
@@ -52,13 +53,18 @@ async function PostContentSection({
           <CustomToC content={post.content} />
         </div>
         <PostContent content={post.content} />
-        <Giscus />
+        <section id="comments">
+          <Giscus />
+        </section>
       </article>
       <aside className="hidden ml-20 w-72 xl:block">
-        <div className="sticky top-[14vh]">
+        <div className="fixed top-[14vh]">
           <CustomToC content={post.content} />
         </div>
       </aside>
+      <div className="fixed bottom-0 right-0 block m-12 xl:hidden">
+        <ActionGroup />
+      </div>
     </div>
   );
 }
