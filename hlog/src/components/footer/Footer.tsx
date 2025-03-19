@@ -1,46 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
-
-const Popup = ({ message }: { message: string }) => {
-  return (
-    <div className="fixed px-6 py-2 text-sm text-white transform -translate-x-1/2 bg-black rounded shadow-lg bottom-16 left-1/2">
-      {message}
-    </div>
-  );
-};
+import { useClipboard } from "@/hooks/useClipboard";
+import React from "react";
+import { Popup } from "../common/Popup";
 
 const Footer = () => {
-  const [popup, setPopup] = useState<string | null>(null);
+  const { copied, copyToClipboard } = useClipboard();
 
-  const handlePopup = (type: string) => {
-    if (type === "github") {
-      window.open("https://github.com/kanghaeven", "_blank");
-    } else if (type === "email") {
-      navigator.clipboard.writeText("aubrienid@naver.com");
-      setPopup("Email address copied!");
-      setTimeout(() => setPopup(null), 2000);
-    }
-  };
+  const handleGithub = () =>
+    window.open("https://github.com/kanghaeven", "_blank");
 
   return (
     <footer className="flex items-center justify-between w-full h-8 px-6 mt-auto text-background bg-primary">
       <div className="flex space-x-4">
         <button
-          onClick={() => handlePopup("github")}
+          onClick={handleGithub}
           className="hover:underline focus:outline-none"
         >
           Github
         </button>
         <button
-          onClick={() => handlePopup("email")}
+          onClick={() => copyToClipboard("aubrienid@naver.com")}
           className="hover:underline focus:outline-none"
         >
           Email
         </button>
       </div>
       <div>© 2025 HaebinK</div>
-      {popup && <Popup message={popup} />}
+      {copied && (
+        <Popup message="이메일 주소가 복사되었습니다!" position="top" />
+      )}
     </footer>
   );
 };
