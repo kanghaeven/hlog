@@ -1,24 +1,25 @@
 "use client";
-import { useState } from "react";
-import Hlogo from "@/components/header/Hlogo";
-import ThemeSwitch from "@/components/theme/ThemeSwitch";
-import Category from "@/components/header/Category";
-import SearchBar from "@/components/header/SearchBar";
-import ScrollProgressBar from "@/components/header/ScrollProgressBar";
-import MobileMenu from "@/components/header/MobileMenu";
-import useScrollDirection from "@/hooks/useScrollDirection";
+
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import useScrollDirection from "@/hooks/useScrollDirection";
+import ThemeSwitch from "@/components/theme/ThemeSwitch";
+import Hlogo from "@/components/header/Hlogo";
+import SearchBar from "@/components/header/SearchBar";
+import CategoryMenu from "@/components/header/CategoryMenu";
+import MobileCategoryMenu from "@/components/header/MobileCategoryMenu";
+import ScrollProgressBar from "@/components/header/ScrollProgressBar";
 
 const Header = ({ categories }: { categories: string[] }) => {
-  const isVisible = useScrollDirection(); // 수정된 부분
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false); // 상태 추가
-  const pathname = usePathname(); // 현재 경로 가져오기
+  const pathname = usePathname();
+  const isVisible = useScrollDirection();
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
-  // 카테고리 이름이 포함되어 있고, 그 뒤에 슬러그가 있는지 확인
-  const isPostPage = categories.some((category) => {
-    const categoryPattern = `/${category}/`; // /카테고리이름/ 형식으로 확인
-    return pathname.includes(categoryPattern) && pathname.split("/").length > 2; // 게시글 슬러그가 있는지 확인
-  });
+  // 현재 페이지가 게시글 상세 페이지인지 확인
+  const isPostContent = categories.some(
+    (category) =>
+      pathname.startsWith(`/${category}/`) && pathname.split("/").length > 2
+  );
 
   return (
     <header
@@ -27,17 +28,20 @@ const Header = ({ categories }: { categories: string[] }) => {
       }`}
     >
       <div className="h-14 md:h-20 flex items-center justify-between border-b-[0.1rem] px-2 md:px-4">
+        {/* 왼쪽 영역: 로고 및 카테고리 */}
         <div className={"flex items-center"}>
           <Hlogo />
           <div className="hidden sm:block">
-            <Category categories={categories} />
+            <CategoryMenu categories={categories} />
           </div>
           <div className={`sm:hidden ${isSearchExpanded ? "hidden" : ""}`}>
-            <Category categories={categories} />
+            <CategoryMenu categories={categories} />
           </div>
         </div>
+
+        {/* 오른쪽 영역: 검색바, 테마 스위치, 모바일 메뉴 */}
         <div className="flex items-center justify-center">
-          {!isPostPage && ( // 게시글 페이지에서만 검색바 숨김
+          {!isPostContent && (
             <SearchBar
               isExpanded={isSearchExpanded}
               setIsExpanded={setIsSearchExpanded}
@@ -47,7 +51,7 @@ const Header = ({ categories }: { categories: string[] }) => {
             <ThemeSwitch />
           </div>
           <div className={`md:hidden  ${isSearchExpanded ? "hidden" : ""}`}>
-            <MobileMenu categories={categories} />
+            <MobileCategoryMenu categories={categories} />
           </div>
         </div>
       </div>

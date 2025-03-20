@@ -1,36 +1,34 @@
 "use client";
 
+import { useEffect } from "react";
+import { SearchBarProps } from "@/types/types";
 import { useSearch } from "@/context/SearchContext";
 import { Search } from "lucide-react";
-import { useEffect } from "react";
 
-const SearchBar = ({
-  isExpanded,
-  setIsExpanded,
-}: {
-  isExpanded: boolean;
-  setIsExpanded: (value: boolean) => void;
-}) => {
+const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
   const { searchQuery, setSearchQuery } = useSearch();
 
+  // 검색바가 축소될 때 검색어 초기화
   useEffect(() => {
     if (!isExpanded) {
-      setSearchQuery(""); // 검색바가 축소될 때 검색어 초기화
+      setSearchQuery("");
     }
   }, [isExpanded, setSearchQuery]);
 
+  // 검색 입력 처리
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
+  // 포커스 아웃 시 검색어가 없으면 검색바 축소
   const handleFocusOut = () => {
-    if (searchQuery.trim() === "") {
-      setIsExpanded(false); // 검색어가 없으면 축소
+    if (!searchQuery.trim()) {
+      setIsExpanded(false);
     }
   };
 
   return (
-    <div className="relative flex items-center cursor-pointer">
+    <div className="relative flex items-center">
       <div
         className={`flex justify-center items-center rounded-full overflow-hidden transition-all duration-300 ease-in-out cursor-pointer ${
           isExpanded
@@ -48,7 +46,7 @@ const SearchBar = ({
             className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
             placeholder="검색어 입력..."
             autoFocus
-            onBlur={handleFocusOut} // 포커스 아웃 시 검색어가 없으면 축소
+            onBlur={handleFocusOut}
           />
         )}
       </div>

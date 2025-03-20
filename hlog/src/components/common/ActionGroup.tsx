@@ -1,12 +1,12 @@
-// components/toc/TocActions.tsx
 "use client";
 
-import { useClipboard } from "@/hooks/useClipboard";
-import { Popup } from "@/components/common/Popup";
-import ActionButton from "@/components/common/ActionButton";
 import React from "react";
+import { useClipboard } from "@/hooks/useClipboard";
+import Popup from "@/components/common/Popup";
+import ActionButton from "@/components/common/ActionButton";
 
 const ActionGroup = () => {
+  // useClipboard 훅을 사용하여 복사 상태와 복사 함수 가져오기
   const { copied, copyToClipboard } = useClipboard();
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });

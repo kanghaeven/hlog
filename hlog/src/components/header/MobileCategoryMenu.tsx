@@ -1,3 +1,7 @@
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useMemo } from "react";
+import { useLoadingPostList } from "@/context/LoadingPostListContext";
 import { Menu, Dot } from "lucide-react";
 import {
   DropdownMenu,
@@ -5,31 +9,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useEffect } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { useLoadingPostList } from "@/context/LoadingPostListContext";
 
-interface MobileMenuProps {
+interface MobileCategoryMenuProps {
   categories: string[];
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
+const MobileCategoryMenu = ({ categories }: MobileCategoryMenuProps) => {
+  const pathname = usePathname();
   const { isLoadingPostList, setIsLoadingPostList } = useLoadingPostList();
-  const pathname = usePathname(); // ✅ 현재 경로 가져오기
 
+  // 경로 변경 시 로딩 상태 해제
   useEffect(() => {
-    setIsLoadingPostList(false); // ✅ 경로가 변경되면 로딩 상태 해제
+    setIsLoadingPostList(false);
   }, [pathname, setIsLoadingPostList]);
 
-  // 현재 카테고리 판별
-  const getActiveCategory = () => {
+  // 현재 카테고리 판별 (useMemo로 최적화)
+  const activeCategory = useMemo(() => {
     if (pathname === "/") return "Home";
     const pathParts = pathname.split("/");
     return categories.includes(pathParts[1]) ? pathParts[1] : "Home";
-  };
-
-  const activeCategory = getActiveCategory();
+  }, [pathname, categories]);
 
   return (
     <DropdownMenu>
@@ -44,27 +43,22 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
           const isActive = activeCategory === category;
 
           return (
-            <Link
+            <DropdownMenuItem
               key={category}
-              href={categoryPath}
-              className={`block no-underline ${
-                isActive ? "text-shade" : "text-muted"
-              }`}
-              onClick={() => {
-                if (!isActive) {
-                  setIsLoadingPostList(true); // 카테고리 변경 시 로딩 상태 설정
-                }
-              }}
+              asChild
+              disabled={isLoadingPostList}
             >
-              <DropdownMenuItem
-                className={`flex items-center justify-between 
-                  ${isLoadingPostList ? "opacity-50 pointer-events-none" : ""}`}
-                disabled={isLoadingPostList}
+              <Link
+                href={categoryPath}
+                className={`flex items-center justify-between no-underline ${
+                  isActive ? "text-shade" : "text-muted"
+                } ${isLoadingPostList ? "opacity-50 pointer-events-none" : ""}`}
+                onClick={() => !isActive && setIsLoadingPostList(true)}
               >
                 {category}
                 {isActive && <Dot className="ml-2" />}
-              </DropdownMenuItem>
-            </Link>
+              </Link>
+            </DropdownMenuItem>
           );
         })}
       </DropdownMenuContent>
@@ -72,4 +66,4 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
   );
 };
 
-export default MobileMenu;
+export default MobileCategoryMenu;

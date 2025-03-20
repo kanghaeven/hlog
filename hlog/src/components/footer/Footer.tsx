@@ -1,8 +1,8 @@
 "use client";
 
-import { useClipboard } from "@/hooks/useClipboard";
 import React from "react";
-import { Popup } from "../common/Popup";
+import { useClipboard } from "@/hooks/useClipboard";
+import Popup from "@/components/common/Popup";
 
 const Footer = () => {
   const { copied, copyToClipboard } = useClipboard();
@@ -28,7 +28,7 @@ const Footer = () => {
       </div>
       <div>© 2025 HaebinK</div>
       {copied && (
-        <Popup message="이메일 주소가 복사되었습니다!" position="top" />
+        <Popup message="이메일 주소가 복사되었습니다" position="bottom" />
       )}
     </footer>
   );

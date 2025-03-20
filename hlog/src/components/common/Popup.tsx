@@ -1,15 +1,10 @@
 // components/common/Popup.tsx
 "use client";
 
+import { PopupProps } from "@/types/types";
 import { useEffect, useState } from "react";
 
-interface PopupProps {
-  message: string;
-  duration?: number;
-  position?: "top" | "bottom";
-}
-
-export const Popup = ({
+const Popup = ({
   message,
   duration = 2000,
   position = "bottom",
@@ -31,3 +26,5 @@ export const Popup = ({
     </div>
   ) : null;
 };
+
+export default Popup;

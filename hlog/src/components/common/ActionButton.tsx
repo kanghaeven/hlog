@@ -1,14 +1,8 @@
-// components/common/ActionButton.tsx
 "use client";
 
 import React from "react";
 import { ArrowUp, MessageSquareMore, Link2 } from "lucide-react";
-
-interface ButtonProps {
-  onClick: () => void;
-  variant: "top" | "comments" | "copy";
-  label: string;
-}
+import { ButtonProps } from "@/types/types";
 
 const iconMap = {
   top: ArrowUp,

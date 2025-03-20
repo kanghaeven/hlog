@@ -29,6 +29,13 @@ export type Frontmatter = {
   categories: string[];
 };
 
+export type CategoryMenuButtonProps = {
+  category: string;
+  selected: boolean;
+  isLoading: boolean;
+  onClick: (category: string) => void;
+};
+
 export type PostListProps = {
   posts: Post[];
 };
@@ -57,4 +64,21 @@ export type TocItemProps = {
 export type HeaderProps = {
   id: string;
   children: ReactNode;
+};
+
+export type ButtonProps = {
+  onClick: () => void;
+  variant: "top" | "comments" | "copy";
+  label: string;
+};
+
+export type PopupProps = {
+  message: string;
+  duration?: number;
+  position?: "top" | "bottom";
+};
+
+export type SearchBarProps = {
+  isExpanded: boolean;
+  setIsExpanded: (value: boolean) => void;
 };
