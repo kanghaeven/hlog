@@ -1,8 +1,8 @@
-import { CategoryPageParams } from "@/types/types";
+import { CategoryParams } from "@/types/types";
 import { getPostsForCategory } from "@/lib/postUtils";
 import PostList from "@/components/postlist/PostList";
 
-const CategoryPage = async ({ params }: CategoryPageParams) => {
+const CategoryPage = async ({ params }: CategoryParams) => {
   // URL에서 동적 세그먼트인 category를 전달받음
   const { categorySlug } = params;
 

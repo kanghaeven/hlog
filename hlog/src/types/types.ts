@@ -1,12 +1,14 @@
 import { ReactNode } from "react";
 
-export type CategoryPageParams = {
+export type CategoryParams = {
   params: { categorySlug: string };
 };
 
 export type PostParams = {
-  categorySlug: string;
-  postSlug: string;
+  params: {
+    categorySlug: string;
+    postSlug: string;
+  };
 };
 
 export type Post = {

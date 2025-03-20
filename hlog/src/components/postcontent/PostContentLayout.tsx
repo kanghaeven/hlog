@@ -7,7 +7,9 @@ import Giscus from "@/components/postcontent/CommentGiscus";
 import CustomToC from "@/components/toc/CustomToC";
 import ActionGroup from "@/components/common/ActionGroup";
 
-async function PostContentLayout({ categorySlug, postSlug }: PostParams) {
+async function PostContentLayout({ params }: PostParams) {
+  const { categorySlug, postSlug } = params;
+
   const post = await getPostBySlug(categorySlug, postSlug);
 
   if (!post) {
