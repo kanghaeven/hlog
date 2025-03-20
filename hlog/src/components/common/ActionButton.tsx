@@ -23,7 +23,7 @@ const ActionButton = ({ onClick, variant, label }: ButtonProps) => {
     <button
       onClick={onClick}
       className={
-        "flex items-center backdrop-blur-lg border-soft border-[1px] transition-all text-dusty hover:text-faded p-2 rounded-full focus-visible:ring-0 focus-visible:ring-ring focus-visible:outline-none hover:bg-washed"
+        "flex items-center backdrop-blur-xl border-soft border-[1px] transition-all text-dusty hover:text-faded p-2 rounded-full focus-visible:ring-0 focus-visible:ring-ring focus-visible:outline-none hover:bg-washed"
       }
       aria-label={label}
     >
