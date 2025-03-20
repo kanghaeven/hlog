@@ -23,6 +23,12 @@ const SearchBar = ({
     setSearchQuery(event.target.value);
   };
 
+  const handleFocusOut = () => {
+    if (searchQuery.trim() === "") {
+      setIsExpanded(false); // 검색어가 없으면 축소
+    }
+  };
+
   return (
     <div className="relative flex items-center cursor-pointer">
       <div
@@ -42,7 +48,7 @@ const SearchBar = ({
             className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
             placeholder="검색어 입력..."
             autoFocus
-            onBlur={() => setIsExpanded(false)}
+            onBlur={handleFocusOut} // 포커스 아웃 시 검색어가 없으면 축소
           />
         )}
       </div>
