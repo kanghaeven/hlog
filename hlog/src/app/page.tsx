@@ -1,17 +1,13 @@
 import { getAllPosts } from "@/lib/postUtils";
-import PostList from "@/components/PostList";
-// import { Suspense } from "react";
-// import Loading from "@/app/Loading";
+import PostList from "@/components/postlist/PostList";
+import { Post } from "@/types/types";
 
 export default async function Home() {
-  const posts = await getAllPosts();
+  const posts: Post[] = await getAllPosts();
 
   return (
-    <div className="flex items-center justify-start">
-      {/* <Suspense fallback={<Loading />}> */}
-      {/* PostList 컴포넌트에 posts를 전달 */}
+    <div className="flex items-start justify-start w-full">
       <PostList posts={posts} />
-      {/* </Suspense> */}
     </div>
   );
 }

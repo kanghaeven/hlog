@@ -1,4 +1,4 @@
-import PostList from "@/components/PostList";
+import PostList from "@/components/postlist/PostList";
 import { getPostsForCategory } from "@/lib/postUtils";
 
 export default async function CategoryPage(props: {
@@ -22,9 +22,5 @@ export default async function CategoryPage(props: {
     );
   }
 
-  return (
-    <div className="flex flex-col items-start justify-between">
-      <PostList posts={posts} />
-    </div>
-  );
+  return <PostList posts={posts} />;
 }
