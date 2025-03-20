@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { PostListProps } from "@/types/types";
-import Loading from "@/app/Loading";
 import { useLoadingPostList } from "@/context/LoadingPostListContext";
 import { useSearch } from "@/context/SearchContext";
 import { useFilteredPosts } from "@/hooks/useFilteredPosts";
 import PostListItem from "@/components/postlist/PostListItem";
 import PostListSkeleton from "@/components/postlist/PostListSkeleton";
+import PostContentSkeleton from "@/components/postcontent/PostContentSkeleton";
 
 const PostList = ({ posts }: PostListProps) => {
   // Post List 로딩 상태
@@ -26,7 +26,7 @@ const PostList = ({ posts }: PostListProps) => {
   return (
     <>
       {/* 게시글 클릭 후 해당 게시글 로딩 중일 때, Post Content 스켈레톤 UI 표시 */}
-      {isLoadingPostContent && !isLoadingPostList && <Loading />}
+      {isLoadingPostContent && !isLoadingPostList && <PostContentSkeleton />}
       {/* 게시물 목록 로딩 중일 때, Post List 스켈레톤 UI 표시 */}
       {!isLoadingPostContent && isLoadingPostList && <PostListSkeleton />}
       {/* 로딩이 모두 끝난 후, 필터링된 게시물 목록 표시 */}
