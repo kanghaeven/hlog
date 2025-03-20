@@ -2,8 +2,8 @@ import { CategoryParams } from "@/types/types";
 import { getPostsForCategory } from "@/lib/postUtils";
 import PostList from "@/components/postlist/PostList";
 
-const CategoryPage = async ({ params }: CategoryParams) => {
-  const { categorySlug } = params;
+const CategoryPage = async (props: CategoryParams) => {
+  const { categorySlug } = await props.params;
 
   // 카테고리에 해당하는 게시글 데이터 가져오기
   const { posts } = await getPostsForCategory(categorySlug);

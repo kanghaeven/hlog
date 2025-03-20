@@ -1,16 +1,11 @@
 import { ReactNode } from "react";
 
 export type CategoryParams = {
-  params: {
-    categorySlug: string;
-  };
+  params: Promise<{ categorySlug: string }>;
 };
 
 export type PostParams = {
-  params: {
-    categorySlug: string;
-    postSlug: string;
-  };
+  params: Promise<{ categorySlug: string; postSlug: string }>;
 };
 
 export type Post = {

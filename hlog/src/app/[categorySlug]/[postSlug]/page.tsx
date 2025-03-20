@@ -3,11 +3,10 @@
 import { PostParams } from "@/types/types";
 import PostContentLayout from "@/components/postcontent/PostContentLayout";
 
-async function PostPage({ params }: { params: PostParams }) {
+async function PostPage({ params }: PostParams) {
   return (
     // <Suspense fallback={<Loading />}>
-    <PostContentLayout params={params} />
-    // </Suspense>
+    <PostContentLayout params={params} /> // </Suspense>
   );
 }
 
