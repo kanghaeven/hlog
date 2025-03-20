@@ -17,7 +17,7 @@ export async function getAllPosts(): Promise<Post[]> {
         .map(async (filename) => {
           const slug = filename.replace(".mdx", "");
           const filePath = path.resolve(categoryPath, filename);
-          const { metadata } = await parseMdxFile(filePath);
+          const { metadata, content } = await parseMdxFile(filePath);
 
           return {
             slug,
@@ -27,6 +27,7 @@ export async function getAllPosts(): Promise<Post[]> {
             publishDate: metadata.publishDate,
             posterImage: metadata.posterImage,
             categories: metadata.categories,
+            content,
           };
         })
     );

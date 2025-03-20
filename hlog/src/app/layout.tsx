@@ -3,6 +3,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { LoadingProvider } from "@/context/LoadingContext";
+import { SearchProvider } from "@/context/SearchContext";
 import { getCategories } from "@/lib/categoryUtils";
 
 export default async function RootLayout({
@@ -17,9 +18,11 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">
         <ThemeProvider>
           <LoadingProvider>
-            <Header categories={categories} />
-            <main className="flex-1 mt-4 sm:mt-10">{children}</main>
-            <Footer />
+            <SearchProvider>
+              <Header categories={categories} />
+              <main className="flex-1 mt-4 sm:mt-10">{children}</main>
+              <Footer />
+            </SearchProvider>
           </LoadingProvider>
         </ThemeProvider>
       </body>

@@ -1,6 +1,8 @@
 "use client";
 
+import { useSearch } from "@/context/SearchContext";
 import { Search } from "lucide-react";
+import { useEffect } from "react";
 
 const SearchBar = ({
   isExpanded,
@@ -9,6 +11,18 @@ const SearchBar = ({
   isExpanded: boolean;
   setIsExpanded: (value: boolean) => void;
 }) => {
+  const { searchQuery, setSearchQuery } = useSearch();
+
+  useEffect(() => {
+    if (!isExpanded) {
+      setSearchQuery(""); // 검색바가 축소될 때 검색어 초기화
+    }
+  }, [isExpanded, setSearchQuery]);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div className="relative flex items-center cursor-pointer">
       <div
@@ -23,8 +37,10 @@ const SearchBar = ({
         {isExpanded && (
           <input
             type="text"
+            value={searchQuery}
+            onChange={handleSearch}
             className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
-            placeholder="Type something cool... ✨"
+            placeholder="검색어 입력..."
             autoFocus
             onBlur={() => setIsExpanded(false)}
           />
