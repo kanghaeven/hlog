@@ -3,13 +3,10 @@
 import { PostParams } from "@/types/types";
 import PostContentLayout from "@/components/postcontent/PostContentLayout";
 
-async function PostPage({ params }: PostParams) {
-  // params에서 category와 slug를 추출
-  const { categorySlug, postSlug } = params;
-
+async function PostPage({ params }: { params: PostParams }) {
   return (
     // <Suspense fallback={<Loading />}>
-    <PostContentLayout params={{ categorySlug, postSlug }} />
+    <PostContentLayout params={params} />
     // </Suspense>
   );
 }
