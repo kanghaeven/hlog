@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLoading } from "@/context/LoadingContext";
+import { useLoadingPostList } from "@/context/LoadingPostListContext";
 
 interface CategoryProps {
   categories: string[];
 }
 
 const Category: React.FC<CategoryProps> = ({ categories }) => {
-  const { isTransitioning, setIsTransitioning } = useLoading();
+  const { isLoadingPostList, setIsLoadingPostList } = useLoadingPostList();
   const [selectedCategory, setSelectedCategory] = useState("Home");
   const pathname = usePathname();
 
@@ -25,8 +25,8 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
   }, [pathname]);
 
   useEffect(() => {
-    setIsTransitioning(false);
-  }, [pathname, setIsTransitioning]);
+    setIsLoadingPostList(false);
+  }, [pathname, setIsLoadingPostList]);
 
   const renderCategoryButton = (category: string) => {
     const categoryPath = category === "Home" ? "/" : `/${category}`;
@@ -37,7 +37,7 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
         <button
           onClick={() => {
             if (!isActive) {
-              setIsTransitioning(true);
+              setIsLoadingPostList(true);
               setSelectedCategory(category);
             }
           }}
@@ -45,13 +45,13 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
             isActive
               ? "text-shade border-b-0 py-[0.6rem] md:py-[1.125rem]"
               : "text-muted py-[0.6rem] md:py-3 mt-[0.65rem]"
-          } ${isTransitioning ? "opacity-50 pointer-events-none" : ""}`}
+          } ${isLoadingPostList ? "opacity-50 pointer-events-none" : ""}`}
           style={{
             clipPath: isActive
               ? "polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)"
               : "polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%)",
           }}
-          disabled={isTransitioning}
+          disabled={isLoadingPostList}
         >
           <span className="relative z-10">{category}</span>
         </button>

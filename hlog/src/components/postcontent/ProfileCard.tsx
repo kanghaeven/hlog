@@ -1,5 +1,11 @@
 import Image from "next/image";
-import React from "react";
+
+const profileInfo = {
+  name: "Kang Haebin",
+  role: "Junior Developer",
+  description:
+    "피드백과 댓글, 좋아요는 언제나 환영입니다! 여러분의 한마디가 큰 힘이 돼요 🪼",
+};
 
 const ProfileCard = () => {
   return (
@@ -14,17 +20,15 @@ const ProfileCard = () => {
             className="w-10 h-10 m-0 rounded-full md:w-20 md:h-20"
           />
           <div className="flex flex-col gap-1">
-            <span className="font-semibold text-md">Kang Haebin</span>
-            <span className="text-sm text-muted">Junior Developer</span>
+            <span className="font-semibold text-md">{profileInfo.name}</span>
+            <span className="text-sm text-muted">{profileInfo.role}</span>
             <span className="hidden mt-3 text-sm md:block text-dusty">
-              피드백과 댓글, 좋아요는 언제나 환영입니다! 여러분의 한마디가 큰
-              힘이 돼요 🪼
+              {profileInfo.description}
             </span>
           </div>
         </div>
         <span className="block text-sm md:hidden text-dusty">
-          피드백과 댓글, 좋아요는 언제나 환영입니다! 여러분의 한마디가 큰 힘이
-          돼요 🪼
+          {profileInfo.description}
         </span>
       </div>
     </div>

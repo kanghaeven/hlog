@@ -1,45 +1,30 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "@/mdx-components";
+import { PostContentProps } from "@/types/types";
 
-interface PostContentProps {
-  content: ReactNode;
-}
+// ID 생성 로직 분리 (공백을 "-"로 변환)
+const generateId = (text: React.ReactNode) =>
+  text?.toString().toLowerCase().replace(/\s+/g, "-");
 
-const PostContent: React.FC<PostContentProps> = ({ content }) => {
+const PostContent = ({ content }: PostContentProps) => {
   const components = useMDXComponents({});
 
   const enhancedComponents = {
     ...components,
-    h1: ({
-      children,
-      ...props
-    }: React.PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) => (
-      <h1
-        {...props}
-        id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
-      >
-        {children}
-      </h1>
+    h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+      <h1 {...props} id={generateId(props.children)} />
     ),
-    h2: ({
-      children,
-      ...props
-    }: React.PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) => (
-      <h2
-        {...props}
-        id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
-      >
-        {children}
-      </h2>
+    h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+      <h2 {...props} id={generateId(props.children)} />
     ),
   };
 
   return (
     <MDXProvider components={enhancedComponents}>
-      <div>{content}</div>
+      <div className="prose max-w-none">{content}</div>
     </MDXProvider>
   );
 };

@@ -15,13 +15,13 @@ export async function getAllPosts(): Promise<Post[]> {
       filenames
         .filter((filename) => filename.endsWith(".mdx"))
         .map(async (filename) => {
-          const slug = filename.replace(".mdx", "");
+          const postSlug = filename.replace(".mdx", "");
           const filePath = path.resolve(categoryPath, filename);
           const { metadata, content } = await parseMdxFile(filePath);
 
           return {
-            slug,
-            url: `/${category}/${slug}`,
+            postSlug,
+            url: `/${category}/${postSlug}`,
             title: metadata.title,
             description: metadata.description,
             publishDate: metadata.publishDate,
@@ -43,26 +43,24 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getPostsForCategory(
-  category: string,
-  page: number = 1,
-  limit: number = 6
-): Promise<{ posts: Post[]; total: number }> {
+  category: string
+): Promise<{ posts: Post[]; totalPostsCount: number }> {
   const categoryPath = path.resolve(POSTS_PATH, category);
   const filenames = await getFilenamesInDirectory(categoryPath);
 
-  if (filenames.length === 0) return { posts: [], total: 0 };
+  if (filenames.length === 0) return { posts: [], totalPostsCount: 0 };
 
   const allPosts = await Promise.all(
     filenames
       .filter((filename) => filename.endsWith(".mdx"))
       .map(async (filename) => {
-        const slug = filename.replace(".mdx", "");
+        const postSlug = filename.replace(".mdx", "");
         const filePath = path.resolve(categoryPath, filename);
         const { metadata } = await parseMdxFile(filePath);
 
         return {
-          slug,
-          url: `/${category}/${slug}`,
+          postSlug,
+          url: `/${category}/${postSlug}`,
           title: metadata.title,
           description: metadata.description,
           publishDate: metadata.publishDate,
@@ -77,24 +75,21 @@ export async function getPostsForCategory(
       new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
   );
 
-  const start = (page - 1) * limit;
-  const paginatedPosts = sortedPosts.slice(start, start + limit);
-
-  return { posts: paginatedPosts, total: sortedPosts.length };
+  return { posts: sortedPosts, totalPostsCount: sortedPosts.length };
 }
 
 export async function getPostBySlug(
-  category: string,
-  slug: string
+  categorySlug: string,
+  postSlug: string
 ): Promise<Post | null> {
-  const filePath = path.resolve(POSTS_PATH, category, `${slug}.mdx`);
+  const filePath = path.resolve(POSTS_PATH, categorySlug, `${postSlug}.mdx`);
 
   try {
     const { metadata, content } = await parseMdxFile(filePath);
 
     return {
-      slug,
-      url: `/${category}/${slug}`,
+      postSlug,
+      url: `/${categorySlug}/${postSlug}`,
       title: metadata.title,
       description: metadata.description,
       publishDate: metadata.publishDate,
@@ -103,7 +98,7 @@ export async function getPostBySlug(
       content,
     };
   } catch (error) {
-    console.error(`Error loading post ${slug}:`, error);
+    console.error(`Error loading post ${postSlug}:`, error);
     return null;
   }
 }

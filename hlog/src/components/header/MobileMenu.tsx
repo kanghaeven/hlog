@@ -8,19 +8,19 @@ import {
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useLoading } from "@/context/LoadingContext";
+import { useLoadingPostList } from "@/context/LoadingPostListContext";
 
 interface MobileMenuProps {
   categories: string[];
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
-  const { isTransitioning, setIsTransitioning } = useLoading(); // LoadingContext에서 상태 업데이트 함수 가져오기
+  const { isLoadingPostList, setIsLoadingPostList } = useLoadingPostList();
   const pathname = usePathname(); // ✅ 현재 경로 가져오기
 
   useEffect(() => {
-    setIsTransitioning(false); // ✅ 경로가 변경되면 로딩 상태 해제
-  }, [pathname, setIsTransitioning]);
+    setIsLoadingPostList(false); // ✅ 경로가 변경되면 로딩 상태 해제
+  }, [pathname, setIsLoadingPostList]);
 
   // 현재 카테고리 판별
   const getActiveCategory = () => {
@@ -52,14 +52,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ categories }) => {
               }`}
               onClick={() => {
                 if (!isActive) {
-                  setIsTransitioning(true); // 카테고리 변경 시 로딩 상태 설정
+                  setIsLoadingPostList(true); // 카테고리 변경 시 로딩 상태 설정
                 }
               }}
             >
               <DropdownMenuItem
                 className={`flex items-center justify-between 
-                  ${isTransitioning ? "opacity-50 pointer-events-none" : ""}`}
-                disabled={isTransitioning}
+                  ${isLoadingPostList ? "opacity-50 pointer-events-none" : ""}`}
+                disabled={isLoadingPostList}
               >
                 {category}
                 {isActive && <Dot className="ml-2" />}

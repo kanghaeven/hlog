@@ -1,40 +1,19 @@
-import { Suspense } from "react";
-import PostContent from "@/components/postcontent/PostContent";
-import PostTitle from "@/components/postcontent/PostTitle";
-import CustomToC from "@/components/toc/CustomToC";
-import Giscus from "@/components/postcontent/CommentGiscus";
+import { PostParams } from "@/types/types";
 import { getPostBySlug } from "@/lib/postUtils";
-import Loading from "@/app/Loading";
-import ActionGroup from "@/components/common/ActionGroup";
+import PostTitle from "@/components/postcontent/PostTitle";
+import PostContent from "@/components/postcontent/PostContent";
 import ProfileCard from "@/components/postcontent/ProfileCard";
+import Giscus from "@/components/postcontent/CommentGiscus";
+import CustomToC from "@/components/toc/CustomToC";
+import ActionGroup from "@/components/common/ActionGroup";
 
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ category: string; slug: string }>;
-}) {
-  const { category, slug } = await params;
-
-  return (
-    <Suspense fallback={<Loading />}>
-      <PostContentSection category={category} slug={slug} />
-    </Suspense>
-  );
-}
-
-async function PostContentSection({
-  category,
-  slug,
-}: {
-  category: string;
-  slug: string;
-}) {
-  const post = await getPostBySlug(category, slug);
+async function PostContentLayout({ categorySlug, postSlug }: PostParams) {
+  const post = await getPostBySlug(categorySlug, postSlug);
 
   if (!post) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-lg text-muted">포스트를 찾을 수 없습니다.</p>
+        <p className="text-md text-muted">포스트를 찾을 수 없습니다.</p>
       </div>
     );
   }
@@ -70,3 +49,5 @@ async function PostContentSection({
     </div>
   );
 }
+
+export default PostContentLayout;

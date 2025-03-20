@@ -1,7 +1,16 @@
 import { ReactNode } from "react";
 
+export type CategoryPageParams = {
+  params: { categorySlug: string };
+};
+
+export type PostParams = {
+  categorySlug: string;
+  postSlug: string;
+};
+
 export type Post = {
-  slug: string;
+  postSlug: string;
   url: string; // url 속성 추가
   title: string;
   description: string;
@@ -17,6 +26,19 @@ export type Frontmatter = {
   publishDate: string;
   posterImage: string;
   categories: string[];
+};
+
+export type PostListProps = {
+  posts: Post[];
+};
+
+export type PostListItemProps = {
+  post: Post;
+  handlePostClick: () => void;
+};
+
+export type PostContentProps = {
+  content: ReactNode;
 };
 
 export type TocItem = {

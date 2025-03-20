@@ -2,8 +2,8 @@
 import { createContext, useContext, useState } from "react";
 
 interface LoadingContextType {
-  isTransitioning: boolean;
-  setIsTransitioning: (state: boolean) => void;
+  isLoadingPostList: boolean;
+  setIsLoadingPostList: (state: boolean) => void;
 }
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
@@ -13,16 +13,18 @@ export const LoadingProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isLoadingPostList, setIsLoadingPostList] = useState(false);
 
   return (
-    <LoadingContext.Provider value={{ isTransitioning, setIsTransitioning }}>
+    <LoadingContext.Provider
+      value={{ isLoadingPostList, setIsLoadingPostList }}
+    >
       {children}
     </LoadingContext.Provider>
   );
 };
 
-export const useLoading = () => {
+export const useLoadingPostList = () => {
   const context = useContext(LoadingContext);
   if (!context) {
     throw new Error("useLoading must be used within a LoadingProvider");
