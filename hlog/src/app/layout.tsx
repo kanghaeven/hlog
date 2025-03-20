@@ -1,16 +1,12 @@
 import "@/app/styles/globals.css";
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { LoadingProvider } from "@/context/LoadingPostListContext";
-import { SearchProvider } from "@/context/SearchContext";
 import { getCategories } from "@/lib/categoryUtils";
+import { SearchProvider } from "@/context/SearchContext";
+import { LoadingProvider } from "@/context/LoadingPostListContext";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const categories = await getCategories();
 
   return (
@@ -28,4 +24,6 @@ export default async function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

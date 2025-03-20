@@ -1,8 +1,8 @@
+import { Post } from "@/types/types";
 import { getAllPosts } from "@/lib/postUtils";
 import PostList from "@/components/postlist/PostList";
-import { Post } from "@/types/types";
 
-export default async function Home() {
+const Home = async () => {
   const posts: Post[] = await getAllPosts();
 
   return (
@@ -10,4 +10,6 @@ export default async function Home() {
       <PostList posts={posts} />
     </div>
   );
-}
+};
+
+export default Home;
