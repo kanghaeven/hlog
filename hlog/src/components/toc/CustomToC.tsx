@@ -1,11 +1,11 @@
 "use client";
 
 import { ReactNode } from "react";
-import ActionGroup from "../common/ActionGroup";
-import TocItem from "./TocItem";
-import useScrollDirection from "@/hooks/useScrollDirection";
 import useTocGenerator from "@/hooks/useTocGenerator";
 import useActiveHeading from "@/hooks/useActiveHeading";
+import useScrollDirection from "@/hooks/useScrollDirection";
+import TocItem from "@/components/toc/TocItem";
+import ActionGroup from "@/components/common/ActionGroup";
 
 const CustomToC = ({ content }: { content: ReactNode }) => {
   const toc = useTocGenerator(content);
@@ -24,12 +24,16 @@ const CustomToC = ({ content }: { content: ReactNode }) => {
         <ul className="pl-0 m-0 text-sm leading-6 list-none xl:text-xs">
           {toc.map((item, index) => {
             const isActive = activeId === item.id;
-            const isNearActive = [
-              toc[index - 1]?.id,
-              toc[index + 1]?.id,
-            ].includes(activeId);
+            const isNearActive =
+              toc[index - 1]?.id === activeId ||
+              toc[index + 1]?.id === activeId;
             return (
-              <TocItem key={item.id} {...{ item, isActive, isNearActive }} />
+              <TocItem
+                key={item.id}
+                item={item}
+                isActive={isActive}
+                isNearActive={isNearActive}
+              />
             );
           })}
         </ul>

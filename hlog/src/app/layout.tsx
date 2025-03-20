@@ -2,7 +2,7 @@ import "@/app/styles/globals.css";
 import { getCategories } from "@/lib/categoryUtils";
 import { SearchProvider } from "@/context/SearchContext";
 import { LoadingProvider } from "@/context/LoadingPostListContext";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import ThemeProvider from "@/components/theme/ThemeProvider";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 

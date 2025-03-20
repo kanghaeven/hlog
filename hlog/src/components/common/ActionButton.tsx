@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ArrowUp, MessageSquareMore, Link2 } from "lucide-react";
 import { ButtonProps } from "@/types/types";
 
@@ -26,4 +25,4 @@ const ActionButton = ({ onClick, variant, label }: ButtonProps) => {
   );
 };
 
-export default React.memo(ActionButton);
+export default ActionButton;

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useClipboard } from "@/hooks/useClipboard";
 import Popup from "@/components/common/Popup";
 import ActionButton from "@/components/common/ActionButton";
@@ -37,4 +36,4 @@ const ActionGroup = () => {
   );
 };
 
-export default React.memo(ActionGroup);
+export default ActionGroup;

@@ -1,8 +1,6 @@
-// components/toc/TocItem.tsx
 "use client";
 
 import { TocItemProps } from "@/types/types";
-import React from "react";
 
 const TocItem = ({ item, isActive, isNearActive }: TocItemProps) => (
   <li style={{ marginLeft: `${(item.level - 1) * 10}px` }}>
@@ -21,4 +19,4 @@ const TocItem = ({ item, isActive, isNearActive }: TocItemProps) => (
   </li>
 );
 
-export default React.memo(TocItem);
+export default TocItem;

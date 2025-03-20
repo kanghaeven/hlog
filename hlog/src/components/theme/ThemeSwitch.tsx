@@ -2,45 +2,43 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-// import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Dot, LucideIcon, Monitor, Moon, Sun } from "lucide-react";
-import React from "react";
-
-interface DropdownItemProps {
-  t: string;
-  label: string;
-  Icon: LucideIcon;
-}
+import { Dot, Monitor, Moon, Sun } from "lucide-react";
+import { ThemeItemProps } from "@/types/types";
 
 const ThemeSwitch = () => {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // 컴포넌트가 마운트되기 전에는 렌더링을 하지 않도록 처리
   if (!mounted) return null;
 
-  const Item = ({ t, Icon, label }: DropdownItemProps) => (
-    <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme(t)}>
+  const ThemeItem = ({ theme: themeValue, Icon, label }: ThemeItemProps) => (
+    <DropdownMenuItem
+      className="cursor-pointer"
+      onClick={() => setTheme(themeValue)}
+    >
       <div className="flex items-center gap-2">
         <Icon /> {label}
       </div>
-      {theme === t && <Dot />}
+      {theme === themeValue && <Dot />}
     </DropdownMenuItem>
   );
 
-  // Determine the current theme icon
-  const currentIcon =
-    theme === "light" ? <Sun /> : theme === "dark" ? <Moon /> : <Monitor />;
+  const currentIcon = (() => {
+    if (theme === "light") return <Sun />;
+    if (theme === "dark") return <Moon />;
+    return <Monitor />;
+  })();
 
   return (
     <DropdownMenu>
@@ -50,9 +48,9 @@ const ThemeSwitch = () => {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
-        <Item t="light" label="Light" Icon={Sun} />
-        <Item t="dark" label="Dark" Icon={Moon} />
-        <Item t="system" label="System" Icon={Monitor} />
+        <ThemeItem theme="light" label="Light" Icon={Sun} />
+        <ThemeItem theme="dark" label="Dark" Icon={Moon} />
+        <ThemeItem theme="system" label="System" Icon={Monitor} />
       </DropdownMenuContent>
     </DropdownMenu>
   );

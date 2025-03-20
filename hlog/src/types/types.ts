@@ -1,3 +1,4 @@
+import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 // params는 Promise 객체로 감싸져 있어, 파라미터를 비동기적으로 반환
@@ -81,4 +82,10 @@ export type PopupProps = {
 export type SearchBarProps = {
   isExpanded: boolean;
   setIsExpanded: (value: boolean) => void;
+};
+
+export type ThemeItemProps = {
+  theme: string;
+  label: string;
+  Icon: LucideIcon;
 };
