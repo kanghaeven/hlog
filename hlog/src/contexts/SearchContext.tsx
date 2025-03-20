@@ -1,15 +1,11 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
-
-interface SearchContextType {
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-}
+import { createContext, useContext, useState, ReactNode } from "react";
+import { SearchContextType } from "@/types/context";
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
-export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
+export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (

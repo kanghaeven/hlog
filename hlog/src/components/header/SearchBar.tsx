@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { SearchBarProps } from "@/types/types";
-import { useSearch } from "@/context/SearchContext";
+import { useSearch } from "@/contexts/SearchContext";
 import { Search } from "lucide-react";
 
 const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {

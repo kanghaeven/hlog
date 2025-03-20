@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useClipboard } from "@/hooks/useClipboard";
+import useClipboard from "@/hooks/useClipboard";
 import Popup from "@/components/common/Popup";
 
 const Footer = () => {

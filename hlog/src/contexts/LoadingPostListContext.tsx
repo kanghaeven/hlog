@@ -1,18 +1,10 @@
 "use client";
-import { createContext, useContext, useState } from "react";
-
-interface LoadingContextType {
-  isLoadingPostList: boolean;
-  setIsLoadingPostList: (state: boolean) => void;
-}
+import { createContext, useContext, useState, ReactNode } from "react";
+import { LoadingContextType } from "@/types/context";
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
 
-export const LoadingProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const LoadingProvider = ({ children }: { children: ReactNode }) => {
   const [isLoadingPostList, setIsLoadingPostList] = useState(false);
 
   return (

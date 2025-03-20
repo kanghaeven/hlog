@@ -1,6 +1,6 @@
 "use client";
 
-import { useClipboard } from "@/hooks/useClipboard";
+import useClipboard from "@/hooks/useClipboard";
 import Popup from "@/components/common/Popup";
 import ActionButton from "@/components/common/ActionButton";
 

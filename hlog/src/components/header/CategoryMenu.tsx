@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useLoadingPostList } from "@/context/LoadingPostListContext";
+import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
 import CategoryMenuButton from "@/components/header/CategoryMenuButton";
 
 const CategoryMenu = ({ categories }: { categories: string[] }) => {

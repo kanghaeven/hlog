@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo } from "react";
-import { useLoadingPostList } from "@/context/LoadingPostListContext";
+import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
 import { Menu, Dot } from "lucide-react";
 import {
   DropdownMenu,

@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { PostListProps } from "@/types/types";
-import { useLoadingPostList } from "@/context/LoadingPostListContext";
-import { useSearch } from "@/context/SearchContext";
-import { useFilteredPosts } from "@/hooks/useFilteredPosts";
+import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
+import { useSearch } from "@/contexts/SearchContext";
+import useFilteredPosts from "@/hooks/useFilteredPosts";
 import PostListItem from "@/components/postlist/PostListItem";
 import PostListSkeleton from "@/components/postlist/PostListSkeleton";
 import PostContentSkeleton from "@/components/postcontent/PostContentSkeleton";
