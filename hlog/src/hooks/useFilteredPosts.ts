@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Post } from "@/types/post";
 import { useSearch } from "@/contexts/SearchContext";
-import { extractTextFromReactNode } from "@/lib/reactNodeUtils";
+import { extractTextFromReactNode } from "@/utils/reactUtils";
 
 const useFilteredPosts = (posts: Post[]) => {
   const { searchQuery } = useSearch();

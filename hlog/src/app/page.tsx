@@ -1,5 +1,5 @@
 import { Post } from "@/types/post";
-import { getAllPosts } from "@/lib/postUtils";
+import { getAllPosts } from "@/services/postService";
 import PostList from "@/components/postlist/PostList";
 
 const Home = async () => {

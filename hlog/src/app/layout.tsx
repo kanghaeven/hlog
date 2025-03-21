@@ -1,5 +1,5 @@
 import "@/app/styles/globals.css";
-import { getCategories } from "@/lib/categoryUtils";
+import { getCategories } from "@/services/categoryService";
 import { SearchProvider } from "@/contexts/SearchContext";
 import { LoadingProvider } from "@/contexts/LoadingPostListContext";
 import ThemeProvider from "@/components/theme/ThemeProvider";
@@ -8,7 +8,6 @@ import Footer from "@/components/footer/Footer";
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const categories = await getCategories();
-
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">

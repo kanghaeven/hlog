@@ -1,5 +1,5 @@
 import { CategoryParams } from "@/types/params";
-import { getPostsForCategory } from "@/lib/postUtils";
+import { getPostsForCategory } from "@/services/postService";
 import PostList from "@/components/postlist/PostList";
 
 const CategoryPage = async (props: CategoryParams) => {

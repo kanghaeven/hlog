@@ -1,6 +1,6 @@
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Frontmatter } from "@/types/post";
-import { getFileContent } from "@/lib/fileUtils";
+import { getFileContent } from "@/utils/fileUtils";
 import remarkGfm from "remark-gfm";
 import remarkA11yEmoji from "@fec/remark-a11y-emoji";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -14,7 +14,8 @@ const options = {
   },
 };
 
-export async function parseMdxFile(filePath: string) {
+// 주어진 MDX 파일 경로를 읽고, frontmatter와 content를 파싱하여 반환하는 함수
+export const parseMdxFile = async (filePath: string) => {
   const fileContent = await getFileContent(filePath);
 
   const { frontmatter, content } = await compileMDX<Frontmatter>({
@@ -29,4 +30,4 @@ export async function parseMdxFile(filePath: string) {
   });
 
   return { metadata: frontmatter, content };
-}
+};

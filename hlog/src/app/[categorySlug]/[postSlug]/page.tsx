@@ -1,5 +1,5 @@
 import { PostParams } from "@/types/params";
-import { getPostBySlug } from "@/lib/postUtils";
+import { getPostBySlug } from "@/services/postService";
 import PostTitle from "@/components/postcontent/PostTitle";
 import PostContent from "@/components/postcontent/PostContent";
 import ProfileCard from "@/components/postcontent/ProfileCard";
