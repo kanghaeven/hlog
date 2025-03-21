@@ -31,7 +31,7 @@ const PostList = ({ posts }: PostListProps) => {
       {!isLoadingPostContent && isLoadingPostList && <PostListSkeleton />}
       {/* 로딩이 모두 끝난 후, 필터링된 게시물 목록 표시 */}
       {!isLoadingPostContent && !isLoadingPostList && (
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-start w-full">
           {/* 검색 쿼리가 있을 경우, 해당 검색어와 관련된 게시물 수 표시 */}
           {searchQuery && (
             <h2 className="mb-4 text-xl font-medium text-muted">
