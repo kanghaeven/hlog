@@ -18,7 +18,7 @@ const Popup = ({
 
   return isVisible ? (
     <div
-      className={`whitespace-nowrap fixed px-4 py-2 text-sm text-white bg-black/90 rounded-full shadow-lg transform -translate-x-1/2 left-1/2 ${
+      className={`whitespace-nowrap fixed px-4 py-2 text-sm text-background bg-faded rounded-full shadow-lg transform -translate-x-1/2 left-1/2 ${
         position === "bottom" ? "bottom-20" : "top-20"
       }`}
     >
