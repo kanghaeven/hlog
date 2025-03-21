@@ -23,7 +23,7 @@ const Header = ({ categories }: { categories: string[] }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 bg-background transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 bg-background transition-transform duration-300 ${
         isVisible ? "transform-none" : "-translate-y-[95%]"
       }`}
     >
