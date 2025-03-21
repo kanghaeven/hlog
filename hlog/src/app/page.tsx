@@ -1,4 +1,4 @@
-import { Post } from "@/types/types";
+import { Post } from "@/types/post";
 import { getAllPosts } from "@/lib/postUtils";
 import PostList from "@/components/postlist/PostList";
 

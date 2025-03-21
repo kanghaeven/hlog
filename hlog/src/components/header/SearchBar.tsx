@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { SearchBarProps } from "@/types/types";
+import { SearchBarProps } from "@/types/ui";
 import { useSearch } from "@/contexts/SearchContext";
 import { Search } from "lucide-react";
 

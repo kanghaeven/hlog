@@ -1,6 +1,6 @@
 "use client";
 
-import { TocItemProps } from "@/types/types";
+import { TocItemProps } from "@/types/toc";
 
 const TocItem = ({ item, isActive, isNearActive }: TocItemProps) => (
   <li style={{ marginLeft: `${(item.level - 1) * 10}px` }}>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CategoryMenuButtonProps } from "@/types/types";
+import { CategoryMenuButtonProps } from "@/types/category";
 
 const CategoryMenuButton = ({
   category,

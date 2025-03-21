@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode, useEffect, useState } from "react";
-import { HeaderProps, TocItem } from "@/types/types";
+import { HeaderProps, TocItem } from "@/types/toc";
 
 // 콘텐츠에서 Table of Contents를 제외한 헤더 정보를 추출하여 TOC(목차)를 생성하는 커스텀 훅
 const useTocGenerator = (content: ReactNode) => {

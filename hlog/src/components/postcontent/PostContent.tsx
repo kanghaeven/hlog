@@ -3,7 +3,7 @@
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "@/mdx-components";
-import { PostContentProps } from "@/types/types";
+import { PostContentProps } from "@/types/post";
 
 // ID 생성 로직 분리 (공백을 "-"로 변환)
 const generateId = (text: React.ReactNode) =>

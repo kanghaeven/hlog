@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Post } from "@/types/types";
+import { Post } from "@/types/post";
 import { useSearch } from "@/contexts/SearchContext";
 import { extractTextFromReactNode } from "@/lib/reactNodeUtils";
 

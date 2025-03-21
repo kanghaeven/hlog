@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { PostListProps } from "@/types/types";
+import { PostListProps } from "@/types/post";
 import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
 import { useSearch } from "@/contexts/SearchContext";
 import useFilteredPosts from "@/hooks/useFilteredPosts";

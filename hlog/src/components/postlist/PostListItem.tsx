@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { PostListItemProps } from "@/types/types";
+import { PostListItemProps } from "@/types/post";
 
 const PostListItem = ({ post, handlePostClick }: PostListItemProps) => (
   <li className="p-0 m-0 border-t border-soft first:border-t-0">

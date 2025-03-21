@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Frontmatter } from "@/types/types";
+import { Frontmatter } from "@/types/post";
 
 const PostTitle = ({
   title,

@@ -1,4 +1,4 @@
-import { PostParams } from "@/types/types";
+import { PostParams } from "@/types/params";
 import { getPostBySlug } from "@/lib/postUtils";
 import PostTitle from "@/components/postcontent/PostTitle";
 import PostContent from "@/components/postcontent/PostContent";

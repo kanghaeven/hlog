@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUp, MessageSquareMore, Link2 } from "lucide-react";
-import { ButtonProps } from "@/types/types";
+import { ButtonProps } from "@/types/ui";
 
 const iconMap = {
   top: ArrowUp,

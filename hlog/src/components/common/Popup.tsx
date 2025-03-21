@@ -1,7 +1,7 @@
 // components/common/Popup.tsx
 "use client";
 
-import { PopupProps } from "@/types/types";
+import { PopupProps } from "@/types/ui";
 import { useEffect, useState } from "react";
 
 const Popup = ({

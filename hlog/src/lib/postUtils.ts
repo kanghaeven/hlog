@@ -1,4 +1,4 @@
-import { Post } from "@/types/types";
+import { Post } from "@/types/post";
 import { POSTS_PATH, getFilenamesInDirectory } from "@/lib/fileUtils";
 import path from "path";
 import { parseMdxFile } from "@/lib/mdxUtils";

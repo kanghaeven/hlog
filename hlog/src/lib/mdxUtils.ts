@@ -1,5 +1,5 @@
 import { compileMDX } from "next-mdx-remote/rsc";
-import { Frontmatter } from "@/types/types";
+import { Frontmatter } from "@/types/post";
 import { getFileContent } from "@/lib/fileUtils";
 import remarkGfm from "remark-gfm";
 import remarkA11yEmoji from "@fec/remark-a11y-emoji";

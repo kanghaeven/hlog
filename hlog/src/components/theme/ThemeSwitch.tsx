@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Dot, Monitor, Moon, Sun } from "lucide-react";
-import { ThemeItemProps } from "@/types/types";
+import { ThemeItemProps } from "@/types/ui";
 
 const ThemeSwitch = () => {
   const { theme, setTheme } = useTheme();
