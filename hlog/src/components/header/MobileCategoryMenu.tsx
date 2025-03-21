@@ -8,13 +8,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/common/DropdownMenu";
 
-interface MobileCategoryMenuProps {
-  categories: string[];
-}
-
-const MobileCategoryMenu = ({ categories }: MobileCategoryMenuProps) => {
+const MobileCategoryMenu = ({ categories }: { categories: string[] }) => {
   const pathname = usePathname();
   const { isLoadingPostList, setIsLoadingPostList } = useLoadingPostList();
 

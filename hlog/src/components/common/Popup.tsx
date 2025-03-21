@@ -1,15 +1,14 @@
-// components/common/Popup.tsx
 "use client";
 
-import { PopupProps } from "@/types/ui";
 import { useEffect, useState } from "react";
+import { PopupProps } from "@/types/ui";
 
 const Popup = ({
   message,
   duration = 2000,
   position = "bottom",
 }: PopupProps) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(false), duration);

@@ -1,17 +1,12 @@
 "use client";
 
 import useClipboard from "@/hooks/useClipboard";
+import { scrollToComments, scrollToTop } from "@/utils/scrollUtils";
 import Popup from "@/components/common/Popup";
 import ActionButton from "@/components/common/ActionButton";
 
 const ActionGroup = () => {
-  // useClipboard 훅을 사용하여 복사 상태와 복사 함수 가져오기
   const { copied, copyToClipboard } = useClipboard();
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const scrollToComments = () =>
-    document.getElementById("comments")?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div className="z-50 flex flex-col gap-4 mt-6">

@@ -1,7 +1,5 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 
-/* @import "prism.css"; */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,77 +7,153 @@
 @layer base {
   * {
     @apply border-border;
-    font-family: "Pretendard";
   }
   body {
     @apply text-black bg-background;
   }
 
-  .prose h1 {
-    color: hsl(222.2 47.4% 11.2%);
-    font-size: 1.5rem !important; /* 24px */
-    line-height: 2rem !important; /* 32px */
+  .prose {
+    h1,
+    h2,
+    h3,
+    strong {
+      color: hsl(222.2 47.4% 11.2%);
+    }
+
+    h1 {
+      font-size: 1.5rem !important;
+      line-height: 2rem !important;
+    }
+
+    h2 {
+      margin-top: 5rem;
+      font-size: 1.35rem !important;
+      line-height: 1.7rem !important;
+    }
+
+    h3 {
+      margin-top: 4rem;
+      font-size: 1.125rem !important;
+      line-height: 1.5rem !important;
+    }
+
+    table {
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      border: 1px solid hsl(232 42% 90%);
+      padding: 8px;
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+
+    th {
+      background-color: hsl(0 0% 96.4%);
+    }
+
+    .text-md {
+      font-size: 1.05rem;
+      line-height: 1.5rem;
+    }
+
+    .text-xxl {
+      font-size: 1.3rem;
+      line-height: 1.8rem;
+    }
+
+    .box {
+      position: relative;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .box::before,
+    .box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transition: color 0.3s ease;
+    }
+
+    .box::before {
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: rgb(45, 0, 209);
+      z-index: -2;
+    }
+
+    .box::after {
+      background: rgb(240, 240, 240);
+      z-index: -1;
+      clip-path: inherit;
+    }
+
+    .lucide {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+      stroke-width: 1.5px;
+    }
   }
 
-  .prose h2 {
-    color: hsl(222.2 47.4% 11.2%);
-    margin-top: 5rem;
-    font-size: 1.25rem !important;
-    line-height: 1.7rem !important;
-  }
+  .dark .prose {
+    h1,
+    h2,
+    h3,
+    strong {
+      color: hsl(236, 77%, 88%);
+    }
 
-  .prose h3 {
-    color: hsl(222.2 47.4% 11.2%);
-    margin-top: 4rem;
-    font-size: 1.125rem !important;
-    line-height: 1.5rem !important;
-  }
+    th,
+    td {
+      border: 1px solid hsl(225 30% 30%);
+    }
 
-  .prose strong {
-    color: hsl(222.2 47.4% 11.2%);
-  }
+    th {
+      background-color: hsl(225 40% 15%);
+    }
 
-  .dark .prose h1 {
-    color: hsl(236, 77%, 88%);
-  }
+    .box::before {
+      background: rgb(154, 161, 255);
+    }
 
-  .dark .prose h2 {
-    color: hsl(238, 45%, 89%);
-  }
-
-  .dark .prose h3 {
-    color: hsl(238, 45%, 89%);
-  }
-
-  .dark .prose strong {
-    color: hsl(240 10% 85%);
-  }
-
-  .prose th,
-  .prose td {
-    border: 1px solid hsl(232 42% 90%);
-    padding: 8px;
-  }
-
-  .prose th {
-    background-color: hsl(0 0% 96.4%);
-  }
-
-  .dark .prose th,
-  .dark .prose td {
-    border: 1px solid hsl(225 30% 30%);
-    padding: 8px;
-  }
-
-  .dark .prose th {
-    background-color: hsl(225 40% 15%);
+    .box::after {
+      background: rgb(17, 23, 41);
+    }
   }
 
   @media (min-width: 640px) {
     .prose h1 {
-      font-size: 1.875rem !important; /* 30px */
-      line-height: 2.25rem !important; /* 36px */
+      font-size: 1.875rem !important;
+      line-height: 2.25rem !important;
     }
+  }
+
+  html,
+  body {
+    overflow-x: hidden; /* 전체 페이지에 가로 스크롤을 방지 */
+    overscroll-behavior-y: none;
+  }
+
+  html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2 {
+    scroll-margin-top: 10vh;
+    font-weight: 700 !important;
+  }
+
+  h1 {
+    margin-top: 6rem !important;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -135,105 +209,6 @@
   --dusty: 227 19% 60%;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-.text-md {
-  font-size: 1.05rem;
-  line-height: 1.5rem;
-}
-
-.text-xxl {
-  font-size: 1.3rem;
-  line-height: 1.8rem;
-}
-
 .prose {
   max-width: 100%;
-}
-
-.lucide {
-  width: 1.5rem !important;
-  height: 1.5rem !important;
-  stroke-width: 1.5px;
-}
-
-html,
-body {
-  overflow-x: hidden; /* 전체 페이지에 가로 스크롤을 방지 */
-  overscroll-behavior-y: none; /* 세로 스크롤이 과도하게 넘어가는 현상 방지 */
-}
-
-/* 테이블 레이아웃 고정 */
-.prose table {
-  table-layout: fixed; /* 테이블 레이아웃을 고정 */
-}
-
-/* 긴 텍스트가 넘치지 않도록 줄바꿈 처리 */
-.prose td,
-.prose th {
-  word-wrap: break-word; /* 텍스트가 넘칠 경우 줄바꿈 */
-  overflow: hidden;
-}
-
-h1 {
-  margin-top: 6rem !important;
-}
-
-h1,
-h2 {
-  scroll-margin-top: 10vh; /* TOC에서 바로가기 시 여백 크기 설정 */
-  font-weight: 700 !important;
-}
-
-.box {
-  position: relative;
-  transition: color 0.3s ease-in-out;
-}
-
-.box::before,
-.box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transition: color 0.3s ease;
-}
-
-.box::before {
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: rgb(45, 0, 209);
-  z-index: -2;
-}
-
-.box::after {
-  background: rgb(240, 240, 240);
-  z-index: -1;
-  clip-path: inherit;
-}
-
-.dark .box::before {
-  background: rgb(154, 161, 255);
-}
-
-.dark .box::after {
-  background: rgb(17, 23, 41);
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-}
-
-body {
-  overscroll-behavior-y: none;
 }

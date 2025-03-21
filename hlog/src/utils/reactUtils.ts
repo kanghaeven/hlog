@@ -24,5 +24,5 @@ export const extractTextFromReactNode = (node: ReactNode): string => {
 };
 
 // ID 생성 로직 분리 (공백을 "-"로 변환)
-export const generateId = (text: React.ReactNode) =>
+export const generateId = (text: ReactNode) =>
   text?.toString().toLowerCase().replace(/\s+/g, "-");

@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
-function Giscus() {
+const Giscus = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
 
@@ -51,6 +51,6 @@ function Giscus() {
   }, [theme]);
 
   return <section ref={ref} />;
-}
+};
 
 export default Giscus;

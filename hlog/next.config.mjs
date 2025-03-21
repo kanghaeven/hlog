@@ -3,4 +3,5 @@ const nextConfig = {
     domains: ["github.com"],
   },
 };
+
 export default nextConfig;

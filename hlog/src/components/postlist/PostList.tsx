@@ -19,7 +19,8 @@ const PostList = ({ posts }: PostListProps) => {
   const filteredPosts = useFilteredPosts(posts);
 
   // Post Content 로딩 상태 관리
-  const [isLoadingPostContent, setIsLoadingPostContent] = useState(false);
+  const [isLoadingPostContent, setIsLoadingPostContent] =
+    useState<boolean>(false);
   // 게시글 클릭 시 해당 Post Content의 로딩 상태 true로 설정
   const handlePostClick = () => setIsLoadingPostContent(true);
 

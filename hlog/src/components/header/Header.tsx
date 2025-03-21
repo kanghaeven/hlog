@@ -13,7 +13,7 @@ import ScrollProgressBar from "@/components/header/ScrollProgressBar";
 const Header = ({ categories }: { categories: string[] }) => {
   const pathname = usePathname();
   const isVisible = useScrollDirection();
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState<boolean>(false);
 
   // 현재 페이지가 게시글 상세 페이지인지 확인
   const isPostContent = categories.some(

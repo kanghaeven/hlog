@@ -8,7 +8,7 @@ import CategoryMenuButton from "@/components/header/CategoryMenuButton";
 const CategoryMenu = ({ categories }: { categories: string[] }) => {
   const pathname = usePathname();
   const { isLoadingPostList, setIsLoadingPostList } = useLoadingPostList();
-  const [selectedCategory, setSelectedCategory] = useState("Home");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Home");
 
   useEffect(() => {
     // 루트 경로("/")이면 "Home"으로 설정하고, 그렇지 않으면 경로의 첫 번째 세그먼트를 카테고리로 설정

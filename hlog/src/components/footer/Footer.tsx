@@ -2,13 +2,11 @@
 
 import React from "react";
 import useClipboard from "@/hooks/useClipboard";
+import { handleGithub } from "@/utils/linkUtils";
 import Popup from "@/components/common/Popup";
 
 const Footer = () => {
   const { copied, copyToClipboard } = useClipboard();
-
-  const handleGithub = () =>
-    window.open("https://github.com/kanghaeven", "_blank");
 
   return (
     <footer className="flex items-center justify-between w-full h-8 px-6 mt-auto text-background bg-primary">

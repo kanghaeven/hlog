@@ -5,8 +5,8 @@ import animate from "tailwindcss-animate";
 
 module.exports = {
   content: [
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{html,js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{html,js,ts,jsx,tsx,mdx}",
   ],
   darkMode: "class",
   important: true,
@@ -26,6 +26,11 @@ module.exports = {
         muted: "hsl(var(--muted))",
         dusty: "hsl(var(--dusty))",
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
       typography: {
         DEFAULT: {
           css: {
@@ -33,7 +38,7 @@ module.exports = {
               counterReset: "line",
             },
 
-            // Inline code only
+            // 인라인 코드 스타일
             ":not(pre) > code": {
               fontWeight: "inherit",
               position: "relative",
@@ -55,11 +60,10 @@ module.exports = {
               content: "none",
             },
 
+            // 라인 번호 스타일
             "code[data-line-numbers] > [data-line]::before": {
               counterIncrement: "line",
               content: "counter(line)",
-
-              /* Other styling */
               display: "inline-block",
               width: "1rem",
               marginRight: "1.4rem",
@@ -68,6 +72,7 @@ module.exports = {
               fontSize: "0.75rem",
             },
 
+            // 라인 번호 자리수에 맞춰 스타일
             'code[data-line-numbers-max-digits="2"] > [data-line]::before': {
               width: "1rem",
             },
@@ -76,6 +81,7 @@ module.exports = {
               width: "2rem",
             },
 
+            // 코드 블록 스타일
             pre: {
               paddingRight: 0,
               paddingLeft: 0,
@@ -102,16 +108,12 @@ module.exports = {
               color: "var(--shiki-dark)",
             },
 
+            // 강조된 라인 배경 색상
             "[data-highlighted-line]": {
               backgroundColor: "rgba(253, 224, 71, 0.2)",
             },
           },
         },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
     },
   },

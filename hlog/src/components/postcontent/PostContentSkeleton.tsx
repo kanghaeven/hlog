@@ -1,4 +1,4 @@
-function PostContentSkeleton() {
+const PostContentSkeleton = () => {
   return (
     <div className="flex justify-center w-full p-6 mx-auto mt-6 animate-pulse sm:mt-10">
       <div className="hidden max-w-xs mr-8 xl:block"></div>
@@ -32,6 +32,6 @@ function PostContentSkeleton() {
       </div>
     </div>
   );
-}
+};
 
 export default PostContentSkeleton;
