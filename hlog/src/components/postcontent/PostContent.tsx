@@ -24,7 +24,7 @@ const PostContent = ({ content }: PostContentProps) => {
 
   return (
     <MDXProvider components={enhancedComponents}>
-      <div className="prose max-w-none">{content}</div>
+      <div className="prose text-black max-w-none">{content}</div>
     </MDXProvider>
   );
 };
