@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export type Post = {
   postSlug: string;
-  url: string; // url 속성 추가
+  url: string;
   title: string;
   description: string;
   publishDate: string;
@@ -12,6 +12,7 @@ export type Post = {
 };
 
 export type Frontmatter = {
+  url: string;
   title: string;
   description: string;
   publishDate: string;

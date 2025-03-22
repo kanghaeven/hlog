@@ -25,6 +25,7 @@ const PostPage = async ({ params }: PostParams) => {
       <div className="hidden mr-8 w-[14rem] xl:block"></div>
       <article className="w-full max-w-3xl">
         <PostTitle
+          url={post.url}
           title={post.title}
           description={post.description}
           publishDate={post.publishDate}
