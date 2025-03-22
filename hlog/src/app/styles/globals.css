@@ -71,12 +71,12 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: rgb(45, 0, 209);
+      background: hsl(231 92% 52%);
       z-index: -2;
     }
 
     .box::after {
-      background: rgb(240, 240, 240);
+      background: hsl(0 0% 94%);
       z-index: -1;
       clip-path: inherit;
     }
@@ -116,11 +116,11 @@
     }
 
     .box::before {
-      background: rgb(154, 161, 255);
+      background: hsl(236 100% 80%);
     }
 
     .box::after {
-      background: rgb(17, 23, 41);
+      background: hsl(222.2 47.4% 11.2%);
     }
   }
 
