@@ -10,10 +10,9 @@ import ActionGroup from "@/components/common/ActionGroup";
 
 export const generateMetadata = async ({
   params,
-}: {
-  params: { categorySlug: string; postSlug: string };
-}): Promise<Metadata> => {
-  const { categorySlug, postSlug } = params;
+}: PostParams): Promise<Metadata> => {
+  const resolvedParams = await params;
+  const { categorySlug, postSlug } = resolvedParams;
   const post = await getPostBySlug(categorySlug, postSlug);
 
   if (!post) {
@@ -77,7 +76,8 @@ export const generateMetadata = async ({
 };
 
 const PostPage = async ({ params }: PostParams) => {
-  const { categorySlug, postSlug } = await params;
+  const resolvedParams = await params;
+  const { categorySlug, postSlug } = resolvedParams;
 
   const post = await getPostBySlug(categorySlug, postSlug);
 
