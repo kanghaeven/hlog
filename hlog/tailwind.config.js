@@ -37,7 +37,6 @@ module.exports = {
             code: {
               counterReset: "line",
             },
-
             // 인라인 코드 스타일
             ":not(pre) > code": {
               fontWeight: "inherit",
@@ -52,14 +51,12 @@ module.exports = {
               padding: "0.2em 0.4em",
               overflowWrap: "break-word",
             },
-
             "code::before": {
               content: "none",
             },
             "code::after": {
               content: "none",
             },
-
             // 라인 번호 스타일
             "code[data-line-numbers] > [data-line]::before": {
               counterIncrement: "line",
@@ -71,16 +68,13 @@ module.exports = {
               color: "lightgrey",
               fontSize: "0.75rem",
             },
-
             // 라인 번호 자리수에 맞춰 스타일
             'code[data-line-numbers-max-digits="2"] > [data-line]::before': {
               width: "1rem",
             },
-
             'code[data-line-numbers-max-digits="3"] > [data-line]::before': {
               width: "2rem",
             },
-
             // 코드 블록 스타일
             pre: {
               paddingRight: 0,
@@ -89,25 +83,21 @@ module.exports = {
               backgroundColor: "var(--shiki-light-bg)",
               border: "1px solid #e5e7eb",
             },
-
             ".dark pre": {
               backgroundColor: "var(--shiki-dark-bg)",
               color: "var(--shiki-dark)",
               border: "1px solid #374151",
             },
-
             "pre > code > span": {
               paddingLeft: "1.1rem",
               paddingRight: "1rem",
             },
-
             "pre code span": {
               color: "var(--shiki-light)",
             },
             ".dark pre code span": {
               color: "var(--shiki-dark)",
             },
-
             // 강조된 라인 배경 색상
             "[data-highlighted-line]": {
               backgroundColor: "rgba(253, 224, 71, 0.2)",

@@ -32,7 +32,7 @@ const CategoryMenu = ({ categories }: { categories: string[] }) => {
   };
 
   return (
-    <nav className="flex items-center p-2 sm:p-4 mt-[0.85rem] md:mt-5 space-x-2">
+    <nav className="flex transition-all duration-300 items-center p-2 sm:p-4 mt-[0.85rem] md:mt-5 space-x-2">
       {/* 모바일 화면에서는 선택된 카테고리만 렌더 */}
       <div className="w-full md:hidden">
         {["Home", ...categories].map(

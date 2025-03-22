@@ -15,7 +15,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <LoadingProvider>
             <SearchProvider>
               <Header categories={categories} />
-              <main className="flex-1 mt-4 sm:mt-10">{children}</main>
+              <main className="flex-1 mt-4 md:mt-10">{children}</main>
               <Footer />
             </SearchProvider>
           </LoadingProvider>

@@ -35,9 +35,9 @@ const PostListItem = ({ post, handlePostClick }: PostListItemProps) => (
       {/* 오른쪽 텍스트 영역 */}
       <div className="flex flex-col justify-between gap-12 sm:gap-0">
         <div className="flex justify-between gap-6">
-          <h2 className="m-0 text-lg font-medium text-black lg:text-xl">
+          <p className="m-0 text-lg font-medium text-black lg:text-xl">
             {post.title}
-          </h2>
+          </p>
           <span className="hidden sm:block h-fit px-2 border-muted text-dusty text-md rounded-full border-[1px] text-bold">
             {post.categories[0]}
           </span>

@@ -35,13 +35,15 @@ const PostList = ({ posts }: PostListProps) => {
         <div className="flex flex-col items-start w-full">
           {/* 검색 쿼리가 있을 경우, 해당 검색어와 관련된 게시물 수 표시 */}
           {searchQuery && (
-            <h2 className="mb-4 text-xl font-medium text-muted">
-              &quot;{searchQuery}&quot;를 포함한 결과 {filteredPosts.length}개
+            <h2 className="px-6 mb-4 font-medium text-md md:px-12 text-muted">
+              &quot;{searchQuery}&quot;를 포함한 글 {filteredPosts.length}개
             </h2>
           )}
           {/* 필터링된 게시물 없을 경우 메시지 표시 */}
           {filteredPosts.length === 0 ? (
-            <p className="text-md text-dusty">검색 결과가 없습니다.</p>
+            <p className="px-6 md:px-12 text-md text-dusty">
+              검색 결과가 없습니다.
+            </p>
           ) : (
             <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
               {/* 게시물 리스트 항목을 순차적으로 렌더링 */}

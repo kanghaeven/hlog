@@ -30,9 +30,9 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
   return (
     <div className="relative flex items-center">
       <div
-        className={`flex justify-center items-center rounded-full transition-all duration-300 ease-in-out overflow-hidden cursor-pointer ${
+        className={`flex justify-center items-center rounded-full overflow-hidden cursor-pointer ${
           isExpanded
-            ? "w-[14.5rem] md:w-64 h-8 md:h-11 px-2 md:px-3 py-1 bg-input"
+            ? "w-[14.5rem] md:w-64 h-8 md:h-11 px-2 md:px-3 py-1 bg-input trasition-color duration-300"
             : "w-10 h-10 md:w-14 md:h-14 hover:bg-washed"
         }`}
         onClick={() => setIsExpanded(true)}

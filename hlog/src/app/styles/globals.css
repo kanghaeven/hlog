@@ -53,16 +53,6 @@
       background-color: hsl(0 0% 96.4%);
     }
 
-    .text-md {
-      font-size: 1.05rem;
-      line-height: 1.5rem;
-    }
-
-    .text-xxl {
-      font-size: 1.3rem;
-      line-height: 1.8rem;
-    }
-
     .box {
       position: relative;
       transition: color 0.3s ease-in-out;
@@ -89,6 +79,16 @@
       background: rgb(240, 240, 240);
       z-index: -1;
       clip-path: inherit;
+    }
+
+    .text-md {
+      font-size: 1.05rem;
+      line-height: 1.5rem;
+    }
+
+    .text-xxl {
+      font-size: 1.3rem;
+      line-height: 1.8rem;
     }
 
     .lucide {
