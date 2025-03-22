@@ -28,7 +28,7 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `${post.title} - HaebinK`,
+    title: `${post.title}`,
     description: post.description || "이 포스트에 대한 설명이 없습니다.",
     robots: {
       index: true,
@@ -44,7 +44,7 @@ export const generateMetadata = async ({
       },
     },
     openGraph: {
-      title: `${post.title}`,
+      title: `${post.title} - HaebinK`,
       url: `https://haebink.vercel.app/posts/${categorySlug}/${postSlug}`,
       locale: "ko_KR",
       type: "article",
