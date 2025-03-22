@@ -133,13 +133,18 @@
 
   html,
   body {
-    overflow-x: hidden; /* 전체 페이지에 가로 스크롤을 방지 */
+    overflow-x: hidden;
     overscroll-behavior-y: none;
+    scroll-behavior: smooth;
   }
 
   html {
     scrollbar-width: none;
-    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    -ms-overflow-style: none;
   }
 
   h1,
@@ -153,6 +158,8 @@
   }
 
   ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
     display: none;
   }
 }
