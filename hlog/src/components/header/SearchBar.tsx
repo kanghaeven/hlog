@@ -11,18 +11,23 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [showDimmed, setShowDimmed] = useState<boolean>(false);
 
-  // 검색바 상태와 Dimmed 상태 동기화
-  useEffect(() => {
-    setShowDimmed(isExpanded);
-  }, [isExpanded]);
-
   // 검색바가 축소될 때 검색어 초기화
   useEffect(() => {
     if (!isExpanded) {
       setInputValue("");
       setSearchQuery("");
+      setShowDimmed(false);
     }
   }, [isExpanded, setSearchQuery]);
+
+  // 입력 값이 변경될 때마다 dimmed 효과 표시
+  useEffect(() => {
+    if (inputValue.trim() !== "") {
+      setShowDimmed(true);
+    } else {
+      setShowDimmed(false);
+    }
+  }, [inputValue]);
 
   // Dimmed (검색바 외부 영역) 클릭 시 검색바 닫기
   const handleDimmedClick = useCallback(() => {
@@ -65,6 +70,11 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
     }
   };
 
+  // 입력 값 변경 처리
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div className="relative">
       {showDimmed && (
@@ -88,7 +98,7 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
             <input
               type="text"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={handleInputChange}
               className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
               placeholder="검색어 입력"
               autoFocus
