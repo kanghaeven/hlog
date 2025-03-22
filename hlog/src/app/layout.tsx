@@ -17,14 +17,12 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Hlog</title>
         <meta name="robots" content="index, follow" />
         <meta name="description" content="HaebinK의 기술 블로그입니다." />
         <meta name="keywords" content="개발, SAP, Next, HaebinK" />
         <meta property="og:title" content="Hlog" />
         <meta property="og:url" content={"https://haebink.vercel.app"} />
         <meta property="og:type" content="website" />
-
         <meta
           property="og:description"
           content="여기에서 다양한 게시물을 확인하세요."
@@ -33,7 +31,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           property="og:image"
           content="https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3"
         />
-        <title>내 블로그</title>
+        <title>Hlog</title>
       </Head>
       <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">
         <ThemeProvider>
