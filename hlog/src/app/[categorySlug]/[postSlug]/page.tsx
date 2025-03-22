@@ -13,6 +13,7 @@ export const generateMetadata = async ({
 }: PostParams): Promise<Metadata> => {
   const resolvedParams = await params;
   const { categorySlug, postSlug } = resolvedParams;
+
   const post = await getPostBySlug(categorySlug, postSlug);
 
   if (!post) {
@@ -43,13 +44,13 @@ export const generateMetadata = async ({
       },
     },
     openGraph: {
-      title: `${post.title} - HaebinK`,
+      title: `${post.title}`,
       url: `https://haebink.vercel.app/posts/${categorySlug}/${postSlug}`,
       locale: "ko_KR",
       type: "article",
       description:
         post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
-      siteName: `${post.title} - HaebinK`,
+      siteName: "HaebinK",
       images: [
         {
           url:
