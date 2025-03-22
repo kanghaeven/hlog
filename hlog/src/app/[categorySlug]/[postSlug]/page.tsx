@@ -50,7 +50,7 @@ export const generateMetadata = async ({
       type: "article",
       description:
         post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
-      siteName: "Hlog",
+      siteName: `${post.title} - HaebinK`,
       images: [
         {
           url:
