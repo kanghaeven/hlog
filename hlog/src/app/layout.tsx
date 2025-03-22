@@ -14,6 +14,44 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    title: "Hlog",
+    url: "https://haebink.vercel.app",
+    locale: "ko_KR",
+    type: "website",
+    description: "SAP와 Next를 다루는 기술 블로그 - HaebinK",
+    siteName: "Example Blog",
+    images: [
+      {
+        url: "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
+        width: 600,
+        height: 400,
+        alt: "Hlog 이미지",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hlog",
+    description: "SAP와 Next를 다루는 기술 블로그 - HaebinK",
+    images: [
+      "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
+    ],
+  },
+  keywords: ["개발", "SAP", "Next", "HaebinK"],
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -21,25 +59,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ko" suppressHydrationWarning>
       <Head>
-        {/* <meta
-          name="google-site-verification"
-          content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
-        /> */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
-        <meta name="description" content="HaebinK의 기술 블로그입니다." />
-        <meta name="keywords" content="개발, SAP, Next, HaebinK" />
-        <meta property="og:title" content="Hlog" />
-        <meta property="og:url" content={"https://haebink.vercel.app"} />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:description"
-          content="여기에서 다양한 게시물을 확인하세요."
-        />
-        <meta
-          property="og:image"
-          content="https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3"
-        />
       </Head>
       <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">
         <ThemeProvider>

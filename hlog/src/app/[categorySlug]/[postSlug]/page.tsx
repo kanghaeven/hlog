@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { PostParams } from "@/types/params";
 import { getPostBySlug } from "@/services/postService";
 import PostTitle from "@/components/postcontent/PostTitle";
@@ -6,6 +7,74 @@ import ProfileCard from "@/components/postcontent/ProfileCard";
 import Giscus from "@/components/postcontent/CommentGiscus";
 import CustomToC from "@/components/toc/CustomToC";
 import ActionGroup from "@/components/common/ActionGroup";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { categorySlug: string; postSlug: string };
+}): Promise<Metadata> => {
+  const { categorySlug, postSlug } = params;
+  const post = await getPostBySlug(categorySlug, postSlug);
+
+  if (!post) {
+    return {
+      title: "포스트를 찾을 수 없습니다.",
+      description: "해당 포스트를 찾을 수 없습니다.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  return {
+    title: `${post.title} - HaebinK`,
+    description: post.description || "이 포스트에 대한 설명이 없습니다.",
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    openGraph: {
+      title: `${post.title} - HaebinK`,
+      url: `https://haebink.vercel.app/posts/${categorySlug}/${postSlug}`,
+      locale: "ko_KR",
+      type: "article",
+      description:
+        post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
+      siteName: "Hlog",
+      images: [
+        {
+          url:
+            post.posterImage ||
+            "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
+          width: 600,
+          height: 400,
+          alt: "게시글 이미지",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} - HaebinK`,
+      description:
+        post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
+      images: [
+        post.posterImage ||
+          "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
+      ],
+    },
+    keywords: [...(post.categories || []), "개발", "SAP", "Next", "HaebinK"],
+  };
+};
 
 const PostPage = async ({ params }: PostParams) => {
   const { categorySlug, postSlug } = await params;
