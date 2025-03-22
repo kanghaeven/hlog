@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://haebink.vercel.app
+
+# Sitemaps
+Sitemap: https://haebink.vercel.app/sitemap.xml
