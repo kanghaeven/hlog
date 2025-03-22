@@ -3,7 +3,7 @@ import { Post } from "@/types/post";
 import { useSearch } from "@/contexts/SearchContext";
 import { extractTextFromReactNode } from "@/utils/reactUtils";
 
-const useFilteredPosts = (posts: Post[]) => {
+const useSearchPosts = (posts: Post[]) => {
   const { searchQuery } = useSearch();
 
   // searchQuery가 있을 경우 필터링하고, 없으면 전체 posts 반환
@@ -28,4 +28,4 @@ const useFilteredPosts = (posts: Post[]) => {
   }, [posts, searchQuery]);
 };
 
-export default useFilteredPosts;
+export default useSearchPosts;
