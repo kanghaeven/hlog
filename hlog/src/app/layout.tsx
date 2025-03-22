@@ -12,7 +12,6 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ko" suppressHydrationWarning>
       <Head>
-        {/* Google 사이트 인증 메타 태그 */}
         <meta
           name="google-site-verification"
           content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
