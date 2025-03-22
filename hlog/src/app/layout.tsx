@@ -1,4 +1,5 @@
 import "@/app/styles/globals.css";
+import { Metadata } from "next";
 import Head from "next/head";
 import { getCategories } from "@/services/categoryService";
 import { SearchProvider } from "@/contexts/SearchContext";
@@ -7,15 +8,23 @@ import ThemeProvider from "@/components/theme/ThemeProvider";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
+export const metadata: Metadata = {
+  title: "Hlog",
+  description: "HaebinK의 기술 블로그입니다.",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+};
+
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const categories = await getCategories();
   return (
     <html lang="ko" suppressHydrationWarning>
       <Head>
-        <meta
+        {/* <meta
           name="google-site-verification"
           content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
-        />
+        /> */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="description" content="HaebinK의 기술 블로그입니다." />
@@ -31,7 +40,6 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           property="og:image"
           content="https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3"
         />
-        <title>Hlog</title>
       </Head>
       <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">
         <ThemeProvider>
