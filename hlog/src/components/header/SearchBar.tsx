@@ -76,8 +76,13 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
 
   // iOS 키보드 닫기 확실히 처리
   const handleBlur = () => {
-    if (document.activeElement === inputRef.current) return;
-    (document.activeElement as HTMLElement)?.blur();
+    const trimmedValue = inputValue.trim();
+    setSearchQuery(trimmedValue);
+    setShowDimmed(false);
+    inputRef.current?.blur(); // 키보드 닫기
+    if (!trimmedValue) setIsExpanded(false); // 빈 검색 시 닫기
+    // if (document.activeElement === inputRef.current) return;
+    // (document.activeElement as HTMLElement)?.blur();
   };
 
   return (
