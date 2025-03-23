@@ -60,20 +60,13 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
   }, [isExpanded, handleClickOutside]);
 
   // 엔터 키 입력 처리 (검색 실행 + Dimmed 제거 + 키보드 내리기)
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (
-      event.key === "Enter" &&
-      !event.nativeEvent.isComposing // 한글 입력 시 중복 입력 방지
-    ) {
-      event.preventDefault();
-      setSearchQuery(inputValue.trim());
-      setShowDimmed(false);
-    }
-
-    // 모바일에서 키보드 내리기
-    if (inputRef.current) {
-      inputRef.current.blur();
-    }
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const trimmedValue = inputValue.trim();
+    setSearchQuery(trimmedValue);
+    setShowDimmed(false);
+    inputRef.current?.blur(); // 키보드 닫기
+    if (!trimmedValue) setIsExpanded(false); // 빈 검색 시 닫기
   };
 
   // 입력 값 변경 처리
@@ -101,16 +94,19 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
         >
           <Search className="w-4 h-4 md:w-6 md:h-6" />
           {isExpanded && (
-            <input
-              ref={inputRef}
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
-              placeholder="검색어 입력"
-              autoFocus
-              onKeyUp={handleKeyUp}
-            />
+            <form onSubmit={handleSubmit} className="flex-1">
+              <input
+                ref={inputRef}
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
+                placeholder="검색어 입력"
+                autoFocus
+                enterKeyHint="search"
+                inputMode="search"
+              />
+            </form>
           )}
         </div>
       </div>
