@@ -59,30 +59,24 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
     };
   }, [isExpanded, handleClickOutside]);
 
-  // 엔터 키 입력 처리 (검색 실행 + Dimmed 제거 + 키보드 내리기)
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+  // 검색 실행 + Dimmed 제거 + 키보드 내리기
+  const handleSearch = useCallback(() => {
     const trimmedValue = inputValue.trim();
     setSearchQuery(trimmedValue);
     setShowDimmed(false);
-    inputRef.current?.blur(); // 키보드 닫기
-    if (!trimmedValue) setIsExpanded(false); // 빈 검색 시 닫기
+    inputRef.current?.blur();
+    if (!trimmedValue) setIsExpanded(false);
+  }, [inputValue, setSearchQuery, setIsExpanded]);
+
+  // 엔터 키 입력 처리
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    handleSearch();
   };
 
   // 입력 값 변경 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  };
-
-  // iOS 키보드 닫기 확실히 처리
-  const handleBlur = () => {
-    const trimmedValue = inputValue.trim();
-    setSearchQuery(trimmedValue);
-    setShowDimmed(false);
-    inputRef.current?.blur(); // 키보드 닫기
-    if (!trimmedValue) setIsExpanded(false); // 빈 검색 시 닫기
-    // if (document.activeElement === inputRef.current) return;
-    // (document.activeElement as HTMLElement)?.blur();
   };
 
   return (
@@ -111,7 +105,7 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
-                onBlur={handleBlur}
+                onBlur={handleSearch} // 모바일 Done 누를 시 처리
                 className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
                 placeholder="검색어 입력"
                 autoFocus
