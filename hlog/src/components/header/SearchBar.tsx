@@ -7,6 +7,7 @@ import { Search } from "lucide-react";
 
 const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
   const { setSearchQuery } = useSearch();
+  const inputRef = useRef<HTMLInputElement>(null);
   const searchBarRef = useRef<HTMLDivElement>(null);
   const [inputValue, setInputValue] = useState<string>("");
   const [showDimmed, setShowDimmed] = useState<boolean>(false);
@@ -58,7 +59,7 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
     };
   }, [isExpanded, handleClickOutside]);
 
-  // 엔터 키 입력 처리 (검색 실행 + Dimmed 제거)
+  // 엔터 키 입력 처리 (검색 실행 + Dimmed 제거 + 키보드 내리기)
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (
       event.key === "Enter" &&
@@ -67,6 +68,11 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
       event.preventDefault();
       setSearchQuery(inputValue.trim());
       setShowDimmed(false);
+    }
+
+    // 모바일에서 키보드 내리기
+    if (inputRef.current) {
+      inputRef.current.blur();
     }
   };
 
@@ -96,6 +102,7 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
           <Search className="w-4 h-4 md:w-6 md:h-6" />
           {isExpanded && (
             <input
+              ref={inputRef}
               type="text"
               value={inputValue}
               onChange={handleInputChange}
