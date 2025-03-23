@@ -74,6 +74,12 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
     setInputValue(e.target.value);
   };
 
+  // iOS 키보드 닫기 확실히 처리
+  const handleBlur = () => {
+    if (document.activeElement === inputRef.current) return;
+    (document.activeElement as HTMLElement)?.blur();
+  };
+
   return (
     <div className="relative">
       {showDimmed && (
@@ -100,6 +106,7 @@ const SearchBar = ({ isExpanded, setIsExpanded }: SearchBarProps) => {
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
+                onBlur={handleBlur}
                 className="w-full ml-2 text-base bg-transparent outline-none text-secondary caret-primary"
                 placeholder="검색어 입력"
                 autoFocus
