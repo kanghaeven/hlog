@@ -1,3 +1,4 @@
+import fs from "fs";
 import { Post } from "@/types/post";
 import { parseMdxFile } from "@/services/mdxService";
 import { sortPostsByDate } from "@/services/sortService";
@@ -18,6 +19,12 @@ const getPostFromFile = async (
   try {
     const postSlug = filename.replace(".mdx", "");
     const filePath = getPostFilePath(category, filename);
+
+    if (!fs.existsSync(filePath)) {
+      console.warn(`[Not found] File not found: ${filePath}`);
+      return null;
+    }
+
     const { metadata, content } = await parseMdxFile(filePath);
 
     return {
@@ -39,6 +46,12 @@ const getPostFromFile = async (
 // 주어진 카테고리 내의 MDX 파일들을 가져오는 공통 함수
 const getPostsByCategory = async (category: string): Promise<Post[]> => {
   try {
+    const categoryPath = getCategoryPath(category);
+    if (!fs.existsSync(categoryPath)) {
+      console.warn(`[Not Found] Category not found: ${category}`);
+      return [];
+    }
+
     const filenames = await getFilenamesInDirectory(getCategoryPath(category));
 
     const posts = await Promise.all(
@@ -85,8 +98,15 @@ export const getPostBySlug = async (
   postSlug: string
 ): Promise<Post | null> => {
   try {
-    const filename = `${postSlug}.mdx`;
-    return await getPostFromFile(categorySlug, filename);
+    const decodedPostSlug = decodeURIComponent(postSlug);
+    const filename = `${decodedPostSlug}.mdx`;
+    const post = await getPostFromFile(categorySlug, filename);
+
+    if (!post) {
+      return null;
+    }
+
+    return post;
   } catch (error) {
     console.error(`[Post Error] ${categorySlug}/${postSlug}`, error);
     return null;

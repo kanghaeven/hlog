@@ -7,6 +7,7 @@ import ProfileCard from "@/components/postcontent/ProfileCard";
 import Giscus from "@/components/postcontent/CommentGiscus";
 import CustomToC from "@/components/toc/CustomToC";
 import ActionGroup from "@/components/common/ActionGroup";
+import NotFound from "@/app/not-found";
 
 export const generateMetadata = async ({
   params,
@@ -83,11 +84,7 @@ const PostPage = async ({ params }: PostParams) => {
   const post = await getPostBySlug(categorySlug, postSlug);
 
   if (!post) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-md text-muted">포스트를 찾을 수 없습니다.</p>
-      </div>
-    );
+    return <NotFound />;
   }
 
   return (
