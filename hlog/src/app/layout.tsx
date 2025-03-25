@@ -7,9 +7,10 @@ import { LoadingProvider } from "@/contexts/LoadingPostListContext";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import ProvideCopy from "@/components/common/ProvideCopy";
 
 export const metadata: Metadata = {
-  title: "Hlog",
+  title: "HaebinK",
   description: "HaebinK의 기술 블로그입니다.",
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
@@ -28,25 +29,25 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Hlog",
+    title: "HaebinK",
     url: "https://haebink.vercel.app",
     locale: "ko_KR",
     type: "website",
-    description: "SAP와 Next를 다루는 기술 블로그 - HaebinK",
-    siteName: "Example Blog",
+    description: "SAP와 Next를 다루는 기술 블로그",
+    siteName: "HaebinK",
     images: [
       {
         url: "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
         width: 600,
         height: 400,
-        alt: "Hlog 이미지",
+        alt: "HaebinK 이미지",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hlog",
-    description: "SAP와 Next를 다루는 기술 블로그 - HaebinK",
+    title: "HaebinK",
+    description: "SAP와 Next를 다루는 기술 블로그 Hlog",
     images: [
       "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
     ],
@@ -56,6 +57,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const categories = await getCategories();
+
   return (
     <html lang="ko" suppressHydrationWarning>
       <Head>
@@ -71,6 +73,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             </SearchProvider>
           </LoadingProvider>
         </ThemeProvider>
+        <ProvideCopy />
       </body>
     </html>
   );
