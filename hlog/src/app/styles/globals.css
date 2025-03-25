@@ -53,6 +53,14 @@
       background-color: hsl(0 0% 96.4%);
     }
 
+    blockquote {
+      width: fit-content;
+      padding: 0 1rem;
+      quotes: none;
+      border-radius: 6px;
+      background-color: hsl(232 42% 90%);
+    }
+
     .box {
       position: relative;
       transition: color 0.3s ease-in-out;
@@ -113,6 +121,15 @@
 
     th {
       background-color: hsl(225 40% 15%);
+      color: hsl(240 10% 80%);
+    }
+
+    a {
+      color: hsl(227 19% 60%);
+    }
+
+    blockquote {
+      background-color: hsl(225 40% 20%);
     }
 
     .box::before {
