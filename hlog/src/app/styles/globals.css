@@ -139,6 +139,10 @@
       background-color: hsl(225 40% 20%);
     }
 
+    p {
+      color: hsl(240 10% 80%);
+    }
+
     .box::before {
       background: hsl(236 100% 80%);
     }
