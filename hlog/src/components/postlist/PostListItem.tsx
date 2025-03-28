@@ -12,13 +12,14 @@ const PostListItem = ({ post, handlePostClick }: PostListItemProps) => (
     >
       {/* 왼쪽 이미지 영역 */}
       <div className="items-stretch justify-between hidden gap-12 sm:flex">
-        <div className="relative w-full aspect-[3/2]">
+        <div className="relative w-full aspect-[1.91/1]">
           {post.posterImage && (
             <Image
               src={post.posterImage}
               alt={post.title}
               fill
-              className="object-cover m-0"
+              sizes="(max-width: 600px) 100%, 50%"
+              className="object-cover m-0 transition-all dark:invert-[0.15]"
             />
           )}
         </div>

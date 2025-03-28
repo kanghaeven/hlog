@@ -30,7 +30,14 @@ const PostTitle = ({
         {categoryTags}
       </p>
       <p className="text-sm font-light text-muted">{formattedDate}</p>
-      <Image src={posterImage} alt="thumbnail" width={600} height={400} />
+      <Image
+        src={posterImage}
+        className="transition-all dark:invert-[0.15]"
+        priority={true}
+        alt="thumbnail"
+        width={600}
+        height={315}
+      />
       <p className="m-0 text-base text-dusty font-regular">{description}</p>
     </div>
   );

@@ -1,8 +1,8 @@
 ---
 title: "CDS & Data Modeling"
 description: "CDS는 SAP S/4HANA 환경에서 데이터 모델링을 훨씬 더 효율적이고 쉽게 만들어주는 강력한 기술이죠. CDS에서 데이터를 처리하는 방식과 어떤 다양한 기능을 제공하는지 다루어 보겠습니다."
-publishDate: "2025-03-25 10:43"
-posterImage: "https://github.com/user-attachments/assets/eadac348-4311-4cfb-af04-e52fef67ad9b"
+publishDate: "2025-03-25 10:01"
+posterImage: "/postimg/SAP003/00thumbnail.png"
 categories: ["SAP", "CDS", "Data Modeling"]
 ---
 
@@ -15,7 +15,7 @@ categories: ["SAP", "CDS", "Data Modeling"]
 **C**ore **D**ata **S**ervices 의 약자로\
 S/4HANA 환경에서 데이터 모델링을 효율적으로 수행할 수 있도록 지원하는 강력한 기술입니다.
 
-![Image](https://github.com/user-attachments/assets/9f3d1b00-4942-4ee7-ba39-9060cc3d9f82)
+![Image](/postimg/SAP003/01eclipse.png)
 
 Eclipse용 ABAP 개발 도구 (ADT)는 최신 ABAP 개발을 위한 Eclipse 기반 개발 환경입니다.
 
@@ -60,7 +60,7 @@ Eclipse용 ABAP 개발 도구 (ADT)는 최신 ABAP 개발을 위한 Eclipse 기�
 
 Data-to-Code와 Code-to-Data를 비교해보겠습니다.
 
-![Image](https://github.com/user-attachments/assets/749196a6-17ff-4d1b-acca-86953b0c7e05)
+![Image](/postimg/SAP003/02codetodata.png)
 
 > **Code-to-Data = Code Pushdown**
 
@@ -176,7 +176,7 @@ CDS **주석**은 ABAP SQL의 구문 기능을 넘어서서, **CDS 객체에 메
 
 CDS 주석은 주요 주석과 하위 주석, 주석값으로 나눠집니다.
 
-![Image](https://github.com/user-attachments/assets/32d39475-643b-4e78-82a4-e5044a6be507)
+![Image](/postimg/SAP003/03annotation.png)
 
 예를 들어, 위 코드에서\
 `EndUserText`는 주요 주석이고,\
@@ -237,18 +237,18 @@ CDS 엔터티 소스 코드에서 정의된 주석보다 우선적으로 적용�
 2. **CDS 데이터 정의 생성 마법사 실행**
 
    컨텍스트 메뉴에서 **새로 만들기 → Dictionary → Database Table** 선택
-   ![Image](https://github.com/user-attachments/assets/a5a384c5-833b-434c-b6d9-5188fb2d2253)
+   ![Image](/postimg/SAP003/04databasetable.png)
 
 3. **테이블 정의 정보 입력**
 
    **프로젝트, 패키지, 테이블 이름, 설명**을 입력합니다.
-   ![Image](https://github.com/user-attachments/assets/4289edb9-4d8e-4335-9ca5-f3f673cfccf4)
+   ![Image](/postimg/SAP003/05dbtableinfo.png)
 
 4. **전송 요청 할당**
 
    테이블 정의가 전송 요청(Transport Request)과 연결됩니다.\
     필요 시 전송 요청을 새로 생성하거나 기존 요청을 선택합니다.
-   ![Image](https://github.com/user-attachments/assets/9241d83b-04c8-46da-b80f-695a2084c972)
+   ![Image](/postimg/SAP003/06dbtabletr.png)
 
 5. **생성 완료**
 
@@ -259,7 +259,7 @@ CDS 엔터티 소스 코드에서 정의된 주석보다 우선적으로 적용�
 
 데이터베이스 테이블의 주요 속성에 대해 알아보겠습니다.
 
-![Image](https://github.com/user-attachments/assets/771bc220-a285-4e25-87e9-bad360ce0a7f)
+![Image](/postimg/SAP003/07dbtablecode.png)
 
 1. **키 필드**
 
@@ -331,12 +331,12 @@ CDS 엔터티 소스 코드에서 정의된 주석보다 우선적으로 적용�
 2. **CDS 데이터 정의 생성 마법사 실행**
 
    컨텍스트 메뉴에서 **새로 만들기 → 기타 → Core Data Services → 데이터 정의** 선택
-   ![Image](https://github.com/user-attachments/assets/501d2714-677c-45d1-8d8a-d969645ee23b)
+   ![Image](/postimg/SAP003/08datadefinition.png)
 
 3. **데이터 정의 정보 입력**
 
    **프로젝트, 패키지, 데이터 정의 이름, 설명**을 입력합니다.
-   ![Image](https://github.com/user-attachments/assets/540cfb3e-1d44-4b3b-b209-6b11646f6709)
+   ![Image](/postimg/SAP003/09ddinfo.png)
 
 4. **참조 객체 선택 (선택 사항)**
 
@@ -346,13 +346,13 @@ CDS 엔터티 소스 코드에서 정의된 주석보다 우선적으로 적용�
 
    데이터 정의가 전송 요청(Transport Request)과 연결됩니다.\
     (**DDLS)**를 볼 수 있듯이, 이는 아까 설명한 기술 객체 유형을 의미합니다.
-   ![Image](https://github.com/user-attachments/assets/4f4b1f20-aa61-4e44-b919-2ad2159635af)
+   ![Image](/postimg/SAP003/10ddtr.png)
 
 6. **코드 템플릿 선택 (선택 사항)**
 
    기본 제공 템플릿을 선택하거나, 직접 생성한 템플릿을 사용할 수 있습니다.\
     마지막으로 사용한 템플릿이 기본값으로 설정됩니다.
-   ![Image](https://github.com/user-attachments/assets/0e8550ff-17ee-4ac0-9ef8-374bbc7aa83e)
+   ![Image](/postimg/SAP003/11ddtemplate.png)
 
 7. **생성 완료**
 
@@ -362,9 +362,9 @@ CDS 엔터티 소스 코드에서 정의된 주석보다 우선적으로 적용�
 
 데이터 정의를 생성하는 과정과 생성 후 둘 다 템플릿을 선택할 수 있습니다.
 
-![Image](https://github.com/user-attachments/assets/1f543cfc-54b3-4e39-99f0-5461694085e5)
+![Image](/postimg/SAP003/12ddtemplate1.png)
 
-![Image](https://github.com/user-attachments/assets/51abfb76-b820-4728-b08b-5042650f3a7b)
+![Image](/postimg/SAP003/13ddtemplate2.png)
 
 # 3. CDS Relationship Modeling
 
@@ -406,7 +406,7 @@ Association은 필요할 때만 내부적으로 JOIN으로 변환되는 개념�
 
 ### 3.1.3. Association 사용
 
-![Image](https://github.com/user-attachments/assets/b271a412-f027-4cd2-a07a-6e82a66140ec)
+![Image](/postimg/SAP003/14association.png)
 
 1. **카디널리티 설정**
 
@@ -434,7 +434,7 @@ Association은 필요할 때만 내부적으로 JOIN으로 변환되는 개념�
 
 exposed association을 사용한 코드를 보면 노란색 박스와 같이 JOIN이 포함되지 않은 SQL 뷰가 생성됩니다.
 
-![Image](https://github.com/user-attachments/assets/4a7eed55-fb74-4dc0-bd51-c4b64accc995)
+![Image](h/postimg/SAP003/15expose.png)
 
 **데이터베이스에서 발생하는 일은?**
 
@@ -447,7 +447,7 @@ Composition에서 부모 엔터티가 삭제되면 자식 엔터티도 삭제됩
 
 Composition에는 두 가지 종류의 연관 관계가 있습니다.
 
-![Image](https://github.com/user-attachments/assets/05e6cbde-92e2-4547-a251-f9b65b014c10)
+![Image](/postimg/SAP003/16composition.png)
 
 1. **To-Child Association**
 
@@ -499,7 +499,7 @@ VDM은 **세 가지 주요 계층**으로 구성되며, 각각 고유한 역할�
 
 ### 4.2.1. Basic View
 
-![Image](https://github.com/user-attachments/assets/8013e93f-d153-4fb6-b06e-aee7a4f72c6b)
+![Image](/postimg/SAP003/17basicview.png)
 
 **기본 뷰**는 VDM 계층 구조에서 가장 아래에 위치하며 데이터베이스 테이블을 직접 조회하여 가공되지 않은 원본 데이터를 제공합니다.\
 데이터베이스 테이블에서 가공되지 않은 원본 데이터를 직접 가져옵니다.\
@@ -507,7 +507,7 @@ VDM은 **세 가지 주요 계층**으로 구성되며, 각각 고유한 역할�
 
 ### 4.2.2. Composite View
 
-![Image](https://github.com/user-attachments/assets/fc22d249-14ca-4dfc-88f1-a755a4be9292)
+![Image](/postimg/SAP003/18compositeview.png)
 
 **복합 뷰**는 여러 개의 기본 뷰(Basic Views)를 결합하여 보다 상세한 정보를 제공하는 계층입니다.\
 비즈니스 로직을 적용하여 데이터를 가공하며,\
@@ -515,7 +515,7 @@ VDM은 **세 가지 주요 계층**으로 구성되며, 각각 고유한 역할�
 
 ### 4.2.3. Consumption View
 
-![Image](https://github.com/user-attachments/assets/e883cae8-9674-4f9f-a317-aa7ba9ef5ab2)
+![Image](/postimg/SAP003/19consumptionview.png)
 
 **소비 뷰**는 VDM 계층 구조에서 최상위 레이어로, 최종 사용자나 애플리케이션에서 직접 활용할 수 있도록 가공된 데이터를 제공합니다.\
 애플리케이션 또는 최종 사용자가 바로 활용할 수 있도록 정제된 데이터를 제공합니다.\

@@ -45,7 +45,7 @@ const PostList = ({ posts }: PostListProps) => {
               검색 결과가 없습니다.
             </p>
           ) : (
-            <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
+            <ul className="w-full p-0 m-0 mt-10 list-none max-w-7xl">
               {/* 게시물 리스트 항목을 순차적으로 렌더링 */}
               {searchedPosts.map((post) => (
                 <PostListItem
