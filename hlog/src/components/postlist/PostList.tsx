@@ -6,8 +6,6 @@ import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
 import { useSearch } from "@/contexts/SearchContext";
 import useSearchPosts from "@/hooks/useSearchPosts";
 import PostListItem from "@/components/postlist/PostListItem";
-// App Router의 loading.tsx로 대체됨
-// import PostContentSkeleton from "@/components/postcontent/PostContentSkeleton";
 import PostListSkeleton from "@/components/postlist/PostListSkeleton";
 
 /*
@@ -24,26 +22,11 @@ const PostList = memo(({ posts }: PostListProps) => {
   // 검색된 게시물 목록 가져오기 (내부적으로 useMemo 사용)
   const searchedPosts = useSearchPosts(posts);
 
-  // Post Content 로딩 상태 관리 - App Router의 loading.tsx로 대체됨
-  // const [isLoadingPostContent, setIsLoadingPostContent] = useState<boolean>(false);
-
-  // 게시글 클릭 시 해당 Post Content의 로딩 상태 true로 설정 (useCallback으로 최적화)
-  // const handlePostClick = useCallback(() => {
-  //   setIsLoadingPostContent(true);
-  // }, []);
-
   return (
     <>
-      {/* 
-      // App Router의 loading.tsx로 대체됨
-      게시글 클릭 후 해당 게시글 로딩 중일 때, Post Content 스켈레톤 UI 표시
-      {isLoadingPostContent && !isLoadingPostList && <PostContentSkeleton />}
-      */}
       {/* 게시물 목록 로딩 중일 때, Post List 스켈레톤 UI 표시 */}
       {isLoadingPostList && <PostListSkeleton />}
 
-      {/* 로딩이 모두 끝난 후, 필터링된 게시물 목록 표시 */}
-      {/* isLoadingPostContent 상태가 대체되었으므로 항상 표시되도록 수정 */}
       {!isLoadingPostList && (
         <div className="flex flex-col items-start w-full">
           {/* 검색 쿼리가 있을 경우, 해당 검색어와 관련된 게시물 수 표시 */}
@@ -61,12 +44,7 @@ const PostList = memo(({ posts }: PostListProps) => {
             <ul className="w-full p-0 m-0 mt-10 list-none max-w-7xl">
               {/* 게시물 리스트 항목을 순차적으로 렌더링 */}
               {searchedPosts.map((post) => (
-                <PostListItem
-                  key={post.url}
-                  post={post}
-                  // handlePostClick 함수도 제거됨
-                  // handlePostClick={handlePostClick}
-                />
+                <PostListItem key={post.url} post={post} />
               ))}
             </ul>
           )}

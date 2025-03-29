@@ -28,7 +28,6 @@ export type PostListProps = {
 
 export type PostListItemProps = {
   post: Post;
-  handlePostClick?: () => void;
 };
 
 export type PostContentProps = {

@@ -8,12 +8,11 @@ import { PostListItemProps } from "@/types/post";
  * memo로 감싸 불필요한 리렌더링을 방지
  * 검색 결과가 변경되거나 필터링될 때 변경되지 않은 항목은 리렌더링되지 않음
  */
-const PostListItem = memo(({ post, handlePostClick }: PostListItemProps) => (
+const PostListItem = memo(({ post }: PostListItemProps) => (
   <li className="p-0 m-0 border-t border-soft first:border-t-0">
     <Link
       href={post.url}
       className="grid sm:grid-cols-[39%_2%_59%] p-5 no-underline hover:bg-input group"
-      onClick={handlePostClick}
     >
       {/* 왼쪽 이미지 영역 */}
       <div className="items-stretch justify-between hidden gap-12 sm:flex">
