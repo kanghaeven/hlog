@@ -7,8 +7,8 @@ import { useSearch } from "@/contexts/SearchContext";
 import useSearchPosts from "@/hooks/useSearchPosts";
 import PostListItem from "@/components/postlist/PostListItem";
 // App Router의 loading.tsx로 대체됨
-// import PostListSkeleton from "@/components/postlist/PostListSkeleton";
 // import PostContentSkeleton from "@/components/postcontent/PostContentSkeleton";
+import PostListSkeleton from "@/components/postlist/PostListSkeleton";
 
 /*
  * 포스트 목록을 표시하는 컴포넌트
@@ -38,9 +38,10 @@ const PostList = memo(({ posts }: PostListProps) => {
       // App Router의 loading.tsx로 대체됨
       게시글 클릭 후 해당 게시글 로딩 중일 때, Post Content 스켈레톤 UI 표시
       {isLoadingPostContent && !isLoadingPostList && <PostContentSkeleton />}
-      게시물 목록 로딩 중일 때, Post List 스켈레톤 UI 표시
-      {!isLoadingPostContent && isLoadingPostList && <PostListSkeleton />}
       */}
+      {/* 게시물 목록 로딩 중일 때, Post List 스켈레톤 UI 표시 */}
+      {isLoadingPostList && <PostListSkeleton />}
+
       {/* 로딩이 모두 끝난 후, 필터링된 게시물 목록 표시 */}
       {/* isLoadingPostContent 상태가 대체되었으므로 항상 표시되도록 수정 */}
       {!isLoadingPostList && (
