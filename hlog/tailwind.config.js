@@ -58,14 +58,14 @@ module.exports = {
               content: "none",
             },
             // 라인 번호 스타일
-            "code[data-line-numbers] > [data-line]::before": {
+            "pre code > [data-line]::before": {
               counterIncrement: "line",
               content: "counter(line)",
               display: "inline-block",
               width: "1rem",
               marginRight: "1.4rem",
               textAlign: "right",
-              color: "lightgrey",
+              color: "grey",
               fontSize: "0.75rem",
             },
             // 라인 번호 자리수에 맞춰 스타일
@@ -100,7 +100,10 @@ module.exports = {
             },
             // 강조된 라인 배경 색상
             "[data-highlighted-line]": {
-              backgroundColor: "rgba(253, 224, 71, 0.2)",
+              backgroundColor: "hsl(232 42% 90%)",
+            },
+            ".dark [data-highlighted-line]": {
+              backgroundColor: "hsl(222.2 47% 30%)",
             },
           },
         },
