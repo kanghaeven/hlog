@@ -112,6 +112,13 @@
       height: 1.5rem !important;
       stroke-width: 1.5px;
     }
+
+    figcaption {
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      border: 1px solid hsl(213 0% 90%);
+      border-radius: 0.375rem;
+    }
   }
 
   .dark .prose {
@@ -151,6 +158,10 @@
 
     .box::after {
       background: hsl(222.2 47.4% 11.2%);
+    }
+
+    figcaption {
+      border: 1px solid #374151;
     }
   }
 
