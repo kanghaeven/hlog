@@ -6,6 +6,7 @@ import { Post } from "@/types/post";
 const RelatedPostCard = memo(({ post }: { post: Post }) => (
   <Link
     href={post.url}
+    prefetch={true}
     className="flex flex-col overflow-hidden no-underline transition-all border rounded-lg border-soft group hover:bg-input"
   >
     <div className="relative hidden overflow-hidden md:block aspect-[16/9]">

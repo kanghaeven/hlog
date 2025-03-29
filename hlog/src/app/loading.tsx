@@ -1,5 +1,5 @@
-import PostContentSkeleton from "@/components/postcontent/PostContentSkeleton";
+import SmartLoading from "@/components/common/SmartLoading";
 
 export default function Loading() {
-  return <PostContentSkeleton />;
+  return <SmartLoading />;
 }

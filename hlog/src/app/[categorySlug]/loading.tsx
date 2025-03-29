@@ -1,5 +1,5 @@
-import PostListSkeleton from "@/components/postlist/PostListSkeleton";
+import SmartLoading from "@/components/common/SmartLoading";
 
 export default function Loading() {
-  return <PostListSkeleton />;
+  return <SmartLoading />;
 }
