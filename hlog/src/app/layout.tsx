@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
+  metadataBase: new URL("https://haebink.vercel.app"),
   robots: {
     index: true,
     follow: true,
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "HaebinK",
     images: [
       {
-        url: "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
+        url: "/main.png",
         width: 600,
         height: 400,
         alt: "HaebinK 이미지",
@@ -48,9 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HaebinK",
     description: "SAP와 Next를 다루는 기술 블로그 Hlog",
-    images: [
-      "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
-    ],
+    images: ["/main.png"],
   },
   keywords: ["개발", "SAP", "Next", "HaebinK"],
 };

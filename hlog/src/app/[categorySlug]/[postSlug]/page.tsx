@@ -31,6 +31,9 @@ export const generateMetadata = async ({
   return {
     title: `${post.title}`,
     description: post.description || "이 포스트에 대한 설명이 없습니다.",
+    metadataBase: new URL(
+      `https://haebink.vercel.app/posts/${categorySlug}/${postSlug}`
+    ),
     robots: {
       index: true,
       follow: true,
@@ -54,9 +57,7 @@ export const generateMetadata = async ({
       siteName: "HaebinK",
       images: [
         {
-          url:
-            post.posterImage ||
-            "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
+          url: post.posterImage || "/main.png",
           width: 600,
           height: 400,
           alt: "게시글 이미지",
@@ -68,10 +69,7 @@ export const generateMetadata = async ({
       title: `${post.title} - HaebinK`,
       description:
         post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
-      images: [
-        post.posterImage ||
-          "https://github.com/user-attachments/assets/2a170019-402b-433a-b233-8aa74e38aec3",
-      ],
+      images: [post.posterImage || "/main.png"],
     },
     keywords: [...(post.categories || []), "개발", "SAP", "Next", "HaebinK"],
   };
