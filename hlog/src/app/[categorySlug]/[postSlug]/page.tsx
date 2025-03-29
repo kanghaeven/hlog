@@ -1,12 +1,13 @@
 import { Metadata } from "next";
 import { PostParams } from "@/types/params";
-import { getPostBySlug } from "@/services/postService";
+import { getPostBySlug, getAllPosts } from "@/services/postService";
 import PostTitle from "@/components/postcontent/PostTitle";
 import PostContent from "@/components/postcontent/PostContent";
 import ProfileCard from "@/components/postcontent/ProfileCard";
 import Giscus from "@/components/postcontent/CommentGiscus";
 import CustomToC from "@/components/toc/CustomToC";
 import ActionGroup from "@/components/common/ActionGroup";
+import RelatedPosts from "@/components/postcontent/RelatedPosts";
 import NotFound from "@/app/not-found";
 
 export const generateMetadata = async ({
@@ -80,6 +81,7 @@ const PostPage = async ({ params }: PostParams) => {
   const { categorySlug, postSlug } = resolvedParams;
 
   const post = await getPostBySlug(categorySlug, postSlug);
+  const allPosts = await getAllPosts();
 
   if (!post) {
     return <NotFound />;
@@ -101,6 +103,13 @@ const PostPage = async ({ params }: PostParams) => {
           <CustomToC content={post.content} />
         </div>
         <PostContent content={post.content} />
+
+        <RelatedPosts
+          currentPostUrl={post.url}
+          relatedPostUrls={post.relatedPosts || []}
+          allPosts={allPosts}
+        />
+
         <ProfileCard />
         <section id="comments">
           <Giscus />

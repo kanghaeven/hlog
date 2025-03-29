@@ -35,6 +35,7 @@ const getPostFromFile = async (
       publishDate: metadata.publishDate,
       posterImage: metadata.posterImage,
       categories: metadata.categories,
+      relatedPosts: metadata.relatedPosts || [],
       content,
     };
   } catch (error) {
@@ -111,4 +112,21 @@ export const getPostBySlug = async (
     console.error(`[Post Error] ${categorySlug}/${postSlug}`, error);
     return null;
   }
+};
+
+// 현재 게시글의 카테고리와 일치하는 게시글을 찾는 함수
+export const findSameCategoryPosts = (
+  currentPostUrl: string,
+  currentPost: Post,
+  allPosts: Post[],
+  existingRelatedPosts: Post[]
+): Post[] => {
+  const sameCategoryPosts = allPosts.filter(
+    (post) =>
+      post.url !== currentPostUrl &&
+      post.categories.some((cat) => currentPost.categories.includes(cat)) &&
+      !existingRelatedPosts.some((relatedPost) => relatedPost.url === post.url)
+  );
+
+  return sortPostsByDate(sameCategoryPosts);
 };

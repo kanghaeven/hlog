@@ -9,6 +9,7 @@ export type Post = {
   posterImage: string;
   categories: string[];
   content?: ReactNode;
+  relatedPosts?: string[];
 };
 
 export type Frontmatter = {
@@ -18,6 +19,7 @@ export type Frontmatter = {
   publishDate: string;
   posterImage: string;
   categories: string[];
+  relatedPosts?: string[];
 };
 
 export type PostListProps = {
@@ -31,4 +33,10 @@ export type PostListItemProps = {
 
 export type PostContentProps = {
   content: ReactNode;
+};
+
+export type RelatedPostsProps = {
+  currentPostUrl: string;
+  relatedPostUrls: string[];
+  allPosts: Post[];
 };
