@@ -12,6 +12,7 @@ const options = {
     dark: "night-owl",
     light: "catppuccin-latte",
   },
+  keepBackground: false,
 };
 
 // 주어진 MDX 파일 경로를 읽고, frontmatter와 content를 파싱하여 반환하는 함수
