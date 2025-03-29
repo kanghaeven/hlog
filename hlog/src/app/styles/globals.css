@@ -64,8 +64,9 @@
       width: fit-content;
       padding: 0 1rem;
       quotes: none;
-      border-radius: 6px;
-      background-color: hsl(232 42% 90%);
+      border-radius: 2px;
+      background-color: hsl(0 0% 96.4%);
+      border-inline-start-color: hsl(231 92% 52%);
     }
 
     .box {
@@ -137,6 +138,7 @@
 
     blockquote {
       background-color: hsl(225 40% 20%);
+      border-inline-start-color: hsl(236 75% 65%);
     }
 
     p {
