@@ -1,9 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { ButtonProps } from "@/types/ui";
 import { actionButtonIcon } from "@/constants/icon";
 
-const ActionButton = ({ onClick, variant, label }: ButtonProps) => {
+const ActionButton = memo(({ onClick, variant, label }: ButtonProps) => {
   const Icon = actionButtonIcon[variant];
 
   return (
@@ -17,6 +18,8 @@ const ActionButton = ({ onClick, variant, label }: ButtonProps) => {
       <Icon />
     </button>
   );
-};
+});
+
+ActionButton.displayName = "ActionButton";
 
 export default ActionButton;

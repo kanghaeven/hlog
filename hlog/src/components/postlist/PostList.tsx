@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import { PostListProps } from "@/types/post";
 import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
 import { useSearch } from "@/contexts/SearchContext";
@@ -9,20 +9,28 @@ import PostListItem from "@/components/postlist/PostListItem";
 import PostListSkeleton from "@/components/postlist/PostListSkeleton";
 import PostContentSkeleton from "@/components/postcontent/PostContentSkeleton";
 
-const PostList = ({ posts }: PostListProps) => {
+/*
+ * 포스트 목록을 표시하는 컴포넌트
+ * memo로 감싸 불필요한 리렌더링을 방지합
+ * 내부 상태 변경이나 검색 결과 변경 시에만 리렌더링.
+ */
+const PostList = memo(({ posts }: PostListProps) => {
   // Post List 로딩 상태
   const { isLoadingPostList } = useLoadingPostList();
 
   // 검색 쿼리 가져오기
   const { searchQuery } = useSearch();
-  // 검색된 게시물 목록 가져오기
+  // 검색된 게시물 목록 가져오기 (내부적으로 useMemo 사용)
   const searchedPosts = useSearchPosts(posts);
 
   // Post Content 로딩 상태 관리
   const [isLoadingPostContent, setIsLoadingPostContent] =
     useState<boolean>(false);
-  // 게시글 클릭 시 해당 Post Content의 로딩 상태 true로 설정
-  const handlePostClick = () => setIsLoadingPostContent(true);
+
+  // 게시글 클릭 시 해당 Post Content의 로딩 상태 true로 설정 (useCallback으로 최적화)
+  const handlePostClick = useCallback(() => {
+    setIsLoadingPostContent(true);
+  }, []);
 
   return (
     <>
@@ -60,6 +68,8 @@ const PostList = ({ posts }: PostListProps) => {
       )}
     </>
   );
-};
+});
+
+PostList.displayName = "PostList";
 
 export default PostList;

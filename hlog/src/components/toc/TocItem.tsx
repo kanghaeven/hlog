@@ -1,8 +1,9 @@
 "use client";
 
+import { memo } from "react";
 import { TocItemProps } from "@/types/toc";
 
-const TocItem = ({ item, isActive, isNearActive }: TocItemProps) => (
+const TocItem = memo(({ item, isActive, isNearActive }: TocItemProps) => (
   <li style={{ marginLeft: `${(item.level - 1) * 10}px` }}>
     <a
       className={`whitespace-nowrap no-underline transition-colors duration-200 ${
@@ -17,6 +18,8 @@ const TocItem = ({ item, isActive, isNearActive }: TocItemProps) => (
       {item.title}
     </a>
   </li>
-);
+));
+
+TocItem.displayName = "TocItem";
 
 export default TocItem;

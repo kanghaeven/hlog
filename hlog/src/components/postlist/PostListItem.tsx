@@ -1,25 +1,30 @@
-import React from "react";
+import React, { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { PostListItemProps } from "@/types/post";
 
-const PostListItem = ({ post, handlePostClick }: PostListItemProps) => (
+/*
+ * 포스트 목록의 각 항목을 표시하는 컴포넌트
+ * memo로 감싸 불필요한 리렌더링을 방지
+ * 검색 결과가 변경되거나 필터링될 때 변경되지 않은 항목은 리렌더링되지 않음
+ */
+const PostListItem = memo(({ post, handlePostClick }: PostListItemProps) => (
   <li className="p-0 m-0 border-t border-soft first:border-t-0">
     <Link
       href={post.url}
-      className="grid sm:grid-cols-[39%_2%_59%] p-5 no-underline hover:bg-input"
+      className="grid sm:grid-cols-[39%_2%_59%] p-5 no-underline hover:bg-input group"
       onClick={handlePostClick}
     >
       {/* 왼쪽 이미지 영역 */}
       <div className="items-stretch justify-between hidden gap-12 sm:flex">
-        <div className="relative w-full aspect-[1.91/1]">
+        <div className="relative w-full aspect-[1.91/1] overflow-hidden">
           {post.posterImage && (
             <Image
               src={post.posterImage}
               alt={post.title}
               fill
               sizes="(max-width: 600px) 100%, 50%"
-              className="object-cover m-0 transition-all dark:invert-[0.15]"
+              className="object-cover m-0 transition-all dark:invert-[0.15] group-hover:scale-105"
             />
           )}
         </div>
@@ -63,6 +68,8 @@ const PostListItem = ({ post, handlePostClick }: PostListItemProps) => (
       </div>
     </Link>
   </li>
-);
+));
+
+PostListItem.displayName = "PostListItem";
 
 export default PostListItem;
