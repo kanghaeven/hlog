@@ -7,7 +7,7 @@ import ProfileCard from "@/components/postcontent/ProfileCard";
 import Giscus from "@/components/postcontent/CommentGiscus";
 import CustomToC from "@/components/toc/CustomToC";
 import ActionGroup from "@/components/common/ActionGroup";
-import RelatedPosts from "@/components/postcontent/RelatedPosts";
+import RelatedPostList from "@/components/postcontent/RelatedPostList";
 import NotFound from "@/app/not-found";
 
 export const generateMetadata = async ({
@@ -104,7 +104,7 @@ const PostPage = async ({ params }: PostParams) => {
         </div>
         <PostContent content={post.content} />
 
-        <RelatedPosts
+        <RelatedPostList
           currentPostUrl={post.url}
           relatedPostUrls={post.relatedPosts || []}
           allPosts={allPosts}

@@ -5,7 +5,7 @@ import { RelatedPostsProps, Post } from "@/types/post";
 import { findSameCategoryPosts } from "@/utils/postUtils";
 import RelatedPostCard from "@/components/postcontent/RelatedPostCard";
 
-const RelatedPosts = memo(
+const RelatedPostList = memo(
   ({ currentPostUrl, relatedPostUrls, allPosts }: RelatedPostsProps) => {
     // 1. relatedPostUrls를 지정했다면 연관 게시글 찾기
     const relatedPosts = useMemo(() => {
@@ -53,6 +53,6 @@ const RelatedPosts = memo(
   }
 );
 
-RelatedPosts.displayName = "RelatedPosts";
+RelatedPostList.displayName = "RelatedPostList";
 
-export default RelatedPosts;
+export default RelatedPostList;
