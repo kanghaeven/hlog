@@ -1,6 +1,6 @@
 const PostListSkeleton = () => {
   return (
-    <ul className="w-full max-w-6xl p-0 m-0 mt-10 list-none">
+    <ul className="w-full p-0 m-0 mt-10 list-none max-w-7xl">
       {[...Array(3)].map((_, index) => (
         <li
           key={index}
@@ -8,7 +8,7 @@ const PostListSkeleton = () => {
         >
           <div className="grid sm:grid-cols-[39%_2%_59%] p-5">
             <div className="items-stretch justify-between hidden sm:flex">
-              <div className="relative w-full aspect-[3/2] bg-soft animate-pulse"></div>
+              <div className="relative w-full aspect-[2/1] bg-soft animate-pulse"></div>
               <div className="flex flex-col items-end gap-3 ml-10 text-lg text-muted">
                 <div className="w-12 h-5 rounded bg-soft animate-pulse"></div>
                 <div className="w-12 h-5 rounded bg-soft animate-pulse"></div>
