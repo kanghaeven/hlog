@@ -4,6 +4,7 @@ description: "Hello World Page"
 publishDate: "2022-01-01 00:00"
 posterImage: "/postimg/SAP001/00thumbnail.png"
 categories: ["React", "Next"]
+relatedPosts: []
 ---
 
 Hello, world! 😇🚚🫐
@@ -67,6 +68,20 @@ const [age, setAge] = useState(50);
 const [name, setName] = useState("Taylor");
 ```
 
+```js showLineNumbers{3}
+console.log("Hello, MDX!");
+console.log("Hello, MDX!");
+console.log("Hello, MDX!");
+```
+
+```js {2-3} {5}
+line 1
+line 2
+line 3
+line 4
+line 5
+```
+
 | 헤더 1   | 헤더 2   | 헤더 3   |
 | -------- | -------- | -------- |
 | 데이터 1 | 데이터 2 | 데이터 3 |
@@ -100,3 +115,5 @@ const [name, setName] = useState("Taylor");
 [^1]: 여기가 각주 내용입니다.
 
 www.example.com, https://example.com, contact@example.com
+
+<RelatedPosts urls={["/React/example-post", "/Next/another-post"]} />
