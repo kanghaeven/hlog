@@ -213,7 +213,7 @@
       }
 
       h3 {
-        font-size: 0.8rem !important;
+        font-size: 0.9rem !important;
       }
 
       p,
@@ -226,13 +226,13 @@
       div,
       h4,
       figcaption {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
       }
 
       a,
       .text-md,
       .text-sm {
-        font-size: 0.75rem !important;
+        font-size: 0.8rem !important;
       }
     }
   }
