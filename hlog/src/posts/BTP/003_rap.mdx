@@ -1,0 +1,606 @@
+---
+title: "RAP"
+description: "RAP를 이루는 Business Object와 Business Service, OData Service를 어떻게 구성하고 활용하는지에 대해 알아보겠습니다."
+publishDate: "2025-03-30 15:30"
+posterImage: "/postimg/BTP/003/00thumbnail.png"
+categories: ["BTP", "SAP", "RAP"]
+relatedPosts: []
+---
+
+# 1. RAP
+
+## 1.1. 정의
+
+RAP(**R**ESTful **A**BAP **P**rogramming)은\
+ABAP Core Data Services(CDS)를 활용하여 표준화된 개발 흐름을 제공하며,\
+최신 ABAP 개발 도구(ADT for Eclipse)에서 비즈니스 서비스를 지원합니다.
+
+- **CDS의 역할**:\
+  데이터 모델링의 기반을 제공
+- **RAP의 역할**:\
+  CDS를 기반으로 SAP HANA에 최적화된 OData 서비스를 개발하는 프로그래밍 모델
+- **CDS에서 RAP의 활용**:\
+  RAP는 트랜잭션을 지원하기 위해 CRUD(생성, 조회, 수정, 삭제) 연산을 수행하는 행동(Behavior)을 추가
+
+## 1.2. 서비스 유형
+
+RAP는 다양한 유형의 서비스를 제공하며,\
+이를 활용하여 **로컬 API 및 비즈니스 이벤트**를 개발하고 모델링할 수 있습니다.
+
+- **UI 개발을 위한 OData 기반 서비스**:\
+  SAP Fiori 앱 개발을 지원하며,\
+  역할 기반, 높은 반응성, 직관적 사용자 경험(UX) 및 초안(Draft) 기능을 제공
+- **웹 API 공개를 위한 OData 기반 서비스**:\
+  외부 시스템과의 연계를 위해 웹 API를 제공
+- **라이프사이클 안정성과 업그레이드 안전성을 보장하는 RAP BO 인터페이스**:\
+  공개된 RAP 비즈니스 객체(BO) 인터페이스는 로컬 API로 제공되며,\
+  업그레이드 시 안정적인 연계를 유지
+- **비즈니스 이벤트**:\
+  RAP BO가 변경될 때, 이를 소비자에게 알리는 **비동기 이벤트**를 생성하여 통신을 지원
+
+## 1.3. 핵심 요소
+
+RAP는 SAP HANA에 최적화된 OData 서비스를 구축하는 데 필요한 다양한 요소를 포함하고 있습니다.
+
+- **개발 도구 (Tools)**\
+  **단일 개발 환경**에서 모든 구현 작업을 통합하여 개발 흐름을 최적화함\
+  최신 ADT를 활용하여 RAP 애플리케이션 개발 가능\
+  개발자는 데이터 모델링, 비즈니스 로직 구현, 서비스 정의 등의 작업을 **한 곳에서 수행**할 수 있음
+- **프로그래밍 언어 (Language)**\
+  RAP 개발을 지원하기 위해 ABAP 언어가 확장 및 정렬됨\
+  **확장된 ABAP 언어 기능**
+  - **CDS(Core Data Services)**: 데이터 모델링 및 뷰 정의
+  - **Behavior Definition & Implementation**: 트랜잭션 로직 및 비즈니스 동작 정의
+  - **OData Exposure**: Fiori 및 웹 API용 OData 서비스 생성
+- **프레임워크 (Frameworks)**\
+  강력한 프레임워크 기반 개발 방식을 지원하여 **표준 구현 작업을 자동화**\
+  RAP 프레임워크는 개발자가 **핵심 비즈니스 로직 구현에 집중**할 수 있도록 지원\
+  주요 프레임워크 기능:
+  - **데이터 모델링 자동화** (CDS 기반)
+  - **트랜잭션 처리 자동화** (CRUD 및 Custom Actions 지원)
+  - **OData 서비스 자동 생성 및 노출**
+  - **비즈니스 이벤트 처리** (비동기 이벤트 기반 통신)
+
+## 1.4. Design time
+
+이 다이어그램은 **ABAP RAP 기반 OData 서비스 개발의 디자인 타임 구조**를 나타내며,\
+OData 서비스를 생성하는 과정에서 중요한 개발 아티팩트(Artifacts)를 포함합니다.
+
+![01designtime.png](/postimg/BTP/003/01designtime.png)
+
+개발 흐름은 **하위 계층부터 상위 계층으로 진행(Bottom-up Approach)**
+
+- **하위 계층 (데이터 모델링 & 비즈니스 로직)**\
+  RAP의 기초(Foundation)를 형성하는 계층으로, 데이터 및 비즈니스 로직 정의
+
+  주요 구성 요소
+
+  - **CDS View (Core Data Services)**: 데이터 모델 정의
+  - **Behavior Definition (BDEF)**: 엔티티의 동작(트랜잭션, 액션 등) 정의
+  - **Behavior Implementation (BIMP)**: 트랜잭션 로직 및 비즈니스 규칙 구현
+
+- **중간 계층 (비즈니스 서비스 노출)**\
+  정의된 비즈니스 객체 및 동작을 외부 소비자(Consumers)에게 서비스로 노출
+
+  주요 구성 요소
+
+  - **Service Definition (SDEF)**: OData 서비스에서 사용할 엔티티 정의
+  - **Service Binding (SBIN)**: OData V2/V4 서비스 활성화 및 프로토콜 선택
+
+- **상위 계층 (소비 채널)**\
+  서비스가 다양한 소비 채널에서 활용됨
+
+  주요 구성 요소
+
+  - **SAP Fiori Elements & SAP UI5**: 사용자 인터페이스(UI) 개발
+  - **Web API (OData, REST)**: 외부 애플리케이션과의 연계
+  - **SAP Integration (BTP, Cloud)**: SAP Business Technology Platform 등과 통합
+
+## 1.5. Runtime
+
+런타임 스택은 **요청 처리 과정**을 **상위 계층에서 하위 계층으로 진행(Top-Down Approach)**
+
+이 과정에서는 **OData 클라이언트의 요청**이 ABAP 코드로 변환되어\
+비즈니스 로직이 실행되는 방식과 흐름을 설명합니다.
+
+![02rapruntime.png](/postimg/BTP/003/02rapruntime.png)
+
+1. **OData 클라이언트 요청**
+
+   클라이언트가 **OData 요청**을 보내면\
+   이 요청은 **HTTP** 프로토콜을 사용하여 SAP 시스템으로 전달됩니다.
+
+2. **Generic Runtime Frameworks**
+
+   SAP의 **Generic Runtime Framework**가 요청을 처리합니다.\
+   이 프레임워크는 요청을 분석하고, 이를 **ABAP 코드에서 사용 가능한 형식**으로 변환합니다.
+
+   - **SAP Gateway**\
+     SAP Gateway는 REST 기반 인터페이스를 제공하는 계층으로,\
+     OData 프로토콜을 통해 SAP 시스템에 접근하도록 합니다.
+
+     **역할**: ABAP 시스템의 주요 **진입점**으로 기능하며,\
+     OData 요청을 **ABAP 오브젝트로 변환**하여 **RAP Runtime Engine에 전달**
+
+   - **RAP Runtime Engine**\
+     RAP Runtime Engine은 SAP Gateway에서 변환된 OData 요청을 받아\
+     비즈니스 객체(BO)에 연결하고, 적절한 비즈니스 로직을 실행합니다.\
+     RAP Runtime Engine은 SADL(Service Adaptation Description Language)라고도 불립니다.
+
+     **역할**:\
+     **트랜잭션 요청**(`CREATE`, `UPDATE`, `DELETE`)을 BO의 메서드로 전달하여 실행\
+     **쿼리 요청**을 분석하고 실행\
+     **eTag 및 Locking 처리**를 수행하여 데이터 일관성 및 충돌을 방지
+
+3. **비즈니스 로직 전달**
+
+   요청은 적절한 **비즈니스 로직 컴포넌트**로 전달됩니다.\
+   여기에서 비즈니스 객체(BO) 또는 쿼리 처리 로직이 실행됩니다.
+
+   - **데이터 수정 요청 → 트랜잭션 로직을 통해 비즈니스 객체(BO)에서 처리**
+   - **데이터 조회 요청 → CDS 뷰나 ABAP 쿼리를 통해 데이터 소스에서 데이터를 가져옴**
+
+## 1.6. Backend Driven UI
+
+RAP를 활용하면 별도의 프론트엔드 코드 없이도 SAP Fiori 앱의 표준 UI 기능을 구현할 수 있습니다.
+
+RAP에서는 백엔드에서 데이터를 정의하고, **UI는 어노테이션 기반으로 자동 생성되는 구조**입니다.
+
+- **RAP와 SAP Fiori**\
+  **Fiori Elements**를 사용하면 **자주 사용되는 레이아웃과 템플릿이 포함된 프레임워크 제공**\
+  개발자는 UI를 직접 코딩할 필요 없이 **기본적인 UI 구성 요소를 쉽게 활용 가능**
+- **RAP에서 UI 생성**\
+  **핵심 UI 기능이 RAP 내부에서 자동으로 처리됨**\
+  개발자는 데이터 모델과 비즈니스 로직을 정의하는 것만으로도 **기본적인 UI가 자동 생성**
+- **RAP에서 UI 어노테이션 활용**\
+  **어노테이션(Annotations)을 기반으로 UI를 개발**\
+  도메인별 어노테이션(Domain-Specific Annotations)을 활용하여 **UI 레이아웃, 데이터 바인딩 등을 정의**
+
+# 2. Business Object
+
+## 2.1. BO
+
+### 2.1.1. 정의
+
+**Business Object**(**BO**)는 **기업 애플리케이션에서 실제 세계의 엔티티**를 나타내는 개념입니다.
+
+예를 들어, Product(제품), Travel(여행), SalesOrder(판매 주문) 등이 해당됩니다.\
+BO는 일반적으로 **여러 노드**(예: 항목, 일정 라인)와\
+**트랜잭션 작업**(예: 생성, 업데이트, 삭제)을 포함합니다.\
+일부 BO는 애플리케이션별 작업(예: 판매 주문의 승인 작업)을 포함할 수 있습니다.
+
+BO는 구조(Structure), 동작(Behavior), 런타임 구현(Runtime Implementation)을 포함합니다.
+
+### 2.1.2. 구성 요소
+
+- **Structure (구조)**\
+  BO의 **데이터를 정의**하는 부분입니다.\
+  데이터는 **노드**와 같은 요소로 구성되며,\
+  각각은 비즈니스 객체의 **속성**이나 **하위 항목**을 나타냅니다.\
+  예시: **SalesOrder** BO는 **Items**(항목), **ScheduleLines**(일정 라인) 등의 노드를 가질 수 있습니다.
+- **Behavior (동작)**\
+  BO의 **비즈니스 로직**을 정의하는 부분입니다.\
+  여기서는 **Create, Update, Delete**와 같은 **트랜잭션 작업**뿐만 아니라,\
+  **애플리케이션 특화 작업**(예: 승인 처리 등)이 구현됩니다.\
+  Behavior는 BIMP (Behavior Implementation)로 구현되며,\
+  비즈니스 객체가 어떻게 동작할지를 정의합니다.
+- **Runtime Implementation (런타임 구현)**\
+  BO가 **실행될 수 있도록** 하는 실제 **구현** 부분입니다.\
+  이 단계에서는 비즈니스 객체(BO)가 **요청을 처리**할 수 있도록\
+  **런타임 환경에서의 동작**이 이루어집니다.\
+  예시: OData 요청이 들어오면, 해당 요청이 **ABAP 코드**로 변환되어 **BO**의 **동작**을 실행합니다.
+
+### 2.1.3. 구조
+
+이 구조는 **비즈니스 객체** 내의 **데이터**와 **관계를 계층적으로 모델링**하는 데 도움을 줍니다.
+
+![03rapentity.png](/postimg/BTP/003/03rapentity.png)
+
+1. **ROOT Entity (루트 엔티티)**
+
+   계층 구조에서 **최상위에 위치**하며, 전체 비즈니스 객체를 대표하는 엔티티입니다.\
+    비즈니스 객체의 **전체를 나타내는** 중심적인 개체입니다.
+
+2. **Child | Parent Entity (자식 및 부모 엔티티)**
+
+   루트 엔티티 아래에 위치하며, **부모와 자식 노드**의 역할을 동시에 합니다.\
+   **부모**로서 다른 엔티티를 가지며, **자식**으로서 다른 엔티티에 속할 수 있습니다.\
+   계층 내에서 상위와 하위 관계를 맺는 중간 노드입니다.
+
+3. **Leaf Entity (리프 엔티티)**
+
+   계층 구조에서 **마지막 노드**로, 더 이상 **하위 노드**가 존재하지 않습니다.\
+   **자식이 없는 최종 노드**로,\
+   **실제 데이터**를 보유하거나 다른 엔티티와 연결된 **최종 데이터**를 나타냅니다.
+
+### 2.1.4. Behavior
+
+Behavior (동작)
+
+Behavior Definition Language (BDL)는 비즈니스 객체(BO)의 동작을 정의하는 언어입니다.
+
+**Behavior Definition**은 **BDL로 작성된 BO**의 **동작을 설명**하는 규칙을 **구체화**한 것입니다.\
+예를 들어, "이 비즈니스 객체는 데이터를 어떻게 생성하고 수정하고 삭제할 것인가?"와 같은 동작을 정의합니다.\
+_(2.3. Behavior Definition 파트에서 더 알아보도록 하겠습니다.)_
+
+**Behavior Implementation**은 실제로 **비즈니스 객체의 동작**을 **구현하는 로직**입니다.\
+즉, ABAP 클래스로 구현됩니다.
+
+이 **ABAP 클래스**들은 BO의 동작 규칙을 실제로 실행하는 역할을 합니다.
+
+**Behavior Pool**은 **여러 ABAP 클래스의 집합**입니다.
+
+<br />
+
+Behavior Implementation은 ABAP 클래스로 이루어지고,\
+여러 ABAP 클래스가 모여서 Behavior Pool을 형성합니다.
+
+즉, ABAP 클래스는 Behavior Pool을 구성하는 기본 단위이며,\
+Behavior Implementation은 Behavior Pool을 통해 비즈니스 객체의 동작을 구현하는 것입니다.
+
+![04behavior.png](/postimg/BTP/003/04behavior.png)
+
+**특징**
+
+- **단일 루트 엔티티에 하나의 Behavior Definition만 존재**\
+  각 루트 엔티티는 하나의 Behavior Definition만 가질 수 있습니다.\
+  즉, 하나의 비즈니스 객체에는 하나의 동작 규칙 세트가 존재한다는 뜻입니다.
+- **하나의 Behavior Definition이 여러 Behavior Pool로 구현될 수 있음**\
+  하나의 Behavior Definition은 여러 개의 ABAP 클래스(Behavior Pool)로 나누어져서 구현될 수 있다는 의미입니다.\
+  예를 들어, 비즈니스 객체의 동작이 너무 복잡하거나 다양한 경우,\
+  하나의 Behavior Definition에 여러 개의 ABAP 클래스로 로직을 분할하여 구현할 수 있습니다.
+
+### 2.1.5. Runtime
+
+비즈니스 객체(BO)의 실행(Runtime)은 주요 두 단계로 나뉩니다.
+
+![05boruntime.png](/postimg/BTP/003/05boruntime.png)
+
+1. **Interaction Phase (상호작용 단계)**
+
+소비자(Consumer)가 비즈니스 객체(BO)의 동작을 호출하여\
+**데이터를 수정**하거나 **조회**하는 단계입니다.
+
+이 단계에서는 **수정된 데이터**가 내부 트랜잭션 버퍼(Internal Transaction Buffer)에 **임시로 저장**됩니다.
+
+즉, **데이터 변경이** 아직 데이터베이스에는 반영되지 않으며,\
+**메모리 상에만 존재**하는 상태입니다.
+
+Interaction Phase는 비즈니스 객체의 동작을 통해\
+실제로 데이터를 수정하거나 조회할 때 발생하는 **초기 단계**입니다.
+
+2. **Save Sequence (저장 순서)**
+
+상호작용 단계에서 변경된 모든 데이터는 **트랜잭션이 완료될 때** **실제 데이터베이스**에 저장됩니다.
+
+이 과정은 **데이터베이스에 반영**되는 단계로, 변경된 데이터를 **영속적으로 저장**합니다.
+
+**저장** 과정은 **Handler 클래스**와 **Saver 클래스**가 담당합니다.\
+이들 클래스는 변경된 데이터를 실제 데이터베이스에 반영하는 역할을 합니다.
+
+## 2.2. Query
+
+### 2.2.1. 정의
+
+OData 서비스에서 쿼리(Query)는 **데이터베이스에 대한 읽기 전용(Read-only) 인터페이스**입니다.
+
+주로 리스트 보고서(List Reports) 또는 분석 보고서(Analytical Reports) 에서 데이터를 조회하는 데 사용됩니다.
+
+### 2.2.2. BO vs. Query
+
+| 구분                      | Queries (쿼리)                            | Business Objects (BO)                    |
+| ------------------------- | ----------------------------------------- | ---------------------------------------- |
+| **목적**                  | **데이터 조회 (Read-Only)**               | **데이터 변경 (Create, Update, Delete)** |
+| **데이터 변경 가능 여부** | ❌ (데이터 수정 불가)                     | ✅ (트랜잭션 작업 수행 가능)             |
+| **사용 예시**             | 필터링, 정렬을 활용한 데이터 조회         | 트랜잭션(거래) 처리                      |
+| **동작 방식**             | 구조화된 데이터 검색 (Filtering, Sorting) | 비즈니스 로직 적용 후 데이터 처리        |
+
+### 2.2.3. 핵심 요소
+
+- **Data Model (데이터 모델)**\
+  **CDS 엔티티**를 사용하여 데이터베이스 필드를 **구조화하고 그룹화**합니다.\
+  **SQL SELECT 문**이 **CDS 뷰 내부에 통합**되어 데이터를 검색합니다.\
+  ⇒ 데이터 모델은 데이터를 어떻게 구성할지 정의하는 부분입니다.
+- **Capabilities (기능)**\
+  CDS 엔티티 간의 **Association**을 활용하여 기능적 관계를 제공합니다.\
+  다른 엔티티의 데이터를 **참조해야 할 경우에만** 연관성을 설정합니다.\
+  ⇒ 필요한 경우에만 다른 엔티티와 연결하여 데이터를 활용합니다.
+- **Runtime (실행)**\
+  데이터베이스에서 데이터를 검색(Retrieve) 및 필터링(Filter)하는 작업을 수행합니다.\
+  **⇒ 실행 단계에서는 쿼리를 통해 데이터를 가져오고 필요한 조건에 따라 필터링**합니다.
+
+### 2.2.4. 느슨한 조합
+
+**Query에서 CDS 엔티티와 Association의 역할**
+
+쿼리는 CDS 엔티티와 Association(연관 관계)을 활용하여 데이터를 연결하지만,\
+비즈니스 객체(BO)처럼 엄격한 구조를 가지지 않고\
+느슨한 조합(Loose Combination)을 형성합니다.
+
+<br />
+
+**느슨한 조합 (Loose Combination) 이란?**
+
+CDS 엔티티는 서로 강하게 결합되어 있지 않음\
+필요한 경우에만 연관(Association)을 설정하여 데이터 검색\
+**쿼리는 느슨하게 결합된 CDS 엔티티에서 동작합니다.**
+
+![06loose.png](/postimg/BTP/003/06loose.png)
+
+비행편(Flight Connections)과 공항 정보(Airport Information)는 별도의 **CDS 엔티티**로 존재
+
+**연결**(Connection)은 **Association**으로 모델링되며, 단순히 **기능적 관계**만 제공\
+특정 기능에서 다른 엔티티의 데이터가 필요할 때만 Association으로 조회\
+데이터를 직접 변경하거나 트랜잭션을 수행하지 않음 (쿼리는 **읽기 전용**)
+
+BO와 달리, Association은 존재론적 관계가 아님
+
+## 2.3. Behavior Definition
+
+**Behavior Definition**은 BO가 처리하는 **비즈니스 동작**을 어떻게 수행할지를 정의합니다.
+
+### 2.3.1. **Behavior Definition**
+
+BO의 기본적인 동작(생성, 조회, 수정, 삭제 등)을 정의합니다.\
+CDS 뷰를 기반으로 하며, 비즈니스 로직을 설정할 수 있습니다.\
+BO의 일반적인 CRUD 작업 및 잠금, 권한 등을 관리하고 설정합니다.
+
+**📌 작성**
+
+Behavior Definition은 **ABAP CDS**에서 작성됩니다.
+
+일반적으로 **CDS 뷰**를 통해 데이터 모델을 정의한 후,\
+그 위에 **Behavior Definition**을 적용하여 비즈니스 로직을 구현합니다.
+
+Behavior Definition은 **`define behavior for`** 키워드로 시작합니다.
+
+```abap
+define behavior for /DMO/C_Travel_A_D alias Travel
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action acceptTravel;
+  use action rejectTravel;
+  use action deductDiscount;
+  use function GetDefaultsFordeductDiscount;
+
+  use association _Booking { create; }
+ }
+```
+
+### 2.3.2. **Projection Behavior Definition**
+
+기존 **Behavior Definition**을 **확장**하여 **특정 프로젝션에 대한 동작을 정의**하는 방법입니다.\
+즉, **Projection Behavior Definition**은 Behavior Definition을 **특정 서비스나 프로젝션에 맞게 조정**합니다.
+
+원본 **Behavior Definition**의 동작을 **변경하지 않고**,\
+**특정 서비스나 프로젝션에 필요한 동작만을 노출**하도록 필터링하거나 제한하는 역할을 합니다.
+
+### 2.3.3. 주요 키워드
+
+주요 키워드를 통해 BO의 기능을 시스템 내에서 구현합니다.
+
+![07behaviordefinition.png](/postimg/BTP/003/07behaviordefinition.png)
+
+- **Behavior Characteristics (동작 특성)**
+  - **ETag**: 데이터 변경을 추적하여 충돌을 방지
+  - **Draft Mode**: 데이터를 임시로 저장하여 나중에 수정할 수 있도록 지원
+  - **Feature Control**: 기능을 제어하고 활성화/비활성화 여부를 관리
+  - **Authorization**: 사용자의 특정 작업에 대한 접근을 제한
+- **Modify Operations (트랜잭션 작업)**
+  - **create**: 새로운 데이터를 추가
+  - **update**: 기존 데이터를 수정
+  - **delete**: 데이터를 삭제
+  - **create by association**: 연관된 데이터를 생성
+  - **action**: 사용자 정의 작업
+- **Read Operations (읽기 작업)**
+  - **read**: 특정 데이터를 조회
+  - **read by association**: 관련 데이터를 함께 조회
+  - **functions**: 조건에 따라 데이터를 조회하는 기능
+- **Lock Mechanism (잠금 기능)**
+  - **Draft Mode**: 데이터를 수정하는 동안 다른 사용자가 동일한 데이터를 변경하지 못하도록 잠금
+  - **Create, Update, Delete operations**: 데이터 충돌을 방지하기 위해 작업 중 데이터를 잠금
+
+## 2.4. Transactional Behavior
+
+### 2.4.1. 정의
+
+트랜잭션 동작(Transactional Behavior)은\
+데이터의 일관성과 무결성을 유지하면서 BO를 변경할 수 있도록 안전하게 처리하는 개념입니다.
+
+이를 통해 삽입, 수정, 삭제와 같은 데이터 변경 작업을 안전하게 관리할 수 있습니다.
+
+### 2.4.2. 트랜잭션 유형
+
+| 트랜잭션 유형                                                    | 트랜잭션 관리 방식                | 개발자 트랜잭션 관리 필요 여부 | 일반적인 사용 사례                                                                                        |
+| ---------------------------------------------------------------- | --------------------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| **관리형 트랜잭션<br/>(Managed Transaction)**                    | RAP 프레임워크가 자동으로 관리    | ❌ (자동 관리)                 | 간단한 CRUD 애플리케이션                                                                                  |
+| **비관리형 트랜잭션<br/>(Unmanaged Transaction)**                | 개발자가 수동으로 트랜잭션 관리   | ✅ (수동 구현 필요)            | 기존 SAP 시스템 통합                                                                                      |
+| **드래프트 기능 지원<br/>(Draft Functionality and Transaction)** | 데이터를 임시로 저장              | ❌ (자동 관리)                 | 사용자가 입력 중인 데이터를 임시로 저장하고 나중에 작업을 이어서 할 수 있도록 지원                        |
+| **다중 인라인 편집 기능<br/>(Multi-Inline-Edit Transaction)**    | 다수의 데이터를 한 번에 저장/롤백 | ✅ (대량 트랜잭션 관리 필요)   | Fiori UI에서 사용자가 리스트 보고 화면에서 개별 객체 페이지로 이동하지 않고 여러 항목을 한 번에 편집 가능 |
+
+# 3. Business Service
+
+ABAP RAP에서는 데이터 모델 및 동작 계층과 서비스 계층을 명확히 분리합니다.
+
+![08businessservice.png](/postimg/BTP/003/08businessservice.png)
+
+- **데이터 모델 및 동작 계층 (Data Model and Behavior Layer)**\
+  비즈니스 객체(BO), 쿼리(Query) 등의 도메인별 개념적 엔티티 포함\
+  Value Help(값 도움), 기능 제어(Feature Control), 재사용 객체(Reuse Objects) 등의 기능 제공
+- **서비스 계층 (Service Layer)**\
+  데이터 모델 및 동작을 외부에 노출하는 역할\
+  RAP에서 정의한 비즈니스 로직을 OData 서비스로 변환하여 외부 소비자가 사용할 수 있도록 합니다.\
+  서비스 계층은 **서비스 정의**(Service Definition)와 **서비스 바인딩**(Service Binding)로 분리됩니다.\
+  **비즈니스 로직과 서비스 프로토콜을 분리**하여 유연한 서비스를 개발 가능합니다.
+
+## 3.1. Service Definition
+
+### 3.1.1. 정의
+
+서비스 정의는 데이터 모델(CDS)과 비즈니스 로직(Behavior Definition)을 외부 서비스로 제공하기 위한 정의입니다.\
+실제 데이터를 어떻게 제공할 것인지 결정하는 역할입니다.\
+단독으로는 실행되지 않으며, 반드시 Service Binding을 통해 활성화됩니다.
+
+### 3.1.2. 구성 요소
+
+**CDS Entity** → 제공할 데이터 구조\
+**Behavior Definition** → 데이터의 동작(생성, 수정, 삭제 등)
+
+### 3.1.3. Service Definition vs. Service Binding
+
+| 구분                    | Service Definition (서비스 정의)   | Service Binding (서비스 바인딩)           |
+| ----------------------- | ---------------------------------- | ----------------------------------------- |
+| **역할**                | 데이터 모델과 동작을 정의          | 클라이언트와 통신할 프로토콜 연결         |
+| **독립 실행 가능 여부** | ❌ 단독 실행 불가능                | ✅ 실제 서비스로 노출 가능                |
+| **연결 대상**           | **CDS View + Behavior Definition** | **OData V2/V4, InA, SQL**                 |
+| **예제**                | **어떤 데이터를 제공할 것인가?**   | **이 데이터를 OData V4로 제공할 것인가?** |
+| **활용 사례**           | BO의 데이터 및 동작 정의           | SAP Fiori, BI, API 제공                   |
+
+## 3.2. Service Binding
+
+### 3.2.1. 정의
+
+**서비스 바인딩은 서비스 정의(Service Definition)을** 실제 클라이언트와 통신할 수 있도록\
+**특정 프로토콜과 연결**하는 역할을 합니다.\
+SAP Fiori, 외부 시스템(API), BI 시스템 등에서 데이터를 사용할 수 있도록 합니다.
+
+**서비스 바인딩이 없으면 Service Definition은 단순한 정의일 뿐 실행될 수 없습니다.**\
+서비스 정의를 기반으로 **여러 개의 서비스 바인딩(Service Binding) 생성 가능합니다.**
+
+### 3.2.2. 구성 요소
+
+**Service Definition** → 어떤 데이터를 제공할지 정의\
+**Protocol (OData V2/V4, InA, SQL)** → 데이터를 외부 시스템에 어떻게 노출할지 결정
+
+### 3.2.3. 프로토콜
+
+| 프로토콜                                   | 특징                                              | 장점                                      | 적용 사례                           |
+| ------------------------------------------ | ------------------------------------------------- | ----------------------------------------- | ----------------------------------- |
+| **OData V2**                               | CRUD 지원,<br/>메타데이터 제공,<br/>JSON/XML 지원 | 표준 프로토콜,<br/>다양한 클라이언트 지원 | SAP 시스템에서 비즈니스 데이터 제공 |
+| **OData V4**                               | OData V2 대비 확장성 향상,<br/>쿼리 성능 최적화   | 대규모 애플리케이션에 적합                | 최신 SAP Fiori UI 등                |
+| **InA(Information Access,<br/>정보 접근)** | 실시간 데이터 접근,<br/>비즈니스 분석 최적화      | BI 시스템에서 빠른 데이터 조회            | SAP BI 시스템                       |
+| **SQL**                                    | 관계형 DB 관리,<br/>쿼리 최적화 가능              | ABAP을 통한 효율적 데이터 처리            | SAP 시스템 내 데이터 처리           |
+
+### 3.2.4. OData 서비스 노출 비교
+
+OData 프로토콜을 사용하여 비즈니스 서비스를 바인딩할 때,\
+**서비스 유형**(예: WebAPI, UI 서비스)과 **버전**(예: V2, V4)에 따라 차이가 발생합니다.
+
+이러한 차이는 UI 애노테이션, 값 도우미(Value Help), 부수효과(Side Effects), PDF 내보내기와 같은 다양한 기능에서 나타납니다.
+
+![09odataexposure.png](/postimg/BTP/003/09odataexposure.png)
+
+# 4. OData Service
+
+## 4.1. OData Service
+
+**OData 서비스**는 **SAP 시스템의 데이터를 외부 시스템이나 UI 애플리케이션**에 노출하는 역할을 합니다.\
+이를 통해 외부에서 SAP 시스템의 데이터를 **RESTful 방식**으로 접근할 수 있습니다.
+
+OData 서비스는 **CDS 뷰**를 기반으로 정의되며,\
+이 데이터를 **UI에서 사용**하거나, **외부 시스템과의 데이터 교환**에 사용됩니다.
+
+## 4.2. OData 서비스와 RAP의 연결
+
+OData 서비스와 RAP는 다음과 같은 방식으로 연결됩니다.
+
+1. **RAP에서 데이터 모델 정의**
+
+   RAP는 **CDS 뷰**를 사용하여 데이터를 정의합니다.\
+   이 CDS 뷰는 데이터 모델을 구성하며, RAP는 어노테이션을 통해 UI와 데이터 연결을 설정합니다.\
+   즉, 데이터는 백엔드에서 정의되고, UI는 어노테이션을 통해 자동으로 생성됩니다.
+
+2. **OData 서비스 노출**
+
+   RAP에서는 OData 서비스를 자동으로 생성할 수 있습니다.\
+   RAP의 서비스 정의에서 OData 서비스를 포함시키는 방식으로\
+   데이터를 외부로 노출할 수 있습니다.\
+   RAP는 CDS 뷰를 기반으로 OData 서비스를 자동 생성하거나\
+   수동으로 OData 서비스 바인딩을 설정하여 데이터를 외부에 노출할 수 있습니다.
+
+## 4.3. 생성 절차
+
+### **4.3.1. OData 서비스 정의 생성**
+
+OData 서비스의 범위를 정의하는 서비스 정의를 생성합니다.
+
+1. ABAP 개발 도구(ADT)에서 마법사를 사용하여 서비스 정의를 생성합니다.
+2. 서비스 정의를 생성한 후, **서비스 정의 편집기**에서 세부 설정을 구성합니다.
+
+- 서비스 정의는 OData 서비스에서 제공할 데이터를 결정합니다.
+- 서비스 정의에는 **CDS 뷰**와 **읽기, 쓰기** 등의 작업이 포함됩니다.
+- 즉, 서비스 정의는 외부에서 접근할 수 있는 데이터를 정의합니다.
+- 이 정의는 다양한 프로토콜과 통합하여 사용할 수 있습니다.
+
+### **4.3.2. OData 서비스에서 CDS 뷰 노출**
+
+**OData 서비스**는 하나 이상의 **CDS 뷰**를 외부에 노출할 수 있습니다.
+
+**CDS 뷰**는 SAP 시스템 내에서 데이터를 정의하고 처리하며,\
+**OData 서비스**는 이를 외부에서 RESTful 방식으로 접근할 수 있게 합니다.
+
+1. **CDS 뷰 지정**: 어떤 CDS 뷰를 OData 서비스에서 노출할지 정의합니다.\
+   예: `/DMO/I_Connection_R`
+2. **별칭 설정 (선택 사항)**: 여러 뷰를 사용할 경우 가독성을 높이기 위해 별칭을 설정할 수 있습니다.
+3. **서비스 활성화**: 서비스를 배포하여 시스템에서 OData 서비스가 정상적으로 동작하도록 합니다.
+
+![10odatacds.png](/postimg/BTP/003/10odatacds.png)
+
+`/DMO/FLIGHT_R` 서비스 정의는 `/DMO/I_Connection_R` CDS 뷰를 OData 서비스에서 사용할 수 있도록 노출합니다.
+
+### **4.3.3. 서비스 바인딩 생성**
+
+OData 서비스의 프로토콜과 UI 서비스를 정의하기 위해 바인딩을 설정합니다.
+서비스 바인딩은 OData 서비스를 UI나 다른 프로토콜에 연결하여 효과적으로 활용할 수 있도록 합니다.
+
+1. **서비스 바인딩 마법사**를 사용하여 새로운 바인딩을 생성합니다.
+2. **바인딩 유형**(예: OData V2)을 선택하고, **서비스 정의**(`/DMO/FLIGHT_R`)를 지정합니다.
+3. 서비스 바인딩 편집기에서 설정을 검토하고, 바인딩을 **활성화**하여 UI에서 정상적으로 작동하도록 합니다.
+
+![11servicebinding.png](/postimg/BTP/003/11servicebinding.png)
+
+### **4.3.4. OData 서비스 로컬로 게시**
+
+서비스 바인딩을 통해 OData 서비스를 로컬에서 게시하여
+외부 시스템에서 SAP 시스템의 데이터를 요청하고 사용할 수 있게 됩니다.
+
+1. **서비스 바인딩 활성화**: 먼저 서비스 바인딩을 활성화합니다.
+2. **서비스 게시**: 서비스 바인딩 화면에서 "Publish" 버튼을 클릭하여
+   OData 서비스를 SAP Gateway에 게시합니다.
+3. **UI 통합 활성화**: 게시된 서비스를 UI 애플리케이션에서 사용할 수 있게 됩니다.
+
+![12publish.png](/postimg/BTP/003/12publish.png)
+
+### **4.3.5. OData 메타데이터 확인**
+
+OData 서비스가 제대로 노출되었는지 확인하기 위해 메타데이터를 검토합니다.
+
+1. **서비스 바인딩 열기**: 서비스 바인딩을 열고 제공된 서비스 URL을 확인합니다.
+2. **URL에 `/$metadata` 추가**: `/sap/opu/odata/sap/DMO/UI_FLIGHT_R_V2/$metadata`와 같이 URL 끝에 `/$metadata`를 추가합니다.
+3. **메타데이터 검토**: 브라우저에서 메타데이터 문서를 열어 엔터티 세트와 서비스 정의가 정상적으로 노출되었는지 확인합니다.
+   ![13metadata.png](/postimg/BTP/003/13metadata.png)
+
+### **4.3.6. 결과 UI 서비스 미리 보기**
+
+Fiori Elements UI 미리보기 도구를 사용하여 생성된 OData 서비스가 UI에서 어떻게 표시될지 확인합니다.
+
+1.  **서비스 바인딩 열기**: 서비스 바인딩을 엽니다.
+2.  **미리보기 기능 사용**: 서비스 바인딩 편집기에서 미리보기 기능을 실행합니다.
+3.  **Fiori Elements 앱 확인**: 브라우저에서 Fiori Elements 앱이 열리면,
+    CDS 뷰에서 구현된 데이터가 제대로 표시되는지 확인합니다.
+    ![14preview.png](/postimg/BTP/003/14preview.png)
+
+**주의사항**
+
+Fiori Elements App Preview(FEAP)는 UI 미리보기 기능일 뿐,\
+최종적인 애플리케이션 프로비저닝(App Provisioning)은 직접 구현 필요
+
+### 📌 마무리
+
+Business Object, Business Serivce 속 개념들을 정리하며 RAP 런타임 및 디자인 타임에 대해 이해하는 시간을 가져보았습니다.
+
+_참고 및 이미지 출처: [SAP Help](https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model)_
