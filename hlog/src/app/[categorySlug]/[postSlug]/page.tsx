@@ -56,11 +56,7 @@ export const generateMetadata = async ({
       siteName: "HaebinK",
       images: [
         {
-          url:
-            `https://haebink.vercel.app/postimg/${categorySlug}/${postSlug.slice(
-              0,
-              3
-            )}/00thumbnail.png` || "https://haebink.vercel.app/profile.jpg",
+          url: post.posterImage || "https://haebink.vercel.app/profile.jpg",
           width: 600,
           height: 315,
           alt: "게시글 이미지",
@@ -72,12 +68,7 @@ export const generateMetadata = async ({
       title: `${post.title} - HaebinK`,
       description:
         post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
-      images: [
-        `https://haebink.vercel.app/postimg/${categorySlug}/${postSlug.slice(
-          0,
-          3
-        )}/00thumbnail.png` || "https://haebink.vercel.app/profile.jpg",
-      ],
+      images: [post.posterImage || "https://haebink.vercel.app/profile.jpg"],
     },
     keywords: [...(post.categories || []), "개발", "SAP", "Next", "HaebinK"],
   };
