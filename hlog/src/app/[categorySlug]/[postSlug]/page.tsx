@@ -33,7 +33,7 @@ export const generateMetadata = async ({
     title: `${post.title}`,
     description: post.description || "이 포스트에 대한 설명이 없습니다.",
     metadataBase: new URL(
-      `https://haebink.vercel.app/posts/${categorySlug}/${postSlug}`
+      `https://haebink.vercel.app/${categorySlug}/${postSlug}`
     ),
     robots: {
       index: true,
@@ -50,7 +50,7 @@ export const generateMetadata = async ({
     },
     openGraph: {
       title: `${post.title} - HaebinK`,
-      url: `https://haebink.vercel.app/posts/${categorySlug}/${postSlug}`,
+      url: `https://haebink.vercel.app/${categorySlug}/${postSlug}`,
       locale: "ko_KR",
       type: "article",
       description:
