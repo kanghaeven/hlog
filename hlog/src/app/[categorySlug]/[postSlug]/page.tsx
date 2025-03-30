@@ -32,9 +32,7 @@ export const generateMetadata = async ({
   return {
     title: `${post.title}`,
     description: post.description || "이 포스트에 대한 설명이 없습니다.",
-    metadataBase: new URL(
-      `https://haebink.vercel.app/${categorySlug}/${postSlug}`
-    ),
+    metadataBase: new URL(`https://haebink.vercel.app/`),
     robots: {
       index: true,
       follow: true,
