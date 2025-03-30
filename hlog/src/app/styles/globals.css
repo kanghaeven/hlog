@@ -213,7 +213,7 @@
       }
 
       h3 {
-        font-size: 0.9rem !important;
+        font-size: 0.8rem !important;
       }
 
       p,
@@ -223,7 +223,7 @@
       pre,
       table,
       figcaption {
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
       }
     }
   }

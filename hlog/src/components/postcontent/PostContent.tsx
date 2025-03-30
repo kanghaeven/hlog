@@ -21,7 +21,7 @@ const PostContent = memo(({ content }: PostContentProps) => {
 
   return (
     <MDXProvider components={components} disableParentContext={true}>
-      <div className="prose text-black max-w-none mobile-post-content">
+      <div className="prose text-black max-w-none">
         {content}
         <CodeBlockCopy />
       </div>
