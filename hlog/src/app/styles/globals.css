@@ -229,7 +229,9 @@
         font-size: 0.75rem;
       }
 
-      a {
+      a,
+      .text-md,
+      .text-sm {
         font-size: 0.75rem !important;
       }
     }

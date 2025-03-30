@@ -38,7 +38,7 @@ const PostTitle = ({
         width={600}
         height={315}
       />
-      <p className="m-0 text-base text-dusty font-regular">{description}</p>
+      <p className="m-0 text-dusty font-regular">{description}</p>
     </div>
   );
 };

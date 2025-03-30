@@ -18,7 +18,7 @@ const RelatedPostCard = memo(({ post }: { post: Post }) => (
       />
     </div>
     <div className="flex flex-col flex-grow gap-6 p-4">
-      <h4 className="m-0 text-base font-semibold transition-colors line-clamp-2 group-hover:text-secondary">
+      <h4 className="m-0 font-semibold transition-colors line-clamp-2 group-hover:text-secondary">
         {post.title}
       </h4>
       <div className="flex flex-wrap gap-2 mt-auto mr-auto">
