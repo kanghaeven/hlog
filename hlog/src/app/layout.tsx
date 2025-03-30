@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     url: "https://haebink.vercel.app",
     locale: "ko_KR",
     type: "website",
-    description: "SAP와 Next를 다루는 기술 블로그",
+    description: "SAP를 다루는 기술 블로그",
     siteName: "HaebinK",
     images: [
       {
-        url: "/main.png",
+        url: "/profile.jpg",
         width: 600,
-        height: 400,
+        height: 315,
         alt: "HaebinK 이미지",
       },
     ],
@@ -48,10 +48,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "HaebinK",
-    description: "SAP와 Next를 다루는 기술 블로그 Hlog",
-    images: ["/main.png"],
+    description: "SAP를 다루는 기술 블로그",
+    images: ["/profile.jpg"],
   },
-  keywords: ["개발", "SAP", "Next", "HaebinK"],
+  keywords: ["SAP", "ABAP", "BTP", "HaebinK"],
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {

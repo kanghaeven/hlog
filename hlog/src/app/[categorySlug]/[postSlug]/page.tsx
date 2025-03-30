@@ -58,9 +58,11 @@ export const generateMetadata = async ({
       siteName: "HaebinK",
       images: [
         {
-          url: post.posterImage || "/main.png",
+          url:
+            `/postimg/${categorySlug}/${postSlug.slice(0, 3)}/00tumbnail.png` ||
+            "/profile.jpg",
           width: 600,
-          height: 400,
+          height: 315,
           alt: "게시글 이미지",
         },
       ],
@@ -70,7 +72,10 @@ export const generateMetadata = async ({
       title: `${post.title} - HaebinK`,
       description:
         post.description || "이 포스트를 클릭하여 새로운 정보를 만나보세요!",
-      images: [post.posterImage || "/main.png"],
+      images: [
+        `/postimg/${categorySlug}/${postSlug.slice(0, 3)}/00tumbnail.png` ||
+          "/profile.jpg",
+      ],
     },
     keywords: [...(post.categories || []), "개발", "SAP", "Next", "HaebinK"],
   };
