@@ -13,7 +13,7 @@ const CategoryMenuButton = ({
     <Link href={categoryPath} passHref>
       <button
         onClick={() => onClick(category)}
-        className={`box relative px-6 py-[0.6rem] md:px-12 transition-all duration-300 border-[1.5px] text-sm md:text-base ${
+        className={`box relative px-6 py-[0.6rem] md:px-10 lg:px-12 transition-all duration-300 border-[1.5px] text-sm md:text-base ${
           selected
             ? "text-shade border-b-0 md:py-[1.125rem]"
             : "text-muted  md:py-3 mt-[0.66rem]"

@@ -7,7 +7,7 @@ import mdxComponents from "@/components/postcontent/mdxComponents";
 import CodeBlockCopy from "@/components/postcontent/CodeBlockCopy";
 
 /*
- * memo와 useMemo는 서로 다른 레벨에서 최적화하
+ * memo와 useMemo는 서로 다른 레벨에서 최적화
  *
  * memo: 컴포넌트 자체를 메모이제이션, props가 변경되지 않으면 리렌더링을 건너뜀
  * 상위 컴포넌트가 리렌더링되어도 content prop이 동일하면 이 컴포넌트는 리렌더링되지 않음
@@ -21,7 +21,7 @@ const PostContent = memo(({ content }: PostContentProps) => {
 
   return (
     <MDXProvider components={components} disableParentContext={true}>
-      <div className="prose text-black max-w-none">
+      <div className="prose text-black max-w-none mobile-post-content">
         {content}
         <CodeBlockCopy />
       </div>

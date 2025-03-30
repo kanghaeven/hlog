@@ -69,6 +69,10 @@
       border-inline-start-color: hsl(231 92% 52%);
     }
 
+    ul li::marker {
+      color: hsl(227 19% 60%);
+    }
+
     .box {
       position: relative;
       transition: color 0.3s ease-in-out;
@@ -165,13 +169,6 @@
     }
   }
 
-  @media (min-width: 640px) {
-    .prose h1 {
-      font-size: 1.875rem !important;
-      line-height: 2.25rem !important;
-    }
-  }
-
   html,
   body {
     overflow-x: hidden;
@@ -202,6 +199,33 @@
     width: 0;
     height: 0;
     display: none;
+  }
+
+  @media (max-width: 640px) {
+    .prose,
+    .mobile-post-content {
+      h1 {
+        font-size: 1.2rem !important;
+      }
+
+      h2 {
+        font-size: 1rem !important;
+      }
+
+      h3 {
+        font-size: 0.9rem !important;
+      }
+
+      p,
+      li,
+      blockquote,
+      code,
+      pre,
+      table,
+      figcaption {
+        font-size: 0.8rem !important;
+      }
+    }
   }
 }
 
