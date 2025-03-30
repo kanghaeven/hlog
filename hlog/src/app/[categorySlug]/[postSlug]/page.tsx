@@ -93,7 +93,7 @@ const PostPage = async ({ params }: PostParams) => {
   }
 
   return (
-    <div className="flex justify-center p-6 mx-auto mt-6 sm:mt-10">
+    <div className="flex justify-center p-6 mx-auto mt-6 mobile-post-content sm:mt-10">
       <div className="hidden mr-8 w-[14rem] xl:block"></div>
       <article className="w-full max-w-3xl">
         <PostTitle

@@ -222,7 +222,14 @@
       code,
       pre,
       table,
+      span,
+      div,
+      h4,
       figcaption {
+        font-size: 0.75rem;
+      }
+
+      a {
         font-size: 0.75rem !important;
       }
     }

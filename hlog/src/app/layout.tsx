@@ -62,7 +62,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <body className="flex flex-col min-h-screen prose transition-all duration-300 mobile-post-content dark:prose-invert">
+      <body className="flex flex-col min-h-screen prose transition-all duration-300 dark:prose-invert">
         <ThemeProvider>
           <LoadingProvider>
             <SearchProvider>
