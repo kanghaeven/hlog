@@ -24,7 +24,7 @@ const CopyButton = ({ text }: { text: string }) => {
       <button
         onClick={handleClick}
         aria-label="코드 복사"
-        className="absolute z-10 flex items-center justify-center p-2 transition-all border opacity-0 rounded-xl size-8 backdrop-blur hover:bg-washed border-dusty/20 top-3 right-3 group-hover:opacity-100"
+        className="absolute z-10 flex items-center justify-center p-2 transition-all border opacity-0 rounded-xl size-8 backdrop-blur hover:bg-washed border-dusty/20 right-3 top-3 group-hover:opacity-100"
       >
         {copied ? (
           <Check className="w-4 h-4 text-green-600" />

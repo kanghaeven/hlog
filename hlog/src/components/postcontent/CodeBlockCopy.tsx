@@ -44,12 +44,12 @@ const CodeBlockCopy = () => {
       const codeText = extractCodeText(codeElement);
 
       // 스타일 적용
-      codeBlock.classList.add("group", "relative");
+      preElement.classList.add("group", "relative");
 
       // React 컴포넌트를 렌더링할 컨테이너 생성
       const buttonContainer = document.createElement("div");
       buttonContainer.className = "code-copy-container";
-      codeBlock.appendChild(buttonContainer);
+      preElement.appendChild(buttonContainer);
 
       const buttonRoot = ReactDOM.createRoot(buttonContainer);
       buttonRoot.render(<CopyButton text={codeText} />);
