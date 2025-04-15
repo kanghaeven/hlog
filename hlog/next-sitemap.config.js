@@ -1,5 +1,10 @@
+import { readdirSync } from "fs";
+import { join } from "path";
+
+const POSTS_PATH = join(process.cwd(), "src/posts");
+
 /** @type {import('next-sitemap').IConfig} */
-module.exports = {
+const config = {
   siteUrl: "https://haebink.vercel.app",
   changefreq: "daily",
   priority: 0.7,
@@ -16,14 +21,13 @@ module.exports = {
   },
   additionalPaths: async () => {
     const urls = [];
-
-    const categories = fs.readdirSync(POSTS_PATH);
+    const categories = readdirSync(POSTS_PATH);
 
     for (const category of categories) {
-      const categoryPath = path.join(POSTS_PATH, category);
-      const posts = fs
-        .readdirSync(categoryPath)
-        .filter((file) => file.endsWith(".mdx"));
+      const categoryPath = join(POSTS_PATH, category);
+      const posts = readdirSync(categoryPath).filter((file) =>
+        file.endsWith(".mdx")
+      );
 
       for (const post of posts) {
         const postSlug = post.replace(/\.mdx$/, "");
@@ -38,3 +42,5 @@ module.exports = {
     return urls;
   },
 };
+
+export default config;
