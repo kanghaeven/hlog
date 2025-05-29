@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CategoryMenuButtonProps } from "@/types/category";
 
-const CategoryMenuButton = ({
+const CategoryMenuButton2 = ({
   category,
   selected,
   isLoading,
@@ -31,4 +31,4 @@ const CategoryMenuButton = ({
   );
 };
 
-export default CategoryMenuButton;
+export default CategoryMenuButton2;

@@ -1,67 +1,64 @@
-"use client";
-
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLoadingPostList } from "@/contexts/LoadingPostListContext";
-import CategoryMenuButton from "@/components/header/CategoryMenuButton";
+import { Menu, Dot } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/common/DropdownMenu";
 
 const CategoryMenu = ({ categories }: { categories: string[] }) => {
   const pathname = usePathname();
   const { isLoadingPostList, setIsLoadingPostList } = useLoadingPostList();
-  const [selectedCategory, setSelectedCategory] = useState<string>("Home");
 
+  // 경로 변경 시 로딩 상태 해제
   useEffect(() => {
-    // 루트 경로("/")이면 "Home"으로 설정하고, 그렇지 않으면 경로의 첫 번째 세그먼트를 카테고리로 설정
-    const category =
-      pathname === "/" ? "Home" : pathname.split("/")[1] || "Home";
-    // 선택된 카테고리 상태 업데이트
-    setSelectedCategory(category);
-    // 페이지 이동 시 로딩 상태를 false로 설정하여 로딩이 완료되었음을 표시
     setIsLoadingPostList(false);
   }, [pathname, setIsLoadingPostList]);
 
-  // 카테고리 버튼 클릭 시 호출되는 함수
-  const handleCategoryClick = (category: string) => {
-    // 현재 선택된 카테고리와 클릭한 카테고리가 다를 경우:
-    if (selectedCategory !== category) {
-      // 로딩 상태 true로 설정 (페이지 이동 시 로딩 표시를 위함)
-      setIsLoadingPostList(true);
-      // 선택된 카테고리 업데이트
-      setSelectedCategory(category);
-    }
-  };
+  // 현재 카테고리 판별 (useMemo로 최적화)
+  const activeCategory = useMemo(() => {
+    if (pathname === "/") return "Home";
+    const pathParts = pathname.split("/");
+    return categories.includes(pathParts[1]) ? pathParts[1] : "Home";
+  }, [pathname, categories]);
 
   return (
-    <nav className="flex transition-all duration-300 items-center p-2 sm:p-4 mt-[0.85rem] md:mt-5 space-x-2">
-      {/* 모바일 화면에서는 선택된 카테고리만 렌더 */}
-      <div className="w-full md:hidden">
-        {["Home", ...categories].map(
-          (category) =>
-            selectedCategory === category && (
-              <CategoryMenuButton
-                key={category}
-                category={category}
-                selected={selectedCategory === category}
-                isLoading={isLoadingPostList}
-                onClick={handleCategoryClick}
-              />
-            )
-        )}
-      </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="p-2 rounded-full focus-visible:ring-0 focus-visible:ring-ring focus-visible:outline-none hover:bg-washed">
+          <Menu />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="md:mt-[0.95rem]">
+        {["Home", ...categories].map((category) => {
+          const categoryPath = category === "Home" ? "/" : `/${category}`;
+          const isActive = activeCategory === category;
 
-      {/* 데스크탑 화면에서는 모든 카테고리 렌더 */}
-      <div className="hidden space-x-2 md:flex">
-        {["Home", ...categories].map((category) => (
-          <CategoryMenuButton
-            key={category}
-            category={category}
-            selected={selectedCategory === category}
-            isLoading={isLoadingPostList}
-            onClick={handleCategoryClick}
-          />
-        ))}
-      </div>
-    </nav>
+          return (
+            <DropdownMenuItem
+              key={category}
+              asChild
+              disabled={isLoadingPostList}
+            >
+              <Link
+                href={categoryPath}
+                className={`flex items-center justify-between no-underline ${
+                  isActive ? "text-shade" : "text-muted"
+                } ${isLoadingPostList ? "opacity-50 pointer-events-none" : ""}`}
+                onClick={() => !isActive && setIsLoadingPostList(true)}
+              >
+                {category}
+                {isActive && <Dot className="ml-2" />}
+              </Link>
+            </DropdownMenuItem>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

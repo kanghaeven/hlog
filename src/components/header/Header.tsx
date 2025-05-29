@@ -6,8 +6,8 @@ import useScrollDirection from "@/hooks/useScrollDirection";
 import ThemeSwitch from "@/components/theme/ThemeSwitch";
 import Hlogo from "@/components/header/Hlogo";
 import SearchBar from "@/components/header/SearchBar";
+import CategoryMenuButton1 from "@/components/header/CategoryMenuButton1";
 import CategoryMenu from "@/components/header/CategoryMenu";
-import MobileCategoryMenu from "@/components/header/MobileCategoryMenu";
 import ScrollProgressBar from "@/components/header/ScrollProgressBar";
 
 const Header = ({ categories }: { categories: string[] }) => {
@@ -32,14 +32,14 @@ const Header = ({ categories }: { categories: string[] }) => {
         <div className={"flex items-center"}>
           <Hlogo />
           <div className="hidden sm:block">
-            <CategoryMenu categories={categories} />
+            <CategoryMenuButton1 categories={categories} />
           </div>
           <div className={`sm:hidden ${isSearchExpanded ? "hidden" : ""}`}>
-            <CategoryMenu categories={categories} />
+            <CategoryMenuButton1 categories={categories} />
           </div>
         </div>
 
-        {/* 오른쪽 영역: 검색바, 테마 스위치, 모바일 메뉴 */}
+        {/* 오른쪽 영역: 검색바, 테마 스위치, 메뉴 */}
         <div className="flex items-center justify-center">
           {!isPostContent && (
             <SearchBar
@@ -50,8 +50,8 @@ const Header = ({ categories }: { categories: string[] }) => {
           <div className={`${isSearchExpanded ? "hidden md:block" : ""}`}>
             <ThemeSwitch />
           </div>
-          <div className={`md:hidden  ${isSearchExpanded ? "hidden" : ""}`}>
-            <MobileCategoryMenu categories={categories} />
+          <div className={`${isSearchExpanded ? "hidden md:block" : ""}`}>
+            <CategoryMenu categories={categories} />
           </div>
         </div>
       </div>
