@@ -2,7 +2,7 @@
 title: "RAP"
 description: "RAP를 이루는 Business Object와 Business Service, OData Service를 어떻게 구성하고 활용하는지에 대해 알아보겠습니다."
 publishDate: "2025-03-30 15:30"
-posterImage: "/postimg/BTP/003/00thumbnail.png"
+posterImage: "/postimg/SAP/004/00thumbnail.png"
 categories: ["BTP", "SAP", "RAP"]
 relatedPosts: []
 ---
@@ -66,7 +66,7 @@ RAP는 SAP HANA에 최적화된 OData 서비스를 구축하는 데 필요한 �
 이 다이어그램은 **ABAP RAP 기반 OData 서비스 개발의 디자인 타임 구조**를 나타내며,\
 OData 서비스를 생성하는 과정에서 중요한 개발 아티팩트(Artifacts)를 포함합니다.
 
-![01designtime.png](/postimg/BTP/003/01designtime.png)
+![01designtime.png](/postimg/SAP/004/01designtime.png)
 
 개발 흐름은 **하위 계층부터 상위 계층으로 진행(Bottom-up Approach)**
 
@@ -103,7 +103,7 @@ OData 서비스를 생성하는 과정에서 중요한 개발 아티팩트(Artif
 이 과정에서는 **OData 클라이언트의 요청**이 ABAP 코드로 변환되어\
 비즈니스 로직이 실행되는 방식과 흐름을 설명합니다.
 
-![02rapruntime.png](/postimg/BTP/003/02rapruntime.png)
+![02rapruntime.png](/postimg/SAP/004/02rapruntime.png)
 
 1. **OData 클라이언트 요청**
 
@@ -194,7 +194,7 @@ BO는 구조(Structure), 동작(Behavior), 런타임 구현(Runtime Implementati
 
 이 구조는 **비즈니스 객체** 내의 **데이터**와 **관계를 계층적으로 모델링**하는 데 도움을 줍니다.
 
-![03rapentity.png](/postimg/BTP/003/03rapentity.png)
+![03rapentity.png](/postimg/SAP/004/03rapentity.png)
 
 1. **ROOT Entity (루트 엔티티)**
 
@@ -238,7 +238,7 @@ Behavior Implementation은 ABAP 클래스로 이루어지고,\
 즉, ABAP 클래스는 Behavior Pool을 구성하는 기본 단위이며,\
 Behavior Implementation은 Behavior Pool을 통해 비즈니스 객체의 동작을 구현하는 것입니다.
 
-![04behavior.png](/postimg/BTP/003/04behavior.png)
+![04behavior.png](/postimg/SAP/004/04behavior.png)
 
 **특징**
 
@@ -254,7 +254,7 @@ Behavior Implementation은 Behavior Pool을 통해 비즈니스 객체의 동작
 
 비즈니스 객체(BO)의 실행(Runtime)은 주요 두 단계로 나뉩니다.
 
-![05boruntime.png](/postimg/BTP/003/05boruntime.png)
+![05boruntime.png](/postimg/SAP/004/05boruntime.png)
 
 1. **Interaction Phase (상호작용 단계)**
 
@@ -325,7 +325,7 @@ CDS 엔티티는 서로 강하게 결합되어 있지 않음\
 필요한 경우에만 연관(Association)을 설정하여 데이터 검색\
 **쿼리는 느슨하게 결합된 CDS 엔티티에서 동작합니다.**
 
-![06loose.png](/postimg/BTP/003/06loose.png)
+![06loose.png](/postimg/SAP/004/06loose.png)
 
 비행편(Flight Connections)과 공항 정보(Airport Information)는 별도의 **CDS 엔티티**로 존재
 
@@ -383,7 +383,7 @@ use etag
 
 주요 키워드를 통해 BO의 기능을 시스템 내에서 구현합니다.
 
-![07behaviordefinition.png](/postimg/BTP/003/07behaviordefinition.png)
+![07behaviordefinition.png](/postimg/SAP/004/07behaviordefinition.png)
 
 - **Behavior Characteristics (동작 특성)**
   - **ETag**: 데이터 변경을 추적하여 충돌을 방지
@@ -426,7 +426,7 @@ use etag
 
 ABAP RAP에서는 데이터 모델 및 동작 계층과 서비스 계층을 명확히 분리합니다.
 
-![08businessservice.png](/postimg/BTP/003/08businessservice.png)
+![08businessservice.png](/postimg/SAP/004/08businessservice.png)
 
 - **데이터 모델 및 동작 계층 (Data Model and Behavior Layer)**\
   비즈니스 객체(BO), 쿼리(Query) 등의 도메인별 개념적 엔티티 포함\
@@ -492,7 +492,7 @@ OData 프로토콜을 사용하여 비즈니스 서비스를 바인딩할 때,\
 
 이러한 차이는 UI 애노테이션, 값 도우미(Value Help), 부수효과(Side Effects), PDF 내보내기와 같은 다양한 기능에서 나타납니다.
 
-![09odataexposure.png](/postimg/BTP/003/09odataexposure.png)
+![09odataexposure.png](/postimg/SAP/004/09odataexposure.png)
 
 # 4. OData Service
 
@@ -548,7 +548,7 @@ OData 서비스의 범위를 정의하는 서비스 정의를 생성합니다.
 2. **별칭 설정 (선택 사항)**: 여러 뷰를 사용할 경우 가독성을 높이기 위해 별칭을 설정할 수 있습니다.
 3. **서비스 활성화**: 서비스를 배포하여 시스템에서 OData 서비스가 정상적으로 동작하도록 합니다.
 
-![10odatacds.png](/postimg/BTP/003/10odatacds.png)
+![10odatacds.png](/postimg/SAP/004/10odatacds.png)
 
 `/DMO/FLIGHT_R` 서비스 정의는 `/DMO/I_Connection_R` CDS 뷰를 OData 서비스에서 사용할 수 있도록 노출합니다.
 
@@ -561,7 +561,7 @@ OData 서비스의 프로토콜과 UI 서비스를 정의하기 위해 바인딩
 2. **바인딩 유형**(예: OData V2)을 선택하고, **서비스 정의**(`/DMO/FLIGHT_R`)를 지정합니다.
 3. 서비스 바인딩 편집기에서 설정을 검토하고, 바인딩을 **활성화**하여 UI에서 정상적으로 작동하도록 합니다.
 
-![11servicebinding.png](/postimg/BTP/003/11servicebinding.png)
+![11servicebinding.png](/postimg/SAP/004/11servicebinding.png)
 
 ### **4.3.4. OData 서비스 로컬로 게시**
 
@@ -573,7 +573,7 @@ OData 서비스의 프로토콜과 UI 서비스를 정의하기 위해 바인딩
    OData 서비스를 SAP Gateway에 게시합니다.
 3. **UI 통합 활성화**: 게시된 서비스를 UI 애플리케이션에서 사용할 수 있게 됩니다.
 
-![12publish.png](/postimg/BTP/003/12publish.png)
+![12publish.png](/postimg/SAP/004/12publish.png)
 
 ### **4.3.5. OData 메타데이터 확인**
 
@@ -582,7 +582,7 @@ OData 서비스가 제대로 노출되었는지 확인하기 위해 메타데이
 1. **서비스 바인딩 열기**: 서비스 바인딩을 열고 제공된 서비스 URL을 확인합니다.
 2. **URL에 `/$metadata` 추가**: `/sap/opu/odata/sap/DMO/UI_FLIGHT_R_V2/$metadata`와 같이 URL 끝에 `/$metadata`를 추가합니다.
 3. **메타데이터 검토**: 브라우저에서 메타데이터 문서를 열어 엔터티 세트와 서비스 정의가 정상적으로 노출되었는지 확인합니다.
-   ![13metadata.png](/postimg/BTP/003/13metadata.png)
+   ![13metadata.png](/postimg/SAP/004/13metadata.png)
 
 ### **4.3.6. 결과 UI 서비스 미리 보기**
 
@@ -592,7 +592,7 @@ Fiori Elements UI 미리보기 도구를 사용하여 생성된 OData 서비스�
 2.  **미리보기 기능 사용**: 서비스 바인딩 편집기에서 미리보기 기능을 실행합니다.
 3.  **Fiori Elements 앱 확인**: 브라우저에서 Fiori Elements 앱이 열리면,
     CDS 뷰에서 구현된 데이터가 제대로 표시되는지 확인합니다.
-    ![14preview.png](/postimg/BTP/003/14preview.png)
+    ![14preview.png](/postimg/SAP/004/14preview.png)
 
 **주의사항**
 
